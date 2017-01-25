@@ -12,7 +12,7 @@
 				<div class="social-media">
 					<ul class="cf">
 						<li><a href="#">F</a></li>
-						<li>T</li>
+						<li><a href="#">T</a></li>
 					</ul>
 				</div>
 			</div>
