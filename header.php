@@ -22,8 +22,8 @@
 
 				<div class="container cf">
 					<div class="meta-text align-right"><h3>Design and Animation</h3></div>
-					<div class="logo"><a href="#"></a></div>
 					<div class="meta-text align-left"><h3>Detroit, Michigan</h3></div>
+					<div class="logo"><a href="#"></a></div>
 				</div>
 				<nav>X</nav>
 

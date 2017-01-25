@@ -213,6 +213,7 @@ body {
 
 body {
   color: #585A5A;
+  background: #000;
   font: 1em/1.2 Arial, Helvetica, sans-serif;
   font-smooth: always;
   -webkit-font-smoothing: antialiased; }
@@ -231,8 +232,11 @@ body {
 .align-left {
   text-align: left; }
 
-.header h3 {
+.header h3, footer p {
   font-size: .7em; }
+
+.footer .copyright {
+  text-align: center; }
 
 p {
   margin-top: 0;
@@ -271,7 +275,7 @@ h3 {
   position: relative;
   width: 100%; }
   .header .featured {
-    background: lime; }
+    background: #c7c7c7; }
   .header .nav-bar {
     position: relative;
     background: #000;
@@ -280,19 +284,27 @@ h3 {
       position: relative;
       height: 100%; }
       .header .nav-bar .container > div {
-        float: left;
-        position: relative;
         height: 100%;
         display: block; }
-    .header .nav-bar .meta-text h3 {
-      position: relative;
-      top: 50%;
-      transform: translateY(-50%);
-      display: block;
-      margin: 0 30px; }
+    .header .nav-bar .meta-text {
+      position: absolute;
+      top: 0; }
+      .header .nav-bar .meta-text:nth-of-type(1) {
+        left: 0; }
+      .header .nav-bar .meta-text:nth-of-type(2) {
+        right: 0; }
+      .header .nav-bar .meta-text h3 {
+        position: relative;
+        top: 50%;
+        transform: translateY(-50%);
+        display: block;
+        margin: 0 30px; }
     .header .nav-bar .logo {
       width: 420px;
-      max-width: 50%; }
+      max-width: 50%;
+      left: 50%;
+      transform: translateX(-50%);
+      position: absolute; }
       .header .nav-bar .logo a {
         position: relative;
         left: 50%;
@@ -313,33 +325,84 @@ h3 {
     height: 100%; }
 
 .projects {
-  background: gray; }
+  padding: 0 0 40px 0; }
+  .projects .row.left .case-study {
+    padding: 10px 10px 10px 20px;
+    float: left; }
+  .projects .row.left .normal {
+    padding: 10px 20px 10px 10px;
+    float: right; }
+  .projects .row.right .case-study {
+    padding: 10px 20px 10px 10px;
+    float: right; }
+  .projects .row.right .normal {
+    padding: 10px 10px 10px 20px;
+    float: left; }
   .projects .row {
     width: 100%;
-    background: pink;
     display: block;
-    float: left;
     position: relative; }
     .projects .row .col {
-      float: left;
       position: relative; }
-    .projects .row .case-study {
-      padding: 10px 10px 10px 20px; }
-    .projects .row .normal {
-      padding: 10px 20px 10px 10px; }
-      .projects .row .normal .project {
-        overflow: hidden; }
-      .projects .row .normal .project:first-child {
-        padding-top: 0;
-        padding-bottom: 10px; }
-      .projects .row .normal .project:last-child {
-        padding-top: 10px;
-        padding-bottom: 0; }
+    .projects .row .normal .project {
+      overflow: hidden; }
+    .projects .row .normal .project:first-child {
+      padding-top: 0;
+      padding-bottom: 10px; }
+    .projects .row .normal .project:last-child {
+      padding-top: 10px;
+      padding-bottom: 0; }
     .projects .row .thumbnail {
       width: 100%;
       display: block; }
 
 .footer {
-  background: #191919; }
+  background: #1E1E1E;
+  height: 100px;
+  position: relative; }
+  .footer .container {
+    display: block;
+    position: relative;
+    height: 100%; }
+    .footer .container .copyright {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%); }
+    .footer .container .info {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      border: 1px solid blue;
+      max-width: 100%;
+      display: block; }
+      .footer .container .info > div {
+        float: left;
+        padding: 10px; }
+        .footer .container .info > div:nth-of-type(1), .footer .container .info > div:nth-of-type(2) {
+          margin-right: 40px; }
+        .footer .container .info > div:nth-of-type(3) {
+          margin-right: 0; }
+      .footer .container .info .logo {
+        width: 185px;
+        max-width: 50%;
+        display: block;
+        position: relative; }
+        .footer .container .info .logo a {
+          position: relative;
+          background-image: url(https://dummyimage.com/185x20/75ff85/000000.jpg&text=LN);
+          background-size: 100% auto;
+          background-repeat: no-repeat;
+          background-position: center;
+          max-width: 100%;
+          height: 20px;
+          display: block; }
+      .footer .container .info .social-media ul, .footer .container .info .social-media li {
+        margin: 0;
+        padding: 0;
+        list-style: none; }
+      .footer .container .info .social-media li {
+        float: left; }
 
 /*# sourceMappingURL=style.css.map */

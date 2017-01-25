@@ -4,6 +4,7 @@ $white: #FFF;
 
 body { 
 	color: $textColor1;
+	background: $bgColor;
 	font: 1em/1.2 Arial, Helvetica, sans-serif;
 	font-smooth: always;
  	-webkit-font-smoothing: antialiased;
@@ -27,10 +28,17 @@ body {
 } 
 
 // HEADER
-.header h3 {
+.header h3, footer p {
 	font-size: .7em;
 }
 
+// FOOTER
+.footer {
+
+	.copyright {
+		text-align: center;
+	}
+}
 
 p {
 	margin-top: 0;

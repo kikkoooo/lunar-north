@@ -63,6 +63,11 @@ var ln = {
 			width : ($(".header .container").innerWidth() - $(".header .logo").outerWidth()) / 2
 		});
 		
+		$(".footer .copyright").css({
+			width : ($(".footer").innerWidth() - $(".footer .info").outerWidth()) / 2
+		});
+
+
 		$(".case-study").css({
 			width: $(".row").width() * (2/3)
 		});
