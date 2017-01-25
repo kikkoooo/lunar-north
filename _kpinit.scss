@@ -1,0 +1,39 @@
+/* Box-sizing */
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+}
+
+::selection {
+  background: #000;
+  color: #FFF;
+}
+
+::-moz-selection {
+  background: #000;
+  color: #FFF;
+}
+
+
+/* Clear Float */
+.cf:before,
+.cf:after {
+  content: " ";
+  /* 1 */
+  display: table;
+  /* 2 */
+}
+
+.cf:after {
+  clear: both;
+}
+
+.cf {
+  *zoom: 1;
+}

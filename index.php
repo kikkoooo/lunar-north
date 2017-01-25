@@ -1,5 +1,48 @@
 <?php get_header(); ?>
-		<section id="work" class="page content-x init">
+	<section class="projects index">
+
+		<div class="row cf">
+
+			<div class="case-study col">
+				<div class="project">
+					<img class="thumbnail" src="https://dummyimage.com/1920x1080/191919/fff.jpg&text=LN"/>
+				</div>
+			</div>
+			
+			<div class="normal col">
+				<div class="project">
+					<img class="thumbnail" src="https://dummyimage.com/1920x1080/191919/fff.jpg&text=LN"/>
+				</div>
+				<div class="project">
+					<img class="thumbnail" src="https://dummyimage.com/1920x1080/191919/fff.jpg&text=LN"/>
+				</div>
+			</div>
+
+		</div>
+
+		<div class="row cf">
+
+			<div class="case-study col">
+				<div class="project">
+					<img class="thumbnail" src="https://dummyimage.com/1920x1080/191919/fff.jpg&text=LN"/>
+				</div>
+			</div>
+			
+			<div class="normal col">
+				<div class="project">
+					<img class="thumbnail" src="https://dummyimage.com/1920x1080/191919/fff.jpg&text=LN"/>
+				</div>
+				<div class="project">
+					<img class="thumbnail" src="https://dummyimage.com/1920x1080/191919/fff.jpg&text=LN"/>
+				</div>
+			</div>
+
+		</div>
+
+
+	</section>
+
+<!-- 		<section id="work" class="page content-x init">
 		<div class="count top-50"><span class="total"></span></div>					
 		<div class="container">
 			<ul class="images"></ul>		
@@ -15,4 +58,6 @@
 			</div>
 		</div>	
 	</section>
-<?php get_footer(); ?>
+ -->
+
+ <?php get_footer(); ?>
