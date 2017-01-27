@@ -1,3 +1,9 @@
+$(document).ready(function() {
+    $(window).on('resize', function() {
+         $('#pixelLeft, #pixelRight').css('width',($('body').width()-$('#bannerCenter').width())/2);
+    }).trigger('resize');      
+});
+
 $(document).ready(function(){     
 	ln.init();
 });
@@ -7,11 +13,27 @@ $(window).resize(function(){
 });
 
 var ln = {
+	spacing: 20,
     page: {
 	    current  : null,
 	    incoming : null,	    
     },
     init : function() {
+
+		var tempHeight;
+		var count = 1;
+
+		$(".case-study .thumbnail").one("load", function() {
+			var h = $(this).closest(".case-study").height();			
+			$(".normal .thumbnail").height(($(this).closest(".normal").siblings(".case-study").height() - 20) / 2);
+			console.log(h + " " + count);
+			count++;
+		}).each(function() {
+			if(this.complete) $(this).load();
+		});
+
+
+
 
 		// this.ajaxPagess();
 		this.pos();
@@ -77,8 +99,10 @@ var ln = {
 			width: $(".row").width()/3
 		});
 
-		$(".normal .project").height(($(".normal .project").parent().siblings(".case-study").height() - 20) / 2);
-
+		// Resize normal project thumbnails to compensate for the margins
+		$(".normal img").each(function() {
+			$(this).height(($(this).closest(".normal").siblings(".case-study").height() - 20) / 2);
+		});
 
 
 	},
