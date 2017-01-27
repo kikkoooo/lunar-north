@@ -65,6 +65,37 @@
 			</div>
 		</div>
 
+		<div class="row left cf">
+			<div class="case-study col">
+				<div class="project">
+					<img class="thumbnail" src="https://dummyimage.com/1920x1080/ffd1fa/fff.jpg&text=LN"/>
+				</div>
+			</div>
+			<div class="normal col">
+				<div class="project">
+					<img class="thumbnail" src="https://dummyimage.com/1920x1080/ffd1fa/fff.jpg&text=LN"/>
+				</div>
+				<div class="project">
+					<img class="thumbnail" src="https://dummyimage.com/1920x1080/ffd1fa/fff.jpg&text=LN"/>
+				</div>
+			</div>
+		</div>
+
+		<div class="row right cf">
+			<div class="case-study col">
+				<div class="project">
+					<img class="thumbnail" src="https://dummyimage.com/1920x1080/ffd1fa/fff.jpg&text=LN"/>
+				</div>
+			</div>
+			<div class="normal col">
+				<div class="project">
+					<img class="thumbnail" src="https://dummyimage.com/1920x1080/ffd1fa/fff.jpg&text=LN"/>
+				</div>
+				<div class="project">
+					<img class="thumbnail" src="https://dummyimage.com/1920x1080/ffd1fa/fff.jpg&text=LN"/>
+				</div>
+			</div>
+		</div>
 
 	</section>
 

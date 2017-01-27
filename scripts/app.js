@@ -34,9 +34,9 @@ var ln = {
 
 
 
-
 		// this.ajaxPagess();
 		this.pos();
+		this.initSticky();
 		// this.navigation();
 
 		// fontSpy('Rational-Regular', {
@@ -117,18 +117,46 @@ var ln = {
 
 	},
 	
-	loadingBar : function(option) {
+	// loadingBar : function(option) {
 		
-		var $lb = $('.loading-bar'),
-			s = 300;
+	// 	var $lb = $('.loading-bar'),
+	// 		s = 300;
 	
-		if (option == false) {
-			$lb.delay(s).fadeOut(s);
-		} else {
-			$lb.fadeIn(s);		
-		}
+	// 	if (option == false) {
+	// 		$lb.delay(s).fadeOut(s);
+	// 	} else {
+	// 		$lb.fadeIn(s);		
+	// 	}
 			
+	// },
+
+	initSticky : function() {
+
+		$navBar = $(".nav-bar");
+		function sticky() {
+
+			$navBar.sticky({ 
+				topSpacing: 0,
+				zIndex: 100 
+			});
+			$navBar.on('sticky-start', function() { 
+
+				console.log("sticking");
+
+			});
+
+			$navBar.on('sticky-end', function() { 
+
+				console.log("stop sticking");
+
+			});
+
+		}
+
+		sticky();
+
 	},
+
 
 
     waypoints : function() {
