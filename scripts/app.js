@@ -63,7 +63,8 @@ var ln = {
     introImage : function() {
 		var $introImage = $('.preview-intro-image'),
 			introImageObj = $introImage.data('intro-image');
-		if ($introImage.length) $introImage.backstretch(introImageObj, {fade: 200});
+		// if ($introImage.length) $introImage.backstretch(introImageObj, {fade: 100});
+		if ($introImage.length) $introImage.backstretch(introImageObj);
     },
 
 	navigation : function() {

@@ -173,7 +173,6 @@ $gutter: 20px;
 		a {
 			
 			position: absolute;
-			top: 0;
 			left: 0;
 
 			display: block;
@@ -252,11 +251,20 @@ $gutter: 20px;
 			.project:first-child {
 				padding-top: 0;
 				padding-bottom: $gutter/2;
+
+				a {
+					top: 0;
+				}
 			}
 
 			.project:last-child {
 				padding-top: $gutter/2;
 				padding-bottom: 0;
+
+				a {
+					bottom: 0;
+				}
+
 			}
 
 		}

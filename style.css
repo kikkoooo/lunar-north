@@ -369,7 +369,6 @@ h3 {
     position: relative; }
     .projects .project a {
       position: absolute;
-      top: 0;
       left: 0;
       display: block;
       width: 100%;
@@ -407,9 +406,13 @@ h3 {
     .projects .row .normal .project:first-child {
       padding-top: 0;
       padding-bottom: 10px; }
+      .projects .row .normal .project:first-child a {
+        top: 0; }
     .projects .row .normal .project:last-child {
       padding-top: 10px;
       padding-bottom: 0; }
+      .projects .row .normal .project:last-child a {
+        bottom: 0; }
     .projects .row .thumbnail {
       width: 100%;
       display: block; }
