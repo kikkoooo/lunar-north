@@ -13,24 +13,42 @@
 </head>
 <body>
 
+	<?php
+
+	function testIntroImage() {
+		echo get_stylesheet_directory_uri().'/images/test-intro.jpg'; 
+	}
+	
+	?>
+
+	<div id="featured">
+		<div class="preview-intro-image" data-intro-image="<?php testIntroImage(); ?>"></div>
+	</div>
+
 	<div id="main">
+
 		<header class="header">
 
-			<div class="featured">HELLO</div>
+			<div class="container cf">
+				<div class="meta-text align-right"><h3>Design and Animation</h3></div>
+				<div class="meta-text align-left"><h3>Detroit, Michigan</h3></div>
+				<div class="logo"><a href="#"></a></div>
+			</div>
 
-			<div class="nav-bar">
+			<div class="menu-button">
+				<a href="#" class="icon-btn"></a>
+			</div>	
 
-				<div class="container cf">
-					<div class="meta-text align-right"><h3>Design and Animation</h3></div>
-					<div class="meta-text align-left"><h3>Detroit, Michigan</h3></div>
-					<div class="logo"><a href="#"></a></div>
-				</div>
-				<nav>X</nav>
-
-			</div>			
+			<nav class="menu-box">
+				<ul>
+					<li><h2><a href="#">Reel</a></h2></li>
+					<li><h2><a href="#">Link 2</a></h2></li>
+					<li><h2><a href="#">Link 3</a></h2></li>
+					<li><h2><a href="#">Link 4</a></h2></li>
+				</ul>
+			</nav>
 
 		</header>
 
  		<div id="content">
 
-	</div>

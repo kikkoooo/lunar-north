@@ -226,17 +226,14 @@ body {
   background: #000;
   color: #FFF; }
 
-.align-right {
-  text-align: right; }
-
-.align-left {
-  text-align: left; }
-
 .header h3, footer p {
   font-size: .7em; }
 
 .footer .copyright {
   text-align: center; }
+
+.header h3, footer p {
+  text-transform: uppercase; }
 
 p {
   margin-top: 0;
@@ -268,46 +265,61 @@ h3 {
   padding-left: 0;
   margin-bottom: 1em; }
 
+.align-right {
+  text-align: right; }
+
+.align-left {
+  text-align: left; }
+
 #main {
   position: relative; }
 
-.header {
-  position: relative;
+#featured {
+  width: 100%;
   width: 100vw;
   height: 100vh;
-  width: 100%; }
-  .header .featured {
-    background: #c7c7c7; }
-  .header .nav-bar {
+  position: absolute;
+  top: 0;
+  left: 0; }
+  #featured .preview-intro-image {
+    overflow: hidden;
+    position: absolute;
+    height: 100%;
+    width: 100%; }
+
+.header {
+  position: absolute;
+  width: 100%;
+  background: lime;
+  height: 110px;
+  background: #000;
+  z-index: 100; }
+  .header .container {
     position: relative;
-    background: #000;
-    height: 110px; }
-    .header .nav-bar .container {
-      position: relative;
-      height: 100%; }
-      .header .nav-bar .container > div {
-        height: 100%;
-        display: block; }
-    .header .nav-bar .meta-text {
+    height: 100%; }
+    .header .container > div {
+      height: 100%;
+      display: block; }
+    .header .container .meta-text {
       position: absolute;
       top: 0; }
-      .header .nav-bar .meta-text:nth-of-type(1) {
+      .header .container .meta-text:nth-of-type(1) {
         left: 0; }
-      .header .nav-bar .meta-text:nth-of-type(2) {
+      .header .container .meta-text:nth-of-type(2) {
         right: 0; }
-      .header .nav-bar .meta-text h3 {
+      .header .container .meta-text h3 {
         position: relative;
         top: 50%;
         transform: translateY(-50%);
         display: block;
         margin: 0 30px; }
-    .header .nav-bar .logo {
+    .header .container .logo {
       width: 420px;
       max-width: 50%;
       left: 50%;
       transform: translateX(-50%);
       position: absolute; }
-      .header .nav-bar .logo a {
+      .header .container .logo a {
         position: relative;
         left: 50%;
         top: 50%;
@@ -319,15 +331,59 @@ h3 {
         max-width: 100%;
         height: 50px;
         display: block; }
-  .header nav {
+  .header .menu-button {
     position: absolute;
     top: 0;
     right: 0;
-    background: blue;
-    height: 100%; }
+    height: 100%;
+    width: 100px;
+    display: block;
+    border: 1px solid blue; }
+    .header .menu-button .icon-btn {
+      background-image: url(./images/test-35.jpg);
+      background-repeat: no-repeat;
+      background-position: center;
+      width: 100%;
+      height: 100%;
+      display: block; }
+  .header nav.menu-box {
+    position: absolute;
+    right: 0;
+    width: 100vw;
+    padding: 20px;
+    background: gray;
+    display: none;
+    z-index: 100;
+    background: #1E1E1E; }
+    .header nav.menu-box ul, .header nav.menu-box li {
+      list-style: none;
+      padding: 0;
+      text-align: center; }
+
+#content {
+  position: relative; }
 
 .projects {
   padding: 0 0 40px 0; }
+  .projects .project {
+    position: relative; }
+    .projects .project a {
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: block;
+      width: 100%;
+      height: 100%; }
+      .projects .project a:hover {
+        background: rgba(0, 0, 0, 0.5); }
+      .projects .project a .animation-rollover {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        height: 50px;
+        width: 50px;
+        background-image: url(images/test-sm-seq.png);
+        transform: translate(-50%, -50%); }
   .projects .row.left .case-study {
     padding: 10px 10px 10px 20px;
     float: left; }
@@ -393,7 +449,7 @@ h3 {
         position: relative; }
         .footer .container .info .logo a {
           position: relative;
-          background-image: url(https://dummyimage.com/185x20/75ff85/000000.jpg&text=LN);
+          background-image: url(./images/ln-logo.png);
           background-size: 100% auto;
           background-repeat: no-repeat;
           background-position: center;

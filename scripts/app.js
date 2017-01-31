@@ -13,7 +13,8 @@ $(window).resize(function(){
 });
 
 var ln = {
-	spacing: 20,
+	gutter: 20,
+	featured: true,
     page: {
 	    current  : null,
 	    incoming : null,	    
@@ -24,20 +25,28 @@ var ln = {
 		var count = 1;
 
 		$(".case-study .thumbnail").one("load", function() {
-			var h = $(this).closest(".case-study").height();			
-			$(".normal .thumbnail").height(($(this).closest(".normal").siblings(".case-study").height() - 20) / 2);
-			console.log(h + " " + count);
+
+			var h = $(this).closest(".case-study").height();
+			var $project = $(this).closest(".case-study").siblings(".normal").find(".project");
+
+			$project.height((h-ln.gutter)/2);
+
+			console.log($project.length);
+			// console.log(h + " " + count);
 			count++;
+
 		}).each(function() {
 			if(this.complete) $(this).load();
 		});
 
 
-
 		// this.ajaxPagess();
 		this.pos();
+		this.introImage();
 		this.initSticky();
-		// this.navigation();
+		this.navigation();
+
+		// $(".animation-rollover").animateSprite('stop');
 
 		// fontSpy('Rational-Regular', {
 		//   success: function() {
@@ -51,15 +60,53 @@ var ln = {
 		
 	}, 
 	
-
+    introImage : function() {
+		var $introImage = $('.preview-intro-image'),
+			introImageObj = $introImage.data('intro-image');
+		if ($introImage.length) $introImage.backstretch(introImageObj, {fade: 200});
+    },
 
 	navigation : function() {
 
-		// $('.close-btn').click(function() {
-		// 	$('#notes-content-container').animate({
-		// 		top: '100%'
-		// 	}, 500)
-		// })
+		$(".menu-button a").click(function(e) {
+			e.preventDefault();
+			var $menuBox = $(".menu-box");
+
+			if ($menuBox.is(":visible")) {
+				$menuBox.fadeOut(200);
+			} else {
+				$menuBox.fadeIn(200);
+			}
+		});
+
+
+
+		$(".project .link").hover(function () {
+
+			$tar = $(this).children(".animation-rollover");
+			$link = $(this);
+
+			console.log("hover");
+
+			if ($link.data("animated") == false) {
+				$tar.animateSprite({
+				    fps: 15,
+					loop: false,
+				    complete: function () {
+				        $link.animateSprite('frame', 0);
+				    }
+				});
+				$link.data("animated", true);
+			} else {
+				$tar.animateSprite("restart");
+			}
+
+		}, function () {
+			console.log("out");			
+			$(this).find(".animation-rollover").animateSprite('stop').animateSprite('frame', 0);
+		});		
+
+
 	},
 	
 	pos : function() {
@@ -67,20 +114,23 @@ var ln = {
         var h = $(window).height(),
             w = $(window).width(),
             $header = $(".header"),
-            $navBar = $(".header .nav-bar"),
-			$featured = $(".header .featured"),
-            navBarH = $navBar.outerHeight(false);
+			$featured = $("#featured"),
+			$main = $("#main"),
+            headerH = $header.outerHeight(false);
 
-		// Header
-		$header.css({
-			height: h
-		});
 
-		// Featured Box
-		$featured.css({
-			height: h-navBarH
-		});
+        if (ln.featured == true) {
+			// Featured
+			$featured.css({
+				height: h-headerH
+			});
 
+			$main.css({
+				top: h-headerH
+			});
+		}
+
+		// Header sub text
 		$(".header .meta-text").css({
 			width : ($(".header .container").innerWidth() - $(".header .logo").outerWidth()) / 2
 		});
@@ -99,10 +149,6 @@ var ln = {
 			width: $(".row").width()/3
 		});
 
-		// Resize normal project thumbnails to compensate for the margins
-		$(".normal img").each(function() {
-			$(this).height(($(this).closest(".normal").siblings(".case-study").height() - 20) / 2);
-		});
 
 
 	},
@@ -110,11 +156,11 @@ var ln = {
 	resize : function() {
 
 		this.pos();
+		// Resize normal project thumbnails to compensate for the margins
+		$(".normal .project").each(function() {
+			$(this).height(($(this).closest(".normal").siblings(".case-study").height() - 20) / 2);
+		});
 		// this.movingLine.resize();
-		
-		
-		// if (('#vs .left').length) this.resizeBar.resize();
-
 	},
 	
 	// loadingBar : function(option) {
@@ -132,22 +178,35 @@ var ln = {
 
 	initSticky : function() {
 
-		$navBar = $(".nav-bar");
+		$navBar = $(".header");
 		function sticky() {
 
 			$navBar.sticky({ 
 				topSpacing: 0,
 				zIndex: 100 
 			});
+
 			$navBar.on('sticky-start', function() { 
 
 				console.log("sticking");
+
+				ln.featured = false;
+				$("#featured").hide();
+				$("#main").css({
+					top: 0
+				});
+				$(window).scrollTo(0);
 
 			});
 
 			$navBar.on('sticky-end', function() { 
 
 				console.log("stop sticking");
+				
+				var $menuBox = $(".menu-box");
+
+				$menuBox.fadeOut(200);
+
 
 			});
 

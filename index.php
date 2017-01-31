@@ -1,18 +1,29 @@
+<?php 
+
+	// old = https://dummyimage.com/1920x1080/ffd1fa/fff.jpg&text=LN
+	function testImage() {
+		echo get_stylesheet_directory_uri().'/images/test-1920.jpg'; 
+	}
+
+?>	
 <?php get_header(); ?>
 	<section class="projects index">
 
-		<div class="row left cf">
+		<div id="first" class="row left cf">
 			<div class="case-study col">
 				<div class="project">
-					<img class="thumbnail" src="https://dummyimage.com/1920x1080/ffd1fa/fff.jpg&text=LN"/>
+					<a href="#" class="link" data-animated="false"><div class="animation-rollover"></div></a>
+					<img class="thumbnail" src="<?php testImage()?>"/>
 				</div>
 			</div>
 			<div class="normal col">
 				<div class="project">
-					<img class="thumbnail" src="https://dummyimage.com/1920x1080/ffd1fa/fff.jpg&text=LN"/>
+					<a href="#" class="link" data-animated="false"><div class="animation-rollover"></div></a>
+					<img class="thumbnail" src="<?php testImage()?>"/>
 				</div>
 				<div class="project">
-					<img class="thumbnail" src="https://dummyimage.com/1920x1080/ffd1fa/fff.jpg&text=LN"/>
+					<a href="#" class="link" data-animated="false"><div class="animation-rollover"></div></a>
+					<img class="thumbnail" src="<?php testImage()?>"/>
 				</div>
 			</div>
 		</div>
@@ -20,63 +31,37 @@
 		<div class="row right cf">
 			<div class="case-study col">
 				<div class="project">
-					<img class="thumbnail" src="https://dummyimage.com/1920x1080/ffd1fa/fff.jpg&text=LN"/>
+					<a href="#" class="link" data-animated="false"><div class="animation-rollover"></div></a>
+					<img class="thumbnail" src="<?php testImage()?>"/>
 				</div>
 			</div>
 			<div class="normal col">
 				<div class="project">
-					<img class="thumbnail" src="https://dummyimage.com/1920x1080/ffd1fa/fff.jpg&text=LN"/>
+					<a href="#" class="link" data-animated="false"><div class="animation-rollover"></div></a>
+					<img class="thumbnail" src="<?php testImage()?>"/>
 				</div>
 				<div class="project">
-					<img class="thumbnail" src="https://dummyimage.com/1920x1080/ffd1fa/fff.jpg&text=LN"/>
+					<a href="#" class="link" data-animated="false"><div class="animation-rollover"></div></a>
+					<img class="thumbnail" src="<?php testImage()?>"/>
 				</div>
 			</div>
 		</div>
 
-		<div class="row left cf">
+		<div id="first" class="row left cf">
 			<div class="case-study col">
 				<div class="project">
-					<img class="thumbnail" src="https://dummyimage.com/1920x1080/ffd1fa/fff.jpg&text=LN"/>
+					<a href="#" class="link" data-animated="false"><div class="animation-rollover"></div></a>
+					<img class="thumbnail" src="<?php testImage()?>"/>
 				</div>
 			</div>
 			<div class="normal col">
 				<div class="project">
-					<img class="thumbnail" src="https://dummyimage.com/1920x1080/ffd1fa/fff.jpg&text=LN"/>
+					<a href="#" class="link" data-animated="false"><div class="animation-rollover"></div></a>
+					<img class="thumbnail" src="<?php testImage()?>"/>
 				</div>
 				<div class="project">
-					<img class="thumbnail" src="https://dummyimage.com/1920x1080/ffd1fa/fff.jpg&text=LN"/>
-				</div>
-			</div>
-		</div>
-
-		<div class="row right cf">
-			<div class="case-study col">
-				<div class="project">
-					<img class="thumbnail" src="https://dummyimage.com/1920x1080/ffd1fa/fff.jpg&text=LN"/>
-				</div>
-			</div>
-			<div class="normal col">
-				<div class="project">
-					<img class="thumbnail" src="https://dummyimage.com/1920x1080/ffd1fa/fff.jpg&text=LN"/>
-				</div>
-				<div class="project">
-					<img class="thumbnail" src="https://dummyimage.com/1920x1080/ffd1fa/fff.jpg&text=LN"/>
-				</div>
-			</div>
-		</div>
-
-		<div class="row left cf">
-			<div class="case-study col">
-				<div class="project">
-					<img class="thumbnail" src="https://dummyimage.com/1920x1080/ffd1fa/fff.jpg&text=LN"/>
-				</div>
-			</div>
-			<div class="normal col">
-				<div class="project">
-					<img class="thumbnail" src="https://dummyimage.com/1920x1080/ffd1fa/fff.jpg&text=LN"/>
-				</div>
-				<div class="project">
-					<img class="thumbnail" src="https://dummyimage.com/1920x1080/ffd1fa/fff.jpg&text=LN"/>
+					<a href="#" class="link" data-animated="false"><div class="animation-rollover"></div></a>
+					<img class="thumbnail" src="<?php testImage()?>"/>
 				</div>
 			</div>
 		</div>
@@ -84,18 +69,99 @@
 		<div class="row right cf">
 			<div class="case-study col">
 				<div class="project">
-					<img class="thumbnail" src="https://dummyimage.com/1920x1080/ffd1fa/fff.jpg&text=LN"/>
+					<a href="#" class="link" data-animated="false"><div class="animation-rollover"></div></a>
+					<img class="thumbnail" src="<?php testImage()?>"/>
 				</div>
 			</div>
 			<div class="normal col">
 				<div class="project">
-					<img class="thumbnail" src="https://dummyimage.com/1920x1080/ffd1fa/fff.jpg&text=LN"/>
+					<a href="#" class="link" data-animated="false"><div class="animation-rollover"></div></a>
+					<img class="thumbnail" src="<?php testImage()?>"/>
 				</div>
 				<div class="project">
-					<img class="thumbnail" src="https://dummyimage.com/1920x1080/ffd1fa/fff.jpg&text=LN"/>
+					<a href="#" class="link" data-animated="false"><div class="animation-rollover"></div></a>
+					<img class="thumbnail" src="<?php testImage()?>"/>
 				</div>
 			</div>
 		</div>
+
+		<div id="first" class="row left cf">
+			<div class="case-study col">
+				<div class="project">
+					<a href="#" class="link" data-animated="false"><div class="animation-rollover"></div></a>
+					<img class="thumbnail" src="<?php testImage()?>"/>
+				</div>
+			</div>
+			<div class="normal col">
+				<div class="project">
+					<a href="#" class="link" data-animated="false"><div class="animation-rollover"></div></a>
+					<img class="thumbnail" src="<?php testImage()?>"/>
+				</div>
+				<div class="project">
+					<a href="#" class="link" data-animated="false"><div class="animation-rollover"></div></a>
+					<img class="thumbnail" src="<?php testImage()?>"/>
+				</div>
+			</div>
+		</div>
+
+		<div class="row right cf">
+			<div class="case-study col">
+				<div class="project">
+					<a href="#" class="link" data-animated="false"><div class="animation-rollover"></div></a>
+					<img class="thumbnail" src="<?php testImage()?>"/>
+				</div>
+			</div>
+			<div class="normal col">
+				<div class="project">
+					<a href="#" class="link" data-animated="false"><div class="animation-rollover"></div></a>
+					<img class="thumbnail" src="<?php testImage()?>"/>
+				</div>
+				<div class="project">
+					<a href="#" class="link" data-animated="false"><div class="animation-rollover"></div></a>
+					<img class="thumbnail" src="<?php testImage()?>"/>
+				</div>
+			</div>
+		</div>
+
+		<div id="first" class="row left cf">
+			<div class="case-study col">
+				<div class="project">
+					<a href="#" class="link" data-animated="false"><div class="animation-rollover"></div></a>
+					<img class="thumbnail" src="<?php testImage()?>"/>
+				</div>
+			</div>
+			<div class="normal col">
+				<div class="project">
+					<a href="#" class="link" data-animated="false"><div class="animation-rollover"></div></a>
+					<img class="thumbnail" src="<?php testImage()?>"/>
+				</div>
+				<div class="project">
+					<a href="#" class="link" data-animated="false"><div class="animation-rollover"></div></a>
+					<img class="thumbnail" src="<?php testImage()?>"/>
+				</div>
+			</div>
+		</div>
+
+		<div class="row right cf">
+			<div class="case-study col">
+				<div class="project">
+					<a href="#" class="link" data-animated="false"><div class="animation-rollover"></div></a>
+					<img class="thumbnail" src="<?php testImage()?>"/>
+				</div>
+			</div>
+			<div class="normal col">
+				<div class="project">
+					<a href="#" class="link" data-animated="false"><div class="animation-rollover"></div></a>
+					<img class="thumbnail" src="<?php testImage()?>"/>
+				</div>
+				<div class="project">
+					<a href="#" class="link" data-animated="false"><div class="animation-rollover"></div></a>
+					<img class="thumbnail" src="<?php testImage()?>"/>
+				</div>
+			</div>
+		</div>
+
+
 
 	</section>
 

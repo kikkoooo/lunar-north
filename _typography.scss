@@ -19,14 +19,6 @@ body {
 	color: $white;
 }
 
-.align-right {
-	text-align: right;
-} 
-
-.align-left {
-	text-align: left;
-} 
-
 // HEADER
 .header h3, footer p {
 	font-size: .7em;
@@ -39,6 +31,16 @@ body {
 		text-align: center;
 	}
 }
+
+
+
+// UPPDERCASE
+.header h3, footer p {
+	text-transform: uppercase;
+}
+
+
+
 
 p {
 	margin-top: 0;
@@ -84,3 +86,10 @@ h3 {
 
 }
 
+.align-right {
+	text-align: right;
+} 
+
+.align-left {
+	text-align: left;
+} 
