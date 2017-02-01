@@ -26,21 +26,16 @@
 	<div id="featured">
 		<!-- <div class="preview-intro-image" data-intro-image="<?php// testIntroImage(); ?>"></div> -->
 		<div class="video-content">
-			<?php 
-
-				echo '<img src="'.$testImage.'" data-error="'.$testImage.'" class="vimeo-thumb" data-vimeo-id="128843408">'; 
-
-			?>		
+			<?php echo '<img src="'.$testImage.'" data-error="'.$testImage.'" class="vimeo-thumb" data-vimeo-id="128843408">'; ?>		
 		</div>
 	</div>
 
 	<div id="main">
-
 		<header class="header">
 			<div class="container cf">
 				<div class="sub-text align-right"><h3>Design and Animation</h3></div>
 				<div class="sub-text align-left"><h3>Detroit, Michigan</h3></div>
-				<div class="logo"><a href="<?php echo esc_url( home_url( '/' ) ); ?>"></a></div>
+				<div class="logo"><a href="<?php echo esc_url(home_url('/'));?>"></a></div>
 			</div>
 			<div class="menu-button"><a href="#" class="icon-btn" data-animated="false"></a></div>	
 			<nav class="menu-box">
@@ -51,6 +46,6 @@
 					<li><h2><a href="#">Link 4</a></h2></li>
 				</ul>
 			</nav>
-
 		</header>
+ 		
  		<div id="content">

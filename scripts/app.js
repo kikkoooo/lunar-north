@@ -13,9 +13,11 @@ var ln = {
 	    current  : null,
 	    incoming : null,	    
     },
+    screen: {
+    	mode	: null
+    },
 
     init : function() {
-
 		// this.ajaxPagess();
 		this.pos();
 		this.initImages();
@@ -23,51 +25,23 @@ var ln = {
 		this.initSticky();
 		this.navigation();
 		this.initReel();
-
-		// $(".animation-rollover").animateSprite('stop');
-
-		// fontSpy('Rational-Regular', {
-		//   success: function() {
-		//   	ln.movingLine.resize();
-		//   	$('.line').fadeIn(200);
-		//   },
-		//   failure: function() {
-		//   	console.log('uh oh!')
-		//   }
-		// });
-		
 	}, 
 	
 	initImages : function () {
 
+		// Might not be necessary for now
 		var count = 1;
 
 		$(".case-study .thumbnail").one("load", function() {
-
 			h = $(this).closest(".case-study").height();
 			$project = $(this).closest(".case-study").siblings(".normal").find(".project");
-
-			// $project.height((h-ln.gutter)/2);
-
 			console.log($project.length);
 			count++;
-
 		}).each(function() {
 			if(this.complete) $(this).load();
 		});
 
 	},
-
-    introImage : function() {
-
-		// var $introImage = $('.preview-intro-image'),
-		// 	introImageObj = $introImage.data('intro-image');
-		// // if ($introImage.length) $introImage.backstretch(introImageObj, {fade: 100});
-		// if ($introImage.length) $introImage.backstretch(introImageObj);
-
-
-
-    },
 
     initReel : function() {
 
@@ -81,42 +55,50 @@ var ln = {
 	          var bi = $(this).attr('data-error');
 	          $(this).attr('src', bi);
           }
-        })
+        });
 
+    },
+
+    introImage : function() {
+
+		// var $introImage = $('.preview-intro-image'),
+		// 	introImageObj = $introImage.data('intro-image');
+		// // if ($introImage.length) $introImage.backstretch(introImageObj, {fade: 100});
+		// if ($introImage.length) $introImage.backstretch(introImageObj);
 
 
     },
 
 	navigation : function() {
 
+		// Menu
 		$(".menu-button a").click(function(e) {
 			e.preventDefault();
-			var $menuBox = $(".menu-box");
+			var $menu = $(".menu-box");
 
-			if ($menuBox.is(":visible")) {
-				$menuBox.fadeOut(200);
+			if ($menu.is(":visible")) {
+				$menu.fadeOut(200);
 			} else {
-				$menuBox.fadeIn(200);
+				$menu.fadeIn(200);
 			}
 		});
-
 
 		// NAV 
 		$(".menu-button a").hover(function () {
 
-			$this = $(this);
+			$btn = $(this);
 
-			if ($this.data("animated") == false){
-				$this.animateSprite({
+			if ($btn.data("animated") == false){
+				$btn.animateSprite({
 				    fps: 15,
 					loop: false,
 				    complete: function () {
-				        $link.animateSprite('frame', 0);
+				        $btn.animateSprite('frame', 0);
 				    }
 				});
-				$this.data("animated", true);
+				$btn.data("animated", true);
 			} else {
-				$this.animateSprite("restart");
+				$btn.animateSprite("restart");
 			}
 
 		}, function () {
@@ -184,7 +166,10 @@ var ln = {
 		});
 
 
-		// THUMBNAILS
+
+
+
+		// Thumbnails
 		var caseStudyColW = ($(".row").width() * (2/3)) - (ln.gutter * 1.5),
 			normalColW = ($(".row").width()/3) - (ln.gutter * 1.5);
 

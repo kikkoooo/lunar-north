@@ -51,14 +51,6 @@ $gutter: 20px;
 
 }
 
-// .slide-content {
-// 	margin: 0 50px;
-// 	position: relative;
-// 	display: block;
-// 	max-width: 100%;
-// 	overflow: hidden;
-// }
-
 #featured > img {
     display: block;
 	position: absolute;
@@ -182,7 +174,6 @@ $gutter: 20px;
 				left: 50%;
 				top: 50%;
 				transform: translate(-50%, -50%);
-				// background-image: url(https://dummyimage.com/420x50/000/fff.jpg&text=LN);				
 				background-image: url(./images/ln-logo.png);				
 				background-size: 100% auto;
 			    background-repeat:no-repeat;
