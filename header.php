@@ -15,6 +15,8 @@
 
 	<?php
 
+	$testImage = get_stylesheet_directory_uri().'/images/test-intro.jpg';
+
 	function testIntroImage() {
 		echo get_stylesheet_directory_uri().'/images/test-intro.jpg'; 
 	}
@@ -22,23 +24,25 @@
 	?>
 
 	<div id="featured">
-		<div class="preview-intro-image" data-intro-image="<?php testIntroImage(); ?>"></div>
+		<!-- <div class="preview-intro-image" data-intro-image="<?php// testIntroImage(); ?>"></div> -->
+		<div class="video-content">
+			<?php 
+
+				echo '<img src="'.$testImage.'" data-error="'.$testImage.'" class="vimeo-thumb" data-vimeo-id="128843408">'; 
+
+			?>		
+		</div>
 	</div>
 
 	<div id="main">
 
 		<header class="header">
-
 			<div class="container cf">
-				<div class="meta-text align-right"><h3>Design and Animation</h3></div>
-				<div class="meta-text align-left"><h3>Detroit, Michigan</h3></div>
-				<div class="logo"><a href="#"></a></div>
+				<div class="sub-text align-right"><h3>Design and Animation</h3></div>
+				<div class="sub-text align-left"><h3>Detroit, Michigan</h3></div>
+				<div class="logo"><a href="<?php echo esc_url( home_url( '/' ) ); ?>"></a></div>
 			</div>
-
-			<div class="menu-button">
-				<a href="#" class="icon-btn"></a>
-			</div>	
-
+			<div class="menu-button"><a href="#" class="icon-btn" data-animated="false"></a></div>	
 			<nav class="menu-box">
 				<ul>
 					<li><h2><a href="#">Reel</a></h2></li>
@@ -49,6 +53,4 @@
 			</nav>
 
 		</header>
-
  		<div id="content">
-

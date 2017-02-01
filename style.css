@@ -287,6 +287,58 @@ h3 {
     height: 100%;
     width: 100%; }
 
+#featured > img {
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  max-width: 100%;
+  max-height: 100%;
+  transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%) !important;
+  -ms-transform: translate(-50%, -50%) !important;
+  -o-transform: translate(-50%, -50%); }
+
+#featured .video-content > img {
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  max-width: 100%;
+  max-height: 100%;
+  transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%) !important;
+  -ms-transform: translate(-50%, -50%) !important;
+  -o-transform: translate(-50%, -50%); }
+
+#featured .video-content .vimeo-wrapper img {
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  max-height: 100%;
+  transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%) !important;
+  -ms-transform: translate(-50%, -50%) !important;
+  -o-transform: translate(-50%, -50%); }
+
+.video-content {
+  height: 100%;
+  width: 100%;
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%) !important;
+  -ms-transform: translate(-50%, -50%) !important;
+  -o-transform: translate(-50%, -50%); }
+
 .header {
   position: absolute;
   width: 100%;
@@ -300,14 +352,14 @@ h3 {
     .header .container > div {
       height: 100%;
       display: block; }
-    .header .container .meta-text {
+    .header .container .sub-text {
       position: absolute;
       top: 0; }
-      .header .container .meta-text:nth-of-type(1) {
+      .header .container .sub-text:nth-of-type(1) {
         left: 0; }
-      .header .container .meta-text:nth-of-type(2) {
+      .header .container .sub-text:nth-of-type(2) {
         right: 0; }
-      .header .container .meta-text h3 {
+      .header .container .sub-text h3 {
         position: relative;
         top: 50%;
         transform: translateY(-50%);
@@ -340,11 +392,14 @@ h3 {
     display: block;
     border: 1px solid blue; }
     .header .menu-button .icon-btn {
-      background-image: url(./images/test-35.jpg);
-      background-repeat: no-repeat;
-      background-position: center;
-      width: 100%;
-      height: 100%;
+      background-image: url(./images/test-sm-seq.png);
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      height: 50px;
+      width: 50px;
+      background-image: url(images/test-sm-seq.png);
+      transform: translate(-50%, -50%);
       display: block; }
   .header nav.menu-box {
     position: absolute;
@@ -368,13 +423,13 @@ h3 {
   .projects .project {
     position: relative; }
     .projects .project a {
-      position: absolute;
-      left: 0;
       display: block;
       width: 100%;
-      height: 100%; }
-      .projects .project a:hover {
-        background: rgba(0, 0, 0, 0.5); }
+      height: 100%;
+      position: relative;
+      left: 0; }
+      .projects .project a:hover .thumbnail {
+        opacity: .5; }
       .projects .project a .animation-rollover {
         position: absolute;
         top: 50%;
@@ -384,16 +439,16 @@ h3 {
         background-image: url(images/test-sm-seq.png);
         transform: translate(-50%, -50%); }
   .projects .row.left .case-study {
-    padding: 10px 10px 10px 20px;
+    margin: 10px 10px 10px 20px;
     float: left; }
   .projects .row.left .normal {
-    padding: 10px 20px 10px 10px;
+    margin: 10px 20px 10px 10px;
     float: right; }
   .projects .row.right .case-study {
-    padding: 10px 20px 10px 10px;
+    margin: 10px 20px 10px 10px;
     float: right; }
   .projects .row.right .normal {
-    padding: 10px 10px 10px 20px;
+    margin: 10px 10px 10px 20px;
     float: left; }
   .projects .row {
     width: 100%;
@@ -402,20 +457,22 @@ h3 {
     .projects .row .col {
       position: relative; }
     .projects .row .normal .project {
-      overflow: hidden; }
-    .projects .row .normal .project:first-child {
-      padding-top: 0;
-      padding-bottom: 10px; }
-      .projects .row .normal .project:first-child a {
-        top: 0; }
-    .projects .row .normal .project:last-child {
-      padding-top: 10px;
-      padding-bottom: 0; }
-      .projects .row .normal .project:last-child a {
-        bottom: 0; }
+      overflow: hidden;
+      float: left; }
+      .projects .row .normal .project:first-child {
+        margin-top: 0;
+        margin-bottom: 10px; }
+        .projects .row .normal .project:first-child a {
+          top: 0; }
+      .projects .row .normal .project:last-child {
+        margin-top: 10px;
+        margin-bottom: 0; }
+        .projects .row .normal .project:last-child a {
+          bottom: 0; }
     .projects .row .thumbnail {
       width: 100%;
-      display: block; }
+      display: block;
+      background: #1E1E1E; }
 
 .footer {
   background: #1E1E1E;

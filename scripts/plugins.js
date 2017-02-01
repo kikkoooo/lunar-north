@@ -858,3 +858,420 @@ var DateFormat={};!function(a){var b=["Sunday","Monday","Tuesday","Wednesday","T
     setTimeout(scroller, 0);
   });
 }));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+ *  jQuery Smart Vimeo Embed - v1.1.1
+ *  Author: Warren L. Parsons
+ *  Company: Hanson, Inc.
+ *
+ *  Licensed under the MIT license
+ */
+
+;(function ( $, window, document, undefined ) {
+
+  var pluginName = "smartVimeoEmbed",
+  defaults = {
+    idSelectorName: 'vimeo-id',
+    vimeoPatternUrl: 'http://vimeo.com/api/oembed.json?url=http%3A%2F%2Fvimeo.com/',
+    autoplay: true,
+    width: 640,
+    onComplete: function(){},
+    onError: function(){}
+  };
+
+  function Plugin( element, options ) {
+    this.element = element;
+    this.options = $.extend( {}, defaults, options);
+    this._defaults = defaults;
+    this._name = pluginName;
+    this.init();
+  }
+
+  Plugin.prototype = {
+    init: function() {
+      var options = this.options;
+
+      $(this.element).each(function (i, e) {
+        var $e = $(e);
+        var id = $e.data(options.idSelectorName);
+
+        // only execute on non-vimeo images
+        if (id && !/VIMEO/i.test($e.attr('src'))) {
+
+          // build Vimeo JSON URL
+          var url = options.vimeoPatternUrl + id + '&autoplay=' + options.autoplay + '&width=' + options.width + '&callback=?';
+
+          // fetch video data from Vimeo
+          $.ajax({
+            url: url,
+            dataType: 'jsonp',
+            success: function(data){
+              $('#output').text(JSON.stringify(data));
+
+              // add wrapper for play icon positioning
+              $e.wrap('<div class="vimeo-wrapper" />');
+
+              // swap placeholder image with video thumbnail
+              $e.attr('src', data.thumbnail_url);
+
+              // add play icon and click event listener
+              $e.parent().prepend('<span class="play-icon"/>').on('click', function(){
+                var $this = $(this);
+
+                // only append video once
+                if ( !$this.find('iframe').length ) {
+
+                  // append video iframe and hide poster
+                  // image and play icon
+                  $this.append(data.html).find('img, .play-icon').hide();
+                }
+
+                if (options.onComplete && typeof(options.onComplete) === 'function') {
+                  options.onComplete.call(this);
+                }
+              });
+            },
+            error: function(errorSender, errorMsg){
+              if (options.onError && typeof(options.onError) === 'function') {
+                options.onError.call(this);
+              }
+            }
+          });
+        }
+      });
+    }
+  };
+
+  $.fn[pluginName] = function ( options ) {
+    return this.each(function () {
+      if (!$.data(this, "plugin_" + pluginName)) {
+        $.data(this, "plugin_" + pluginName, new Plugin( this, options ));
+      }
+    });
+  };
+
+})( jQuery, window, document );
+
+
+
+
+/*
+Simple jQuery Vimeo API
+https://github.com/jrue/Vimeo-jQuery-API
+*/
+
+;(function($, window) {
+
+    var vimeoJqueryAPI = {
+
+        //catches return messages when methods like getVolume are called. 
+        //counter is if multiple calls are made before one returns.
+        catchMethods : {methodreturn:[], count:0},
+
+        //This kicks things off on window message event
+        init : function(d){
+
+            var vimeoVideo,
+                vimeoAPIurl,
+                data;
+
+            //is this window message from vimeo?
+            if(!d.originalEvent.origin.match(/vimeo/g))
+                return;
+
+            //make sure data was sent
+            if(!("data" in d.originalEvent))
+                return;
+
+            //store data as JSON object
+            data = $.type(d.originalEvent.data) === "string" ? $.parseJSON(d.originalEvent.data) : d.originalEvent.data;
+
+            //make sure data is not blank
+            if(!data)
+                return;
+
+            //get the id of this vimeo video, hopefully they set it. If not, use first one we find
+            vimeoVideo   = this.setPlayerID(data);
+            vimeoAPIurl  = this.setVimeoAPIurl(vimeoVideo);
+
+            //If this is an event message, like ready or paused
+            if(data.hasOwnProperty("event"))
+                this.handleEvent(data, vimeoVideo, vimeoAPIurl);
+
+            //IF this is a return event message, like getVolume or getCurrentTime
+            if(data.hasOwnProperty("method"))
+                this.handleMethod(data, vimeoVideo, vimeoAPIurl);
+
+        },
+
+        setPlayerID : function(d){
+
+            //if they set an player_id as a query string in the URL
+            if(d.hasOwnProperty("player_id")){
+                if($("#" + d.player_id).length){
+                    return $("#" + d.player_id);
+                } else {
+                    return $("iframe[src*=" + d.player_id + "]");
+                }
+            } else {
+
+                //No player_id. Use the first Vimeo video on the page, and hope they don't have multiples
+                return $("iframe[src*='vimeo']").eq(0);
+            }
+
+        },
+
+        setVimeoAPIurl : function(d){
+
+            //prepend vimeo url with proper protocol
+            if(d.attr('src').substr(0, 4) !== 'http'){
+                return window.location.protocol !== 'https:' ? 'http:'+d.attr('src').split('?')[0] : 'https:'+d.attr('src').split('?')[0];
+            } else {
+                return d.attr('src').split('?')[0];
+            }
+        },
+
+        handleMethod : function(d, vid, api){
+
+            //If the message is returned from a method call, store it for later.
+            this.catchMethods.methodreturn.push(d.value);
+
+        },
+
+        handleEvent : function(d, vid, api){
+            switch (d.event.toLowerCase()) {
+                case 'ready':
+
+                    //Go through all events attached to this element, and set an event listener
+                    for(var prop in $._data(vid[0], "events")){
+                        if(prop.match(/loadProgress|playProgress|play|pause|finish|seek|cuechange/)){
+                            vid[0].contentWindow.postMessage(JSON.stringify({method: 'addEventListener', value: prop}), api);
+                        }
+                    }
+
+                    //if methods are sent before video is ready, call them now
+                    if(vid.data("vimeoAPICall")){
+                        var vdata = vid.data("vimeoAPICall");
+                        for(var i=0; i< vdata.length; i++){
+                            vid[0].contentWindow.postMessage(JSON.stringify(vdata[i].message), vdata[i].api);
+                        }
+                        vid.removeData("vimeoAPICall");
+                    }
+
+                    //this video is ready
+                    vid.data("vimeoReady", true);
+                    vid.triggerHandler("ready");
+
+                    break;
+
+                case 'seek':
+                    vid.triggerHandler("seek", [d.data]);
+                    break;
+
+                case 'loadProgress':
+                    vid.triggerHandler("loadProgress", [d.data]);
+                    break;
+
+                case 'playProgress':
+                    vid.triggerHandler("playProgress", [d.data]);
+                    break;
+
+                case 'pause':
+                    vid.triggerHandler("pause");
+                    break;
+
+                case 'finish':
+                    vid.triggerHandler("finish");
+                    break;
+
+                case 'play':
+                    vid.triggerHandler("play");
+                    break;
+
+                case 'cuechange':
+                    vid.triggerHandler("cuechange");
+                    break;
+            }
+        }
+    };
+
+    $(window).on("message", function(e){ vimeoJqueryAPI.init(e); });
+
+
+    /**
+     *  Vimeo jQuery method plugin
+     *
+     * @param element {jQuery Object} The element this was called on (verifies it's an iframe)
+     * @param option1 {string} The method to send to vimeo.
+     * @param option2 {string|function} If a string, it's the value (i.e. setVolume 2) otherwise, it's a callback function
+     */
+    $.vimeo = function(element, option1, option2) {
+
+        var message = {},
+            catchMethodLength = vimeoJqueryAPI.catchMethods.methodreturn.length;
+
+        if(typeof option1 === "string")  
+            message.method = option1;
+
+        if(typeof option2 !== undefined && typeof option2 !== "function") 
+            message.value  = option2;
+
+        //call method, but check if video was ready, otherwise cue it up with jQuery data to be called when video is ready
+        if(element.prop("tagName").toLowerCase() === 'iframe' && message.hasOwnProperty("method")){
+            if(element.data("vimeoReady")){
+                element[0].contentWindow.postMessage(JSON.stringify(message), vimeoJqueryAPI.setVimeoAPIurl(element));
+            } else {
+                var _data = element.data("vimeoAPICall") ? element.data("vimeoAPICall") : [];
+                _data.push({message:message, api:vimeoJqueryAPI.setVimeoAPIurl(element)});
+                element.data("vimeoAPICall", _data);
+            }
+        }
+
+        //If this method will return data, (starts with "get") then use callback once return message comes through
+        if((option1.toString().substr(0, 3) === "get" || option1.toString() === "paused") && typeof option2 === "function"){
+            (function(cml, func, i){
+                var interval = window.setInterval(function(){
+
+                    if(vimeoJqueryAPI.catchMethods.methodreturn.length != cml){
+                        window.clearInterval(interval);
+                        func(vimeoJqueryAPI.catchMethods.methodreturn[i]);
+                    }
+                }, 10);
+            })(catchMethodLength, option2, vimeoJqueryAPI.catchMethods.count);
+            vimeoJqueryAPI.catchMethods.count++;
+        } 
+        return element;
+    };
+
+    $.fn.vimeo = function(option1, option2) {
+            return $.vimeo(this, option1, option2);
+    };
+
+})(jQuery, window);
+
+
+
+
+var Froogaloop=function(){function e(a){return new e.fn.init(a)}function g(a,c,b){if(!b.contentWindow.postMessage)return!1;a=JSON.stringify({method:a,value:c});b.contentWindow.postMessage(a,h)}function l(a){var c,b;try{c=JSON.parse(a.data),b=c.event||c.method}catch(e){}"ready"!=b||k||(k=!0);if(!/^https?:\/\/player.vimeo.com/.test(a.origin))return!1;"*"===h&&(h=a.origin);a=c.value;var m=c.data,f=""===f?null:c.player_id;c=f?d[f][b]:d[b];b=[];if(!c)return!1;void 0!==a&&b.push(a);m&&b.push(m);f&&b.push(f);
+return 0<b.length?c.apply(null,b):c.call()}function n(a,c,b){b?(d[b]||(d[b]={}),d[b][a]=c):d[a]=c}var d={},k=!1,h="*";e.fn=e.prototype={element:null,init:function(a){"string"===typeof a&&(a=document.getElementById(a));this.element=a;return this},api:function(a,c){if(!this.element||!a)return!1;var b=this.element,d=""!==b.id?b.id:null,e=c&&c.constructor&&c.call&&c.apply?null:c,f=c&&c.constructor&&c.call&&c.apply?c:null;f&&n(a,f,d);g(a,e,b);return this},addEvent:function(a,c){if(!this.element)return!1;
+var b=this.element,d=""!==b.id?b.id:null;n(a,c,d);"ready"!=a?g("addEventListener",a,b):"ready"==a&&k&&c.call(null,d);return this},removeEvent:function(a){if(!this.element)return!1;var c=this.element,b=""!==c.id?c.id:null;a:{if(b&&d[b]){if(!d[b][a]){b=!1;break a}d[b][a]=null}else{if(!d[a]){b=!1;break a}d[a]=null}b=!0}"ready"!=a&&b&&g("removeEventListener",a,c)}};e.fn.init.prototype=e.fn;window.addEventListener?window.addEventListener("message",l,!1):window.attachEvent("onmessage",l);return window.Froogaloop=
+window.$f=e}();
+
+
+
+
+
+/*!
+ * jQuery VimeoThumb
+ * Automatically replace image src with vimeo thumbnail url.
+ * Original author: Juan Pablo Garcia
+ * version: 1.0.0 (Wed, 14 Aug 2013)
+ * Further changes, comments: @jpgd
+ * Source Code: https://github.com/Ideame/jquery-vimeothumb
+ * Licensed under the MIT license
+ */
+;(function(e,c,a,g){var d="VimeoThumb",f={idSelectorName:"data-vimeo-id",vimeoPatternUrl:"http://vimeo.com/api/v2/video/%id.json?callback=?"};function b(i,h){this.elements=i;this.options=e.extend({},f,h);this._defaults=f;this._name=d;this.init()}b.prototype={init:function(){var h=this.options;e(this.elements).each(function(k,l){var m=e(l).attr(h.idSelectorName);if(m&&!/VIMEO/i.test(e(l).attr("src"))){var j=h.vimeoPatternUrl.replace(/%id/,m);e.getJSON(j,function(i){if(i[0]){if(e(l).hasClass("large")){e(l).attr("src",i[0].thumbnail_large)}else{if(e(l).hasClass("small")){e(l).attr("src",i[0].thumbnail_small)}else{e(l).attr("src",i[0].thumbnail_medium)}}}})}})}};e.fn[d]=function(h){return this.each(function(){if(!e.data(this,"plugin_"+d)){e.data(this,"plugin_"+d,new b(this,h))}})}})(jQuery,window,document);
+
+
+
+/*jshint browser:true */
+/*!
+* FitVids 1.1
+*
+* Copyright 2013, Chris Coyier - http://css-tricks.com + Dave Rupert - http://daverupert.com
+* Credit to Thierry Koblentz - http://www.alistapart.com/articles/creating-intrinsic-ratios-for-video/
+* Released under the WTFPL license - http://sam.zoy.org/wtfpl/
+*
+*/
+
+;(function( $ ){
+
+  'use strict';
+
+  $.fn.fitVids = function( options ) {
+    var settings = {
+      customSelector: null,
+      ignore: null
+    };
+
+    if(!document.getElementById('fit-vids-style')) {
+      // appendStyles: https://github.com/toddmotto/fluidvids/blob/master/dist/fluidvids.js
+      var head = document.head || document.getElementsByTagName('head')[0];
+      var css = '.fluid-width-video-wrapper{width:100%;position:relative;padding:0;}.fluid-width-video-wrapper iframe,.fluid-width-video-wrapper object,.fluid-width-video-wrapper embed {position:absolute;top:0;left:0;width:100%;height:100%;}';
+      var div = document.createElement("div");
+      div.innerHTML = '<p>x</p><style id="fit-vids-style">' + css + '</style>';
+      head.appendChild(div.childNodes[1]);
+    }
+
+    if ( options ) {
+      $.extend( settings, options );
+    }
+
+    return this.each(function(){
+      var selectors = [
+        'iframe[src*="player.vimeo.com"]',
+        'iframe[src*="youtube.com"]',
+        'iframe[src*="youtube-nocookie.com"]',
+        'iframe[src*="kickstarter.com"][src*="video.html"]',
+        'object',
+        'embed'
+      ];
+
+      if (settings.customSelector) {
+        selectors.push(settings.customSelector);
+      }
+
+      var ignoreList = '.fitvidsignore';
+
+      if(settings.ignore) {
+        ignoreList = ignoreList + ', ' + settings.ignore;
+      }
+
+      var $allVideos = $(this).find(selectors.join(','));
+      $allVideos = $allVideos.not('object object'); // SwfObj conflict patch
+      $allVideos = $allVideos.not(ignoreList); // Disable FitVids on this video.
+
+      $allVideos.each(function(){
+        var $this = $(this);
+        if($this.parents(ignoreList).length > 0) {
+          return; // Disable FitVids on this video.
+        }
+        if (this.tagName.toLowerCase() === 'embed' && $this.parent('object').length || $this.parent('.fluid-width-video-wrapper').length) { return; }
+        if ((!$this.css('height') && !$this.css('width')) && (isNaN($this.attr('height')) || isNaN($this.attr('width'))))
+        {
+          $this.attr('height', 9);
+          $this.attr('width', 16);
+        }
+        var height = ( this.tagName.toLowerCase() === 'object' || ($this.attr('height') && !isNaN(parseInt($this.attr('height'), 10))) ) ? parseInt($this.attr('height'), 10) : $this.height(),
+            width = !isNaN(parseInt($this.attr('width'), 10)) ? parseInt($this.attr('width'), 10) : $this.width(),
+            aspectRatio = height / width;
+        if(!$this.attr('name')){
+          var videoName = 'fitvid' + $.fn.fitVids._count;
+          $this.attr('name', videoName);
+          $.fn.fitVids._count++;
+        }
+        $this.wrap('<div class="fluid-width-video-wrapper"></div>').parent('.fluid-width-video-wrapper').css('padding-top', (aspectRatio * 100)+'%');
+        $this.removeAttr('height').removeAttr('width');
+      });
+    });
+  };
+  
+  // Internal counter for unique video names.
+  $.fn.fitVids._count = 0;
+  
+// Works with either jQuery or Zepto
+})( window.jQuery || window.Zepto );

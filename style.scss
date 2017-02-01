@@ -17,6 +17,7 @@ $textColor1: #585A5A;
 $bgColor: #000;
 $colorGrey: #1E1E1E;
 $testGrey: #c7c7c7;
+$colorBlue: #00ADEE;
 
 $gutter: 20px;
 
@@ -50,6 +51,82 @@ $gutter: 20px;
 
 }
 
+// .slide-content {
+// 	margin: 0 50px;
+// 	position: relative;
+// 	display: block;
+// 	max-width: 100%;
+// 	overflow: hidden;
+// }
+
+#featured > img {
+    display: block;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	max-width: 100%;
+	max-height: 100%;
+
+	transform: translate(-50%, -50%);
+	-moz-transform: translate(-50%, -50%);
+	-webkit-transform: translate(-50%, -50%) !important;
+    -ms-transform: translate(-50%, -50%) !important;
+	-o-transform: translate(-50%, -50%);
+}
+
+#featured .video-content > img {
+    display: block;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	max-width: 100%;
+	max-height: 100%;
+
+	transform: translate(-50%, -50%);
+	-moz-transform: translate(-50%, -50%);
+	-webkit-transform: translate(-50%, -50%) !important;
+    -ms-transform: translate(-50%, -50%) !important;
+	-o-transform: translate(-50%, -50%);
+}
+
+
+#featured .video-content .vimeo-wrapper img {
+    display: block;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 100%;
+	max-height: 100%;
+
+	transform: translate(-50%, -50%);
+	-moz-transform: translate(-50%, -50%);
+	-webkit-transform: translate(-50%, -50%) !important;
+    -ms-transform: translate(-50%, -50%) !important;
+	-o-transform: translate(-50%, -50%);
+}
+
+
+
+.video-content {
+
+	height: 100%;
+	width: 100%;		
+	// max-width: 1280px;
+	// max-height: 100%;
+    display: block;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+
+	transform: translate(-50%, -50%);
+	-moz-transform: translate(-50%, -50%);
+	-webkit-transform: translate(-50%, -50%) !important;
+    -ms-transform: translate(-50%, -50%) !important;
+	-o-transform: translate(-50%, -50%);
+
+}
+
+
 
 //HEADER
 .header {
@@ -70,7 +147,7 @@ $gutter: 20px;
 			height: 100%;
 			display: block;
 		}
-		.meta-text { 
+		.sub-text { 
 
 			position: absolute;
 			top:0;
@@ -128,12 +205,22 @@ $gutter: 20px;
 		border: 1px solid blue;
 
 		.icon-btn {
-			background-image: url(./images/test-35.jpg);								
+			// background-image: url(./images/test-35.jpg);								
+			background-image: url(./images/test-sm-seq.png);								
 			// background-size: 100% auto;
-		    background-repeat:no-repeat;
-		    background-position: center; 
-		    width: 100%;
-		    height: 100%;
+		    // background-repeat:no-repeat;
+		    // background-position: center; 
+
+			position: absolute;
+		    top: 50%;
+		    left: 50%;
+		    height: 50px;
+		    width: 50px;
+		    background-image: url(images/test-sm-seq.png);
+			transform: translate(-50%, -50%);			    
+
+		    // width: 100%;
+		    // height: 100%;
 		    display: block;
 		}
 	}
@@ -171,20 +258,15 @@ $gutter: 20px;
 		position: relative;
 
 		a {
-			
-			position: absolute;
-			left: 0;
-
 			display: block;
 			width: 100%;
 			height: 100%;
+			position: relative;
+			left: 0;
 
-			&:hover {
-	
-				background: rgba(0,0,0,.5);
-				
+			&:hover .thumbnail{
+				opacity: .5;
 			}
-
 
 			.animation-rollover {
 
@@ -205,12 +287,14 @@ $gutter: 20px;
 	.row.left {
 
 		.case-study {
-			padding: $gutter/2 $gutter/2 $gutter/2 $gutter;
+			// padding: $gutter/2 $gutter/2 $gutter/2 $gutter;
+			margin: $gutter/2 $gutter/2 $gutter/2 $gutter;			
 			float: left;
 		}
 
 		.normal {
-			padding: $gutter/2 $gutter $gutter/2 $gutter/2;
+			// padding: $gutter/2 $gutter $gutter/2 $gutter/2;
+			margin: $gutter/2 $gutter $gutter/2 $gutter/2;
 			float: right;
 		}	
 	}
@@ -218,21 +302,19 @@ $gutter: 20px;
 	.row.right {
 
 		.case-study {
-			padding: $gutter/2 $gutter $gutter/2 $gutter/2;
+			// padding: $gutter/2 $gutter $gutter/2 $gutter/2;
+			margin: $gutter/2 $gutter $gutter/2 $gutter/2;
 			float: right;
 		}
 
 		.normal {
-			padding: $gutter/2 $gutter/2 $gutter/2 $gutter;
+			margin: $gutter/2 $gutter/2 $gutter/2 $gutter;			
 			float: left;
 		}	
 	}
 
 
 	.row {
-
-		// border-bottom: 1px solid green;
-		// background: #FFF;
 
 		width: 100%;			
 		display: block;
@@ -245,33 +327,37 @@ $gutter: 20px;
 		.normal {
 
 			.project {
+
 				overflow: hidden;
-			}
+				float: left;
 
-			.project:first-child {
-				padding-top: 0;
-				padding-bottom: $gutter/2;
+				&:first-child {
 
-				a {
-					top: 0;
-				}
-			}
+					margin-top: 0;
+					margin-bottom: $gutter/2;
 
-			.project:last-child {
-				padding-top: $gutter/2;
-				padding-bottom: 0;
-
-				a {
-					bottom: 0;
+					a {
+						top: 0;
+					}
 				}
 
-			}
+				&:last-child {
+					margin-top: $gutter/2;
+					margin-bottom: 0;
 
+					a {
+						bottom: 0;
+					}
+
+				}
+
+			}
 		}
 
 		.thumbnail {
 			width: 100%;
 			display: block;
+			background: $colorGrey;
 		}
 
 	}

@@ -1,9 +1,3 @@
-$(document).ready(function() {
-    $(window).on('resize', function() {
-         $('#pixelLeft, #pixelRight').css('width',($('body').width()-$('#bannerCenter').width())/2);
-    }).trigger('resize');      
-});
-
 $(document).ready(function(){     
 	ln.init();
 });
@@ -19,32 +13,16 @@ var ln = {
 	    current  : null,
 	    incoming : null,	    
     },
+
     init : function() {
-
-		var tempHeight;
-		var count = 1;
-
-		$(".case-study .thumbnail").one("load", function() {
-
-			var h = $(this).closest(".case-study").height();
-			var $project = $(this).closest(".case-study").siblings(".normal").find(".project");
-
-			$project.height((h-ln.gutter)/2);
-
-			console.log($project.length);
-			// console.log(h + " " + count);
-			count++;
-
-		}).each(function() {
-			if(this.complete) $(this).load();
-		});
-
 
 		// this.ajaxPagess();
 		this.pos();
+		this.initImages();
 		this.introImage();
 		this.initSticky();
 		this.navigation();
+		this.initReel();
 
 		// $(".animation-rollover").animateSprite('stop');
 
@@ -60,11 +38,53 @@ var ln = {
 		
 	}, 
 	
+	initImages : function () {
+
+		var count = 1;
+
+		$(".case-study .thumbnail").one("load", function() {
+
+			h = $(this).closest(".case-study").height();
+			$project = $(this).closest(".case-study").siblings(".normal").find(".project");
+
+			// $project.height((h-ln.gutter)/2);
+
+			console.log($project.length);
+			count++;
+
+		}).each(function() {
+			if(this.complete) $(this).load();
+		});
+
+	},
+
     introImage : function() {
-		var $introImage = $('.preview-intro-image'),
-			introImageObj = $introImage.data('intro-image');
-		// if ($introImage.length) $introImage.backstretch(introImageObj, {fade: 100});
-		if ($introImage.length) $introImage.backstretch(introImageObj);
+
+		// var $introImage = $('.preview-intro-image'),
+		// 	introImageObj = $introImage.data('intro-image');
+		// // if ($introImage.length) $introImage.backstretch(introImageObj, {fade: 100});
+		// if ($introImage.length) $introImage.backstretch(introImageObj);
+
+
+
+    },
+
+    initReel : function() {
+
+        $('.vimeo-thumb').smartVimeoEmbed({
+            width: 1280,
+            onComplete: function() {
+                $('#featured').fitVids();
+            },
+          onError: function() {
+	          // Fallback image
+	          var bi = $(this).attr('data-error');
+	          $(this).attr('src', bi);
+          }
+        })
+
+
+
     },
 
 	navigation : function() {
@@ -81,6 +101,29 @@ var ln = {
 		});
 
 
+		// NAV 
+		$(".menu-button a").hover(function () {
+
+			$this = $(this);
+
+			if ($this.data("animated") == false){
+				$this.animateSprite({
+				    fps: 15,
+					loop: false,
+				    complete: function () {
+				        $link.animateSprite('frame', 0);
+				    }
+				});
+				$this.data("animated", true);
+			} else {
+				$this.animateSprite("restart");
+			}
+
+		}, function () {
+			$(this).animateSprite('stop').animateSprite('frame', 0);
+		});
+
+		// PROJECT 
 
 		$(".project .link").hover(function () {
 
@@ -132,7 +175,7 @@ var ln = {
 		}
 
 		// Header sub text
-		$(".header .meta-text").css({
+		$(".header .sub-text").css({
 			width : ($(".header .container").innerWidth() - $(".header .logo").outerWidth()) / 2
 		});
 		
@@ -141,15 +184,46 @@ var ln = {
 		});
 
 
+		// THUMBNAILS
+		var caseStudyColW = ($(".row").width() * (2/3)) - (ln.gutter * 1.5),
+			normalColW = ($(".row").width()/3) - (ln.gutter * 1.5);
+
+		// case-study col
 		$(".case-study").css({
-			width: $(".row").width() * (2/3)
+			width: caseStudyColW,
+			height: (caseStudyColW) * (9/16)
+		});
+
+		// case-study .thumbs
+		$(".case-study .thumbnail").css({
+			width: caseStudyColW,
+			height: (caseStudyColW) * (9/16)
 		});
 
 
+		// normal col
 		$(".normal").css({
-			width: $(".row").width()/3
+			width: normalColW,
+			height: (caseStudyColW) * (9/16)			
 		});
 
+		// normal .thumbs
+		$(".normal .thumbnail").css({
+			width: normalColW,
+			height: ((caseStudyColW) * (9/16) / 2) - ln.gutter/2
+		});
+
+		// Make Vimeo proportional and responsive on Width
+		var videoContent = $('.video-content'),
+			videoW = 1920,
+			videoH = 1080,
+			videoRatio = videoW/videoH;
+
+		videoContent.css({
+			//maxWidth: videoContent.parent().height() * videoRatio
+			// width: videoContent.parent().height() * videoRatio
+			maxHeight: videoContent.parent().width() * videoRatio			
+		});
 
 
 	},
@@ -158,9 +232,9 @@ var ln = {
 
 		this.pos();
 		// Resize normal project thumbnails to compensate for the margins
-		$(".normal .project").each(function() {
-			$(this).height(($(this).closest(".normal").siblings(".case-study").height() - 20) / 2);
-		});
+		// $(".normal .project").each(function() {
+		// 	$(this).height(($(this).closest(".normal").siblings(".case-study").height() - 20) / 2);
+		// });
 		// this.movingLine.resize();
 	},
 	
