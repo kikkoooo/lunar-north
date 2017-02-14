@@ -23,12 +23,22 @@
 	
 	?>
 
-	<div id="featured">
-		<!-- <div class="preview-intro-image" data-intro-image="<?php// testIntroImage(); ?>"></div> -->
-		<div class="video-content">
-			<?php echo '<img src="'.$testImage.'" data-error="'.$testImage.'" class="vimeo-thumb" data-vimeo-id="128843408">'; ?>		
+	<?php if (!is_single()) { ?>
+
+		<div id="featured">
+			<div class="preview-intro-image" data-intro-image="<?php testIntroImage(); ?>"></div>
+
+			<?php 
+
+				echo	'<div class="video-content">'.
+							'<img src="'.$testImage.'" data-error="'.$testImage.'" class="vimeo-thumb" data-vimeo-id="128843408">'.
+						'</div>';
+
+			?>
+
 		</div>
-	</div>
+
+	<?php } ?>
 
 	<div id="main">
 		<header class="header">

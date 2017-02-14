@@ -5,7 +5,7 @@ $white: #FFF;
 body { 
 	color: $textColor1;
 	background: $bgColor;
-	font: 1em/1.2 Arial, Helvetica, sans-serif;
+	font: 15px/1.2 'DINWeb-Medium', Helvetica, Arial, sans-serif;
 	font-smooth: always;
  	-webkit-font-smoothing: antialiased;
 }
@@ -33,9 +33,8 @@ body {
 }
 
 
-
 // UPPDERCASE
-.header h3, footer p {
+.header h3, footer p, .project .title {
 	text-transform: uppercase;
 }
 
@@ -93,3 +92,23 @@ h3 {
 .align-left {
 	text-align: left;
 } 
+
+@font-face {
+	font-family: 'DINWeb-Light';
+	src: url('fonts/DINWeb-Light.eot');
+	src: url('fonts/DINWeb-Light.eot?#iefix') format('embedded-opentype'),
+	     url('fonts/DINWeb-Light.woff') format('woff'),
+	     url('fonts/DINWeb-Light.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+    font-family: 'DINWeb-Medium';
+    src: url('fonts/DINWeb-Medium.eot');
+    src: url('fonts/DINWeb-Medium.eot?#iefix') format('embedded-opentype'),
+         url('fonts/DINWeb-Medium.woff') format('woff'),
+         url('fonts/DINWeb-Medium.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}

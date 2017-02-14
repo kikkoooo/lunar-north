@@ -214,7 +214,7 @@ body {
 body {
   color: #585A5A;
   background: #000;
-  font: 1em/1.2 Arial, Helvetica, sans-serif;
+  font: 15px/1.2 'DINWeb-Medium', Helvetica, Arial, sans-serif;
   font-smooth: always;
   -webkit-font-smoothing: antialiased; }
 
@@ -232,7 +232,7 @@ body {
 .footer .copyright {
   text-align: center; }
 
-.header h3, footer p {
+.header h3, footer p, .project .title {
   text-transform: uppercase; }
 
 p {
@@ -271,6 +271,18 @@ h3 {
 .align-left {
   text-align: left; }
 
+@font-face {
+  font-family: 'DINWeb-Light';
+  src: url("fonts/DINWeb-Light.eot");
+  src: url("fonts/DINWeb-Light.eot?#iefix") format("embedded-opentype"), url("fonts/DINWeb-Light.woff") format("woff"), url("fonts/DINWeb-Light.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal; }
+@font-face {
+  font-family: 'DINWeb-Medium';
+  src: url("fonts/DINWeb-Medium.eot");
+  src: url("fonts/DINWeb-Medium.eot?#iefix") format("embedded-opentype"), url("fonts/DINWeb-Medium.woff") format("woff"), url("fonts/DINWeb-Medium.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal; }
 #main {
   position: relative; }
 
@@ -278,9 +290,7 @@ h3 {
   width: 100%;
   width: 100vw;
   height: 100vh;
-  position: absolute;
-  top: 0;
-  left: 0; }
+  position: relative; }
   #featured .preview-intro-image {
     overflow: hidden;
     position: absolute;
@@ -338,6 +348,37 @@ h3 {
   -webkit-transform: translate(-50%, -50%) !important;
   -ms-transform: translate(-50%, -50%) !important;
   -o-transform: translate(-50%, -50%); }
+
+.project .video-project {
+  margin-bottom: 2em; }
+  .project .video-project img {
+    width: 100%;
+    height: auto;
+    display: block; }
+.project .content {
+  margin: 0 20px; }
+  .project .content .info {
+    margin-bottom: 3em; }
+    .project .content .info > div {
+      width: 50%;
+      float: left; }
+      @media screen and (max-width: 600px) {
+        .project .content .info > div {
+          width: 100%;
+          float: none; }
+          .project .content .info > div:first-child {
+            margin-bottom: 1em; }
+          .project .content .info > div.description {
+            margin-bottom: 1em; } }
+  .project .content .images {
+    margin-bottom: 20px; }
+    .project .content .images img {
+      display: block;
+      width: 100%;
+      height: auto; }
+    .project .content .images.col-2 .col {
+      width: 50%;
+      float: left; }
 
 .header {
   position: absolute;

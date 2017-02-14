@@ -1,57 +1,79 @@
 <?php 
-	
-	get_header(); 
-	
-?>
-	<section id="notes" class="page text content-x">
+
+	// old = https://dummyimage.com/1920x1080/ffd1fa/fff.jpg&text=LN
+	function testImage() {
+		echo get_stylesheet_directory_uri().'/images/test-1920.jpg'; 
+	}
+
+get_header(); ?>
+
+	<section class="project page">
+
 		<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 
 		<div class="container">
-			<div class="category">
+
 			<?php
-			
-				$notes = new WP_Query( array(
-					'post_type' 		=> 'notes',
-					'posts_per_page'	=> '-1',
-					'orderby'			=> 'menu',
-					'order'				=> 'ASC',
-				));
-
-				if ($notes->have_posts() ) : 
-				
-				echo '<ol>';
-				$count = 1;
-
-					while ($notes->have_posts()) : $notes->the_post();
-
-						echo	'<li class="item">'
-								.	'<a href="'.get_the_permalink().'" class="cf">'
-								.		'<span class="number">'.$count.'</span>'
-								.		'<span class="title">'.get_the_title().'</span>'
-								.		'<span class="year">'.get_field('year').'</span>'
-								.	'</a>'							
-								.'</li>';
-
-					$count++;
-				    endwhile; 
-
-				echo '</ol>';
-			    
-			    endif;
-
-				wp_reset_postdata(); 
-					
+				echo	'<div class="video-main video-project">'.
+							'<img src="'.$testImage.'" data-error="'.$testImage.'" class="vimeo-thumb" data-vimeo-id="128843408">'.
+						'</div>';
 			?>
-			</div>
+
+			<section class="content">
+
+				<div class="info cf">
+					<div class="col">
+						<h3 class="title">Project Title</h3>
+						<div class="credits">
+							<p>CLIENT: Free Age Productions</p>
+						</div>
+					</div>			
+					<div class="col description">
+						<p>It’s impossible not to get excited about a project brief when it includes images of Sylvester Stallone, mirror-like aviators, and sci-  dystopian worlds. Detroit based production studio FreeAge approached us to create a new identity system for them so we got to work making grimey and gritty logos and  eshed out some well-worn corridors for their logo to wash a healthy coat of neon over.</p>
+					</div>			
+				</div>
+
+				<div class="images col-2 cf">
+					<div class="col">
+						<img src="https://dummyimage.com/1920x1080/ff00ff/fff.jpg">
+					</div>
+					<div class="col">
+						<img src="https://dummyimage.com/1920x1080/ff00ff/fff.jpg">
+					</div>  
+				</div>	
+
+				<div class="images col-1">
+					<div>
+						<img src="https://dummyimage.com/1920x1080/ff00ff/fff.jpg">
+					</div>
+				</div>	
+
+				<div class="images col-2 cf">
+					<div class="col">
+						<img src="https://dummyimage.com/1920x1080/ff00ff/fff.jpg">
+					</div>
+					<div class="col">
+						<img src="https://dummyimage.com/1920x1080/ff00ff/fff.jpg">
+					</div>  
+				</div>	
+
+				<div class="images col-2 cf">
+					<div class="col">
+						<img src="https://dummyimage.com/1920x1080/ff00ff/fff.jpg">
+					</div>
+					<div class="col">
+						<img src="https://dummyimage.com/1920x1080/ff00ff/fff.jpg">
+					</div>  
+				</div>	
+				
+
+			</section>
+
+
 		</div>
-		<div class="notes-content-container">
-			<div class="content">
-				<div class="close-btn">&times;</div>
-				<iframe data-url="http://omg.kikkoooo.com/interaction-2/" src="<?php get_field('google_document') ?>" width="100%" height="100%" frameborder="0" sandbox="allow-same-origin allow-scripts allow-popups allow-forms"></iframe>				
-			</div>
-		</div>
-		<footer>&copy; 2016 You VS Jesus</footer>		
-			<?php endwhile; endif; ?>
+
+		<?php endwhile; endif; ?>
 
 	</section>
+
 <?php get_footer(); ?>

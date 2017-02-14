@@ -25,6 +25,8 @@ $gutter: 20px;
 @import "normalize";
 @import "kpinit";
 @import "typography";
+@import "screen";
+
 
 #main {
 	position: relative;
@@ -37,9 +39,7 @@ $gutter: 20px;
 	width: 100vw;
 	height: 100vh;
 
-	position: absolute;
-	top: 0;
-	left: 0;
+	position: relative;
 
 	.preview-intro-image {
 		// display: none;
@@ -98,7 +98,6 @@ $gutter: 20px;
 }
 
 
-
 .video-content {
 
 	height: 100%;
@@ -118,6 +117,80 @@ $gutter: 20px;
 
 }
 
+
+
+//CONTENT
+
+.project {
+
+	.video-project {
+
+		margin-bottom: 2em;
+
+		img {
+
+			width: 100%;
+			height: auto;
+			display: block;
+
+		}
+
+	}
+
+	.content {
+
+		margin: 0 $gutter;
+
+		.info {
+			margin-bottom: 3em;
+			> div {
+				width: 50%;
+				float: left;
+				@media screen and (max-width: $break-small) {
+					width: 100%;
+					float: none;
+					&:first-child {
+						margin-bottom: 1em;
+					}
+					&.description {
+						margin-bottom: 1em;
+					}
+				}
+			}
+			.title {
+			}
+		}
+		.description {
+		}
+
+		.images {
+
+			margin-bottom: $gutter;
+			
+			img {
+				display: block;
+				width: 100%;
+				height: auto;
+
+			}
+			&.col-1 {
+
+			}
+
+			&.col-2 {
+				.col {
+
+					width: 50%;
+					float: left;
+
+				}
+			}
+
+		}
+
+	}
+
+}
 
 
 //HEADER
@@ -278,13 +351,11 @@ $gutter: 20px;
 	.row.left {
 
 		.case-study {
-			// padding: $gutter/2 $gutter/2 $gutter/2 $gutter;
 			margin: $gutter/2 $gutter/2 $gutter/2 $gutter;			
 			float: left;
 		}
 
 		.normal {
-			// padding: $gutter/2 $gutter $gutter/2 $gutter/2;
 			margin: $gutter/2 $gutter $gutter/2 $gutter/2;
 			float: right;
 		}	
@@ -293,7 +364,6 @@ $gutter: 20px;
 	.row.right {
 
 		.case-study {
-			// padding: $gutter/2 $gutter $gutter/2 $gutter/2;
 			margin: $gutter/2 $gutter $gutter/2 $gutter/2;
 			float: right;
 		}

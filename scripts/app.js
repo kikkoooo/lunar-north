@@ -18,13 +18,36 @@ var ln = {
     },
 
     init : function() {
+
 		// this.ajaxPagess();
+
+		this.detectSize();
 		this.pos();
+
 		this.initImages();
 		this.introImage();
 		this.initSticky();
 		this.navigation();
 		this.initReel();
+
+
+
+		$(".video-project").fitVids();
+        // $('.vimeo-project').smartVimeoEmbed({
+        //     width: 1280,
+        //     onComplete: function() {
+        //         $(this).fitVids();
+        //     },
+        //   onError: function() {
+	       //    // Fallback image
+	       //    var bi = $(this).attr('data-error');
+	       //    $(this).attr('src', bi);
+        //   }
+        // });
+
+
+
+
 	}, 
 	
 	initImages : function () {
@@ -48,7 +71,8 @@ var ln = {
         $('.vimeo-thumb').smartVimeoEmbed({
             width: 1280,
             onComplete: function() {
-                $('#featured').fitVids();
+                // $('#featured').fitVids();
+                $(this).parent().fitVids();
             },
           onError: function() {
 	          // Fallback image
@@ -61,10 +85,10 @@ var ln = {
 
     introImage : function() {
 
-		// var $introImage = $('.preview-intro-image'),
-		// 	introImageObj = $introImage.data('intro-image');
-		// // if ($introImage.length) $introImage.backstretch(introImageObj, {fade: 100});
-		// if ($introImage.length) $introImage.backstretch(introImageObj);
+		var $introImage = $('.preview-intro-image'),
+			introImageObj = $introImage.data('intro-image');
+		// if ($introImage.length) $introImage.backstretch(introImageObj, {fade: 100});
+		if ($introImage.length) $introImage.backstretch(introImageObj);
 
 
     },
@@ -145,16 +169,16 @@ var ln = {
             headerH = $header.outerHeight(false);
 
 
-        if (ln.featured == true) {
+        // if (ln.featured == true) {
 			// Featured
 			$featured.css({
 				height: h-headerH
 			});
 
-			$main.css({
-				top: h-headerH
-			});
-		}
+			// $main.css({
+			// 	top: h-headerH
+			// });
+		// }
 
 		// Header sub text
 		$(".header .sub-text").css({
@@ -164,9 +188,6 @@ var ln = {
 		$(".footer .copyright").css({
 			width : ($(".footer").innerWidth() - $(".footer .info").outerWidth()) / 2
 		});
-
-
-
 
 
 		// Thumbnails
@@ -198,6 +219,57 @@ var ln = {
 			height: ((caseStudyColW) * (9/16) / 2) - ln.gutter/2
 		});
 
+
+
+		// gutter
+		// horizontal gutter
+		$(".row.right .case-study, .row.left .normal").css({
+			marginTop : ln.gutter/2,
+			marginRight : ln.gutter,
+			marginBottom : ln.gutter/2,
+			marginLeft : ln.gutter/2,
+		});
+
+		$(".row.right .normal, .row.left .case-study").css({
+			marginTop : ln.gutter/2,
+			marginRight : ln.gutter/2,
+			marginBottom : ln.gutter/2,
+			marginLeft : ln.gutter,
+		});
+
+		// vertical gutter for normal column
+		$(".normal .project:first-child").css({
+			marginBottom : ln.gutter/2,
+		});		
+
+		$(".normal .project:last-child").css({
+			marginTop : ln.gutter/2,
+		});		
+
+		$(".content .images").css({
+			marginBottom : ln.gutter
+		})
+
+		$(".col-2 .col").each(function() {
+
+			var cw = $(this).parent().width()/2;
+
+			$(this).css({
+				width : cw - ln.gutter/2
+			});
+
+			if ($(this).is(':first-child')) {
+				$(this).css({
+					marginRight : ln.gutter
+				});
+			}
+		});
+
+
+
+
+
+
 		// Make Vimeo proportional and responsive on Width
 		var videoContent = $('.video-content'),
 			videoW = 1920,
@@ -212,10 +284,36 @@ var ln = {
 
 
 	},
+
+	detectSize : function() {
+
+		ww = $(window).width();
+
+		if (ww <= 500) {
+	        ln.screenMode = "mobile";
+        /* Tablet */
+		} else if (ww <= 900) {
+	        ln.screenMode = "mobile";
+        /* Desktop */
+        } else {
+	        ln.screenMode = "desktop";
+        }
+
+		if (ln.screenMode == "mobile") {
+			ln.gutter = 6;
+		} else {
+			ln.gutter = 20;
+		}
+
+	},
 	
 	resize : function() {
 
+
+		this.detectSize();
 		this.pos();
+
+
 		// Resize normal project thumbnails to compensate for the margins
 		// $(".normal .project").each(function() {
 		// 	$(this).height(($(this).closest(".normal").siblings(".case-study").height() - 20) / 2);
@@ -251,22 +349,19 @@ var ln = {
 				console.log("sticking");
 
 				ln.featured = false;
-				$("#featured").hide();
-				$("#main").css({
-					top: 0
-				});
-				$(window).scrollTo(0);
+				// $("#featured").hide();
+				// $("#main").css({
+				// 	top: 0
+				// });
+				// $(window).scrollTo(0);
 
 			});
 
 			$navBar.on('sticky-end', function() { 
 
 				console.log("stop sticking");
-				
 				var $menuBox = $(".menu-box");
-
 				$menuBox.fadeOut(200);
-
 
 			});
 
