@@ -43,7 +43,7 @@
 	<div id="main">
 		<header class="header">
 			<div class="container cf">
-				<div class="sub-text align-right"><h3>Design and Animation</h3></div>
+				<div class="sub-text align-right"><h3>WTF Design and Animation</h3></div>
 				<div class="sub-text align-left"><h3>Detroit, Michigan</h3></div>
 				<div class="logo"><a href="<?php echo esc_url(home_url('/'));?>"></a></div>
 			</div>
