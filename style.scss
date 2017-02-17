@@ -433,94 +433,153 @@ $gutter: 20px;
 .footer {
 
 	background: $colorGrey;
-	height: $footerHeight;
 	position: relative;
+
 
 	.container {
 
 		display: block;
 		position: relative;
 		height: 100%;
+		margin: 0 $gutter;
+		padding-top: $gutter;
+		padding-bottom: $gutter;
 
 
 		.copyright {
 
 			position: absolute;
+			margin-top: $gutter;
+			top: 0;
 			right: 0;
+			// border: 1px solid red;
 
+			@media screen and (max-width: $break-medium) {
+				width: 100%;
+				position: relative;
+				text-align: center;
+				float: none;
+				margin-top: 1em;
+			}
+	
+		}
+
+		.align-v {
+
+			position: relative;
 			top: 50%;
-			transform: translateY(-50%);	
+			transform: translateY(-50%);
+
+			@media screen and (max-width: $break-small) {
+				top: auto;
+				transform: translateY(0);
+			}
 
 		}
 
+
 		.info {
 
-			position: absolute;
-			top: 50%;
-			left: 50%;
-			transform: translate(-50%, -50%);	
-			border: 1px solid blue;
-			max-width: 100%;
-			display: block;
+			.inner {
 
-			> div {
-
-				float: left;
-				padding: 10px;
-
-				&:nth-of-type(1), &:nth-of-type(2) {
-					margin-right: 40px;
-				}
-
-				&:nth-of-type(3) {
-					margin-right: 0;
-				}
-
-			}
-
-
-			.logo {
-
-				width: 185px;
-				max-width: 50%;
-				display: block;
 				position: relative;
+				max-width: 100%;
+				display: block;
+				float: left;
+				left: 50%;
+				transform: translateX(-50%);
 
-				a {
-					position: relative;
-					// left: 50%;
-					// top: 50%;
-					// transform: translate(-50%, -50%);
-					// background-image: url(https://dummyimage.com/185x20/75ff85/000000.jpg&text=LN);				
-					background-image: url(./images/ln-logo.png);				
-					background-size: 100% auto;
-				    background-repeat:no-repeat;
-				    background-position: center; 
-					max-width: 100%;
-					height: 20px;
-					display: block;
-				}
-			}
+				> div {
 
-			.contact {
-
-			}	
-
-			.social-media {
-				
-				ul, li {
-
-					margin: 0;
-					padding: 0;
-					list-style: none;
-				}
-
-				li {
 					float: left;
+					margin-right: 40px;
+					margin-bottom: 0;
+
+
+					&:last-child {
+						margin-right: 0;
+					}
+
+					@media screen and (max-width: $break-small) {
+						float: none;
+						margin-right: 0;
+						margin-bottom: 1em;
+					}
+
+					@media screen and (max-width: $break-medium) {
+					}
 				}
 
+				.logo {
+
+					display: block;
+					position: relative;
+
+					a {
+
+						position: relative;
+						display: block;
+						width: 190px;
+						height: 22px;
+
+
+						svg {
+							width: 100%;
+						}
+					}
+				}
+
+				@media screen and (max-width: $break-medium) {
+				}
+
+				@media screen and (max-width: $break-small) {
+					width: 100%;
+					transform: translateX(0);	
+					left: auto;
+					float: none;
+				}
+
+				.contact {
+				}	
+
+				.social-media {
+
+					a {
+						display: block;
+						width: 30px;
+						height: 30px;
+
+						svg {
+							width: 100%;
+							height: 100%;
+
+							path {
+							    fill: $textColor1;
+							}
+						}
+
+						&:hover svg path {
+						    fill: $colorBlue;
+						}
+					}
+
+
+					ul {
+						margin: 0;
+						padding: 0;
+						list-style: none;
+					}
+					li {
+						float: left;
+						margin-right: .5em;
+						&:last-child {
+							margin-right: 0;
+						}
+					}
+				}
 
 			}
+
 		}
 	}
 

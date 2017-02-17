@@ -32,6 +32,13 @@ var ln = {
 
 
 
+		// $('.info').masonry({
+		//   // options
+		//   itemSelector: '.grid-item',
+		//   columnWidth: "33%"
+		// });
+
+
 		$(".video-project").fitVids();
         // $('.vimeo-project').smartVimeoEmbed({
         //     width: 1280,
@@ -114,7 +121,7 @@ var ln = {
 
 			if ($btn.data("animated") == false){
 				$btn.animateSprite({
-				    fps: 15,
+				    fps: 30,
 					loop: false,
 				    complete: function () {
 				        $btn.animateSprite('frame', 0);
@@ -140,7 +147,7 @@ var ln = {
 
 			if ($link.data("animated") == false) {
 				$tar.animateSprite({
-				    fps: 15,
+				    fps: 30,
 					loop: false,
 				    complete: function () {
 				        $link.animateSprite('frame', 0);
@@ -185,10 +192,34 @@ var ln = {
 			width : ($(".header .container").innerWidth() - $(".header .logo").outerWidth()) / 2
 		});
 		
-		$(".footer .copyright").css({
-			width : ($(".footer").innerWidth() - $(".footer .info").outerWidth()) / 2
-		});
 
+
+
+		// Footer floating boxes
+
+		if (ln.screenMode != "small") {
+			var elementHeights = $(".footer .inner > div").not(".copyright").map(function() {
+				return $(this).height();
+			}).get();
+			var maxHeight = Math.max.apply(null, elementHeights);
+			$(".footer .inner > div, .copyright").height(maxHeight);
+		} else {
+			$(".footer .inner > div, .copyright").height("auto");
+		}
+
+
+		if (ln.screenMode == "large") {
+
+	        var calc = $(".footer .inner").outerWidth();
+			$(".footer .copyright").css({
+				width : ($(".footer .info").innerWidth() - calc) / 2,
+			});
+
+		} else {
+			$(".footer .copyright").css({
+				width : "100%"
+			});
+		}
 
 		// Thumbnails
 		var caseStudyColW = ($(".row").width() * (2/3)) - (ln.gutter * 1.5),
@@ -248,7 +279,7 @@ var ln = {
 
 		$(".content .images").css({
 			marginBottom : ln.gutter
-		})
+		});
 
 		$(".col-2 .col").each(function() {
 
@@ -289,21 +320,23 @@ var ln = {
 
 		ww = $(window).width();
 
-		if (ww <= 500) {
-	        ln.screenMode = "mobile";
+		if (ww <= 600) {
+	        ln.screenMode = "small";
         /* Tablet */
 		} else if (ww <= 900) {
-	        ln.screenMode = "mobile";
+	        ln.screenMode = "medium";
         /* Desktop */
         } else {
-	        ln.screenMode = "desktop";
+	        ln.screenMode = "large";
         }
 
-		if (ln.screenMode == "mobile") {
+		if (ln.screenMode == "small") {
 			ln.gutter = 6;
 		} else {
 			ln.gutter = 20;
 		}
+
+		console.log(ln.screenMode);
 
 	},
 	
@@ -513,7 +546,7 @@ var ln = {
 		            });
 	            }
 			}
-        })
+        });
 
         
 		//Slide images

@@ -521,51 +521,87 @@ h3 {
 
 .footer {
   background: #1E1E1E;
-  height: 100px;
   position: relative; }
   .footer .container {
     display: block;
     position: relative;
-    height: 100%; }
+    height: 100%;
+    margin: 0 20px;
+    padding-top: 20px;
+    padding-bottom: 20px; }
     .footer .container .copyright {
       position: absolute;
-      right: 0;
+      margin-top: 20px;
+      top: 0;
+      right: 0; }
+      @media screen and (max-width: 900px) {
+        .footer .container .copyright {
+          width: 100%;
+          position: relative;
+          text-align: center;
+          float: none;
+          margin-top: 1em; } }
+    .footer .container .align-v {
+      position: relative;
       top: 50%;
       transform: translateY(-50%); }
-    .footer .container .info {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      border: 1px solid blue;
+      @media screen and (max-width: 600px) {
+        .footer .container .align-v {
+          top: auto;
+          transform: translateY(0); } }
+    .footer .container .info .inner {
+      position: relative;
       max-width: 100%;
-      display: block; }
-      .footer .container .info > div {
+      display: block;
+      float: left;
+      left: 50%;
+      transform: translateX(-50%); }
+      .footer .container .info .inner > div {
         float: left;
-        padding: 10px; }
-        .footer .container .info > div:nth-of-type(1), .footer .container .info > div:nth-of-type(2) {
-          margin-right: 40px; }
-        .footer .container .info > div:nth-of-type(3) {
+        margin-right: 40px;
+        margin-bottom: 0; }
+        .footer .container .info .inner > div:last-child {
           margin-right: 0; }
-      .footer .container .info .logo {
-        width: 185px;
-        max-width: 50%;
+        @media screen and (max-width: 600px) {
+          .footer .container .info .inner > div {
+            float: none;
+            margin-right: 0;
+            margin-bottom: 1em; } }
+      .footer .container .info .inner .logo {
         display: block;
         position: relative; }
-        .footer .container .info .logo a {
+        .footer .container .info .inner .logo a {
           position: relative;
-          background-image: url(./images/ln-logo.png);
-          background-size: 100% auto;
-          background-repeat: no-repeat;
-          background-position: center;
-          max-width: 100%;
-          height: 20px;
-          display: block; }
-      .footer .container .info .social-media ul, .footer .container .info .social-media li {
+          display: block;
+          width: 190px;
+          height: 22px; }
+          .footer .container .info .inner .logo a svg {
+            width: 100%; }
+      @media screen and (max-width: 600px) {
+        .footer .container .info .inner {
+          width: 100%;
+          transform: translateX(0);
+          left: auto;
+          float: none; } }
+      .footer .container .info .inner .social-media a {
+        display: block;
+        width: 30px;
+        height: 30px; }
+        .footer .container .info .inner .social-media a svg {
+          width: 100%;
+          height: 100%; }
+          .footer .container .info .inner .social-media a svg path {
+            fill: #585A5A; }
+        .footer .container .info .inner .social-media a:hover svg path {
+          fill: #00ADEE; }
+      .footer .container .info .inner .social-media ul {
         margin: 0;
         padding: 0;
         list-style: none; }
-      .footer .container .info .social-media li {
-        float: left; }
+      .footer .container .info .inner .social-media li {
+        float: left;
+        margin-right: .5em; }
+        .footer .container .info .inner .social-media li:last-child {
+          margin-right: 0; }
 
 /*# sourceMappingURL=style.css.map */
