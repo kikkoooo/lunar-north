@@ -114,27 +114,31 @@ var ln = {
 			}
 		});
 
-		// NAV 
-		$(".menu-button a").hover(function () {
+		$(".nav-toggle").click(function() {
+			$(this).toggleClass("active");
+		})
 
-			$btn = $(this);
+		// // NAV 
+		// $(".menu-button a").hover(function () {
 
-			if ($btn.data("animated") == false){
-				$btn.animateSprite({
-				    fps: 30,
-					loop: false,
-				    complete: function () {
-				        $btn.animateSprite('frame', 0);
-				    }
-				});
-				$btn.data("animated", true);
-			} else {
-				$btn.animateSprite("restart");
-			}
+		// 	$btn = $(this);
 
-		}, function () {
-			$(this).animateSprite('stop').animateSprite('frame', 0);
-		});
+		// 	if ($btn.data("animated") == false){
+		// 		$btn.animateSprite({
+		// 		    fps: 30,
+		// 			loop: false,
+		// 		    complete: function () {
+		// 		        $btn.animateSprite('frame', 0);
+		// 		    }
+		// 		});
+		// 		$btn.data("animated", true);
+		// 	} else {
+		// 		$btn.animateSprite("restart");
+		// 	}
+
+		// }, function () {
+		// 	$(this).animateSprite('stop').animateSprite('frame', 0);
+		// });
 
 		// PROJECT 
 
@@ -222,8 +226,8 @@ var ln = {
 		}
 
 		// Thumbnails
-		var caseStudyColW = ($(".row").width() * (2/3)) - (ln.gutter * 1.5),
-			normalColW = ($(".row").width()/3) - (ln.gutter * 1.5);
+		var caseStudyColW = ($(".row").width() * (2/3)) - (ln.gutter * .5),
+			normalColW = ($(".row").width()/3) - (ln.gutter * .5);
 
 		// case-study col
 		$(".case-study").css({
@@ -256,7 +260,7 @@ var ln = {
 		// horizontal gutter
 		$(".row.right .case-study, .row.left .normal").css({
 			marginTop : ln.gutter/2,
-			marginRight : ln.gutter,
+			// marginRight : ln.gutter,
 			marginBottom : ln.gutter/2,
 			marginLeft : ln.gutter/2,
 		});
@@ -265,7 +269,7 @@ var ln = {
 			marginTop : ln.gutter/2,
 			marginRight : ln.gutter/2,
 			marginBottom : ln.gutter/2,
-			marginLeft : ln.gutter,
+			// marginLeft : ln.gutter,
 		});
 
 		// vertical gutter for normal column
@@ -277,25 +281,63 @@ var ln = {
 			marginTop : ln.gutter/2,
 		});		
 
-		$(".content .images").css({
+		$(".content-container .images").not(":last-child").css({
 			marginBottom : ln.gutter
 		});
 
 		$(".col-2 .col").each(function() {
 
+			
 			var cw = $(this).parent().width()/2;
 
-			$(this).css({
-				width : cw - ln.gutter/2
-			});
+			if (ln.screenMode == "small" && $(this).parent().hasClass("info")) {
 
-			if ($(this).is(':first-child')) {
 				$(this).css({
-					marginRight : ln.gutter
+					width : "100%",
+					marginRight : 0
 				});
+
+			} else {
+
+				$(this).width(cw - ln.gutter/2);	
+
+				if ($(this).is(":first-child")) {
+					$(this).css({
+						marginRight : ln.gutter
+					});
+				}
+
 			}
+
+
+
+
+
+
+
+
+
+
+
+
+
 		});
 
+
+		// $(".col-2 .col").each(function() {
+
+		// 	var cw = $(this).parent().width()/2;
+
+		// 	$(this).css({
+		// 		width : cw - ln.gutter/2
+		// 	});
+
+		// 	if ($(this).is(':first-child')) {
+		// 		$(this).css({
+		// 			marginRight : ln.gutter
+		// 		});
+		// 	}
+		// });
 
 
 
@@ -334,6 +376,10 @@ var ln = {
 			ln.gutter = 6;
 		} else {
 			ln.gutter = 20;
+		}
+
+		if (ln.screenMode != "large") {
+			$('#header').sticky('update');
 		}
 
 		console.log(ln.screenMode);

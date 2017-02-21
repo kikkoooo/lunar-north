@@ -353,36 +353,38 @@ h3 {
   -ms-transform: translate(-50%, -50%) !important;
   -o-transform: translate(-50%, -50%); }
 
-.project .video-project {
+#project-detail-container .video-project {
   margin-bottom: 2em; }
-  .project .video-project img {
+  #project-detail-container .video-project img {
     width: 100%;
     height: auto;
     display: block; }
-.project .content {
-  margin: 0 20px; }
-  .project .content .info {
+#project-detail-container .content-container {
+  padding: 0 20px; }
+  #project-detail-container .content-container .info {
     margin-bottom: 3em; }
-    .project .content .info > div {
+    #project-detail-container .content-container .info > div {
       width: 50%;
       float: left; }
       @media screen and (max-width: 600px) {
-        .project .content .info > div {
+        #project-detail-container .content-container .info > div {
           width: 100%;
           float: none; }
-          .project .content .info > div:first-child {
+          #project-detail-container .content-container .info > div:first-child {
             margin-bottom: 1em; }
-          .project .content .info > div.description {
+          #project-detail-container .content-container .info > div.description {
             margin-bottom: 1em; } }
-  .project .content .images {
+  #project-detail-container .content-container .images {
     margin-bottom: 20px; }
-    .project .content .images img {
+    #project-detail-container .content-container .images img {
       display: block;
       width: 100%;
       height: auto; }
-    .project .content .images.col-2 .col {
+    #project-detail-container .content-container .images.col-2 .col {
       width: 50%;
       float: left; }
+    #project-detail-container .content-container .images:last-child {
+      margin-bottom: 0; }
 
 .header {
   position: absolute;
@@ -391,6 +393,9 @@ h3 {
   height: 110px;
   background: #000;
   z-index: 100; }
+  @media screen and (max-width: 900px) {
+    .header {
+      height: 55px; } }
   .header .container {
     position: relative;
     height: 100%; }
@@ -410,41 +415,76 @@ h3 {
         transform: translateY(-50%);
         display: block;
         margin: 0 30px; }
+      @media screen and (max-width: 900px) {
+        .header .container .sub-text {
+          display: none; } }
     .header .container .logo {
       width: 420px;
       max-width: 50%;
       left: 50%;
       transform: translateX(-50%);
       position: absolute; }
+      @media screen and (max-width: 900px) {
+        .header .container .logo {
+          width: 300px; } }
       .header .container .logo a {
         position: relative;
         left: 50%;
         top: 50%;
         transform: translate(-50%, -50%);
-        background-image: url(./images/ln-logo.png);
         background-size: 100% auto;
         background-repeat: no-repeat;
         background-position: center;
         max-width: 100%;
         height: 50px;
+        width: 420px;
         display: block; }
+        .header .container .logo a svg {
+          width: 100%;
+          height: 100%; }
   .header .menu-button {
     position: absolute;
     top: 0;
     right: 0;
     height: 100%;
-    width: 100px;
     display: block;
-    border: 1px solid blue; }
+    padding: 0 20px; }
+    .header .menu-button .nav-toggle {
+      cursor: pointer;
+      padding: 10px 30px 12px 0px; }
+      .header .menu-button .nav-toggle span, .header .menu-button .nav-toggle span:before, .header .menu-button .nav-toggle span:after {
+        border-radius: 1px;
+        height: 3px;
+        width: 30px;
+        background: #585A5A;
+        position: absolute;
+        display: block;
+        content: '';
+        transition: all 200ms linear; }
+      .header .menu-button .nav-toggle:hover span, .header .menu-button .nav-toggle:hover span:before, .header .menu-button .nav-toggle:hover span:after {
+        background: #00ADEE; }
+      .header .menu-button .nav-toggle span:before {
+        top: -10px; }
+      .header .menu-button .nav-toggle span:after {
+        bottom: -10px; }
+      .header .menu-button .nav-toggle.active span {
+        background-color: transparent; }
+      .header .menu-button .nav-toggle.active span:before, .header .menu-button .nav-toggle.active span:after {
+        top: 0; }
+      .header .menu-button .nav-toggle.active span:before {
+        -webkit-transform: rotate(45deg);
+        -moz-transform: rotate(45deg);
+        -o-transform: rotate(45deg);
+        transform: rotate(45deg); }
+      .header .menu-button .nav-toggle.active span:after {
+        -webkit-transform: rotate(-45deg);
+        -moz-transform: rotate(-45deg);
+        -o-transform: rotate(-45deg);
+        transform: rotate(-45deg); }
     .header .menu-button .icon-btn {
-      background-image: url(./images/test-sm-seq.png);
-      position: absolute;
+      position: relative;
       top: 50%;
-      left: 50%;
-      height: 50px;
-      width: 50px;
-      background-image: url(images/test-sm-seq.png);
-      transform: translate(-50%, -50%);
+      transform: translateY(-50%);
       display: block; }
   .header nav.menu-box {
     position: absolute;
@@ -460,64 +500,65 @@ h3 {
       padding: 0;
       text-align: center; }
 
-#content {
-  position: relative; }
+#projects-container {
+  padding: 0 20px; }
 
-.projects {
-  padding: 0 0 40px 0; }
-  .projects .project {
+#projects-container, #project-detail-container {
+  margin-bottom: 20px; }
+
+#projects-container .project {
+  position: relative; }
+  #projects-container .project a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    left: 0; }
+    #projects-container .project a:hover .thumbnail {
+      opacity: .5; }
+    #projects-container .project a .animation-rollover {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      height: 50px;
+      width: 50px;
+      background-image: url(images/test-sm-seq.png);
+      transform: translate(-50%, -50%); }
+#projects-container .row.left .case-study {
+  margin: 10px 10px 10px 0;
+  float: left; }
+#projects-container .row.left .normal {
+  margin: 10px 0 10px 10px;
+  float: right; }
+#projects-container .row.right .case-study {
+  margin: 10px 0 10px 10px;
+  float: right; }
+#projects-container .row.right .normal {
+  margin: 10px 10px 10px 0;
+  float: left; }
+#projects-container .row {
+  width: 100%;
+  display: block;
+  position: relative; }
+  #projects-container .row .col {
     position: relative; }
-    .projects .project a {
-      display: block;
-      width: 100%;
-      height: 100%;
-      position: relative;
-      left: 0; }
-      .projects .project a:hover .thumbnail {
-        opacity: .5; }
-      .projects .project a .animation-rollover {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        height: 50px;
-        width: 50px;
-        background-image: url(images/test-sm-seq.png);
-        transform: translate(-50%, -50%); }
-  .projects .row.left .case-study {
-    margin: 10px 10px 10px 20px;
+  #projects-container .row .normal .project {
+    overflow: hidden;
     float: left; }
-  .projects .row.left .normal {
-    margin: 10px 20px 10px 10px;
-    float: right; }
-  .projects .row.right .case-study {
-    margin: 10px 20px 10px 10px;
-    float: right; }
-  .projects .row.right .normal {
-    margin: 10px 10px 10px 20px;
-    float: left; }
-  .projects .row {
+    #projects-container .row .normal .project:first-child {
+      margin-top: 0;
+      margin-bottom: 10px; }
+      #projects-container .row .normal .project:first-child a {
+        top: 0; }
+    #projects-container .row .normal .project:last-child {
+      margin-top: 10px;
+      margin-bottom: 0; }
+      #projects-container .row .normal .project:last-child a {
+        bottom: 0; }
+  #projects-container .row .thumbnail {
     width: 100%;
     display: block;
-    position: relative; }
-    .projects .row .col {
-      position: relative; }
-    .projects .row .normal .project {
-      overflow: hidden;
-      float: left; }
-      .projects .row .normal .project:first-child {
-        margin-top: 0;
-        margin-bottom: 10px; }
-        .projects .row .normal .project:first-child a {
-          top: 0; }
-      .projects .row .normal .project:last-child {
-        margin-top: 10px;
-        margin-bottom: 0; }
-        .projects .row .normal .project:last-child a {
-          bottom: 0; }
-    .projects .row .thumbnail {
-      width: 100%;
-      display: block;
-      background: #1E1E1E; }
+    background: #1E1E1E; }
 
 .footer {
   background: #1E1E1E;
@@ -526,9 +567,7 @@ h3 {
     display: block;
     position: relative;
     height: 100%;
-    margin: 0 20px;
-    padding-top: 20px;
-    padding-bottom: 20px; }
+    padding: 20px 20px; }
     .footer .container .copyright {
       position: absolute;
       margin-top: 20px;

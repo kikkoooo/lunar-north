@@ -24,30 +24,25 @@
 	?>
 
 	<?php if (!is_single()) { ?>
-
 		<div id="featured">
-			<div class="preview-intro-image" data-intro-image="<?php testIntroImage(); ?>"></div>
-
+			<!-- <div class="preview-intro-image" data-intro-image="<?php// testIntroImage(); ?>"></div> -->
 			<?php 
-
 				echo	'<div class="video-content">'.
 							'<img src="'.$testImage.'" data-error="'.$testImage.'" class="vimeo-thumb" data-vimeo-id="128843408">'.
 						'</div>';
-
 			?>
-
 		</div>
-
 	<?php } ?>
-
 	<div id="main">
 		<header class="header">
 			<div class="container cf">
 				<div class="sub-text align-right"><h3>Design and Animation</h3></div>
 				<div class="sub-text align-left"><h3>Detroit, Michigan</h3></div>
-				<div class="logo"><a href="<?php echo esc_url(home_url('/'));?>"></a></div>
+				<div class="logo">
+					<a href="<?php echo esc_url(home_url('/'));?>"><?php echo file_get_contents(get_stylesheet_directory_uri().'/images/ln-logo.svg'); ?></a>
+				</div>
 			</div>
-			<div class="menu-button"><a href="#" class="icon-btn" data-animated="false"></a></div>	
+			<div class="menu-button"><a href="#" class="nav-toggle icon-btn" data-animated="false"><span></span></a></div>	
 			<nav class="menu-box">
 				<ul>
 					<li><h2><a href="#">Reel</a></h2></li>
@@ -57,5 +52,3 @@
 				</ul>
 			</nav>
 		</header>
- 		
- 		<div id="content">

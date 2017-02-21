@@ -125,7 +125,7 @@ $gutter: 20px;
 
 //CONTENT
 
-.project {
+#project-detail-container {
 
 	.video-project {
 
@@ -141,9 +141,9 @@ $gutter: 20px;
 
 	}
 
-	.content {
+	.content-container {
 
-		margin: 0 $gutter;
+		padding: 0 $gutter;
 
 		.info {
 			margin-bottom: 3em;
@@ -183,11 +183,13 @@ $gutter: 20px;
 
 			&.col-2 {
 				.col {
-
 					width: 50%;
 					float: left;
-
 				}
+			}
+
+			&:last-child {
+				margin-bottom: 0;
 			}
 
 		}
@@ -206,6 +208,10 @@ $gutter: 20px;
 	height: $headerHeight;
 	background: $bgColor;
 	z-index: 100;
+
+	@media screen and (max-width: $break-medium) {
+		height: $headerHeight/2;
+	}
 
 	.container {
 
@@ -236,6 +242,12 @@ $gutter: 20px;
 				display: block;
 				margin: 0 30px;
 			}
+
+			@media screen and (max-width: $break-medium) {
+				display: none;
+			}
+
+
 		}
 
 		.logo {
@@ -246,18 +258,29 @@ $gutter: 20px;
 			transform: translateX(-50%);			
 			position: absolute;
 			
+			@media screen and (max-width: $break-medium) {
+				width: 300px;
+			}
+
 			a {
 				position: relative;
 				left: 50%;
 				top: 50%;
 				transform: translate(-50%, -50%);
-				background-image: url(./images/ln-logo.png);				
 				background-size: 100% auto;
 			    background-repeat:no-repeat;
 			    background-position: center; 
 				max-width: 100%;
+
 				height: 50px;
+				width: 420px;
+
 				display: block;
+
+				svg {
+					width: 100%;
+					height: 100%;
+				}
 			}
 		}		
 	}
@@ -268,27 +291,68 @@ $gutter: 20px;
 		top: 0;
 		right: 0;
 		height: 100%;
-		width: 100px;
 		display: block;
-		border: 1px solid blue;
+		// border: 1px solid blue;
+		padding: 0 $gutter;
+
+
+		.nav-toggle {
+			cursor: pointer;
+			padding: 10px 30px 12px 0px;
+
+			span, span:before, span:after {
+				border-radius: 1px;
+				height: 3px;
+				width: 30px;
+				background: $textColor1;
+				position: absolute;
+				display: block;
+				content: '';
+				transition: all 200ms linear;
+			}
+
+			&:hover span, &:hover span:before, &:hover span:after {
+				background: $colorBlue;
+			}
+
+
+			span:before {
+				top: -10px;
+			}
+			
+			span:after {
+				bottom: -10px;
+			}
+
+			&.active span {
+				background-color: transparent;
+			}
+
+			&.active span:before, &.active span:after {
+				top: 0;
+			}
+
+			&.active span:before {
+				-webkit-transform: rotate(45deg);
+				-moz-transform: rotate(45deg);
+				-o-transform: rotate(45deg);
+				transform: rotate(45deg);
+			}
+
+			&.active span:after {
+				-webkit-transform: rotate(-45deg);
+				-moz-transform: rotate(-45deg);
+				-o-transform: rotate(-45deg);
+				transform: rotate(-45deg);
+			}
+
+
+		}
 
 		.icon-btn {
-			// background-image: url(./images/test-35.jpg);								
-			background-image: url(./images/test-sm-seq.png);								
-			// background-size: 100% auto;
-		    // background-repeat:no-repeat;
-		    // background-position: center; 
-
-			position: absolute;
+			position: relative;
 		    top: 50%;
-		    left: 50%;
-		    height: 50px;
-		    width: 50px;
-		    background-image: url(images/test-sm-seq.png);
-			transform: translate(-50%, -50%);			    
-
-		    // width: 100%;
-		    // height: 100%;
+			transform: translateY(-50%);			    
 		    display: block;
 		}
 	}
@@ -312,14 +376,25 @@ $gutter: 20px;
 
 }
 
-#content {
-	position: relative;
+// #content {
+// 	position: relative;
+// 	margin-bottom: 40px;
+// }
+
+// Wrappers
+
+#projects-container {
+	padding: 0 $gutter;
+}
+
+#projects-container, #project-detail-container {
+	margin-bottom: $gutter;
 }
 
 //WORK
-.projects {
+#projects-container {
 	
-	padding: 0 0 40px 0;
+	// padding: 0 0 40px 0;
 
 	.project {
 
@@ -355,12 +430,12 @@ $gutter: 20px;
 	.row.left {
 
 		.case-study {
-			margin: $gutter/2 $gutter/2 $gutter/2 $gutter;			
+			margin: $gutter/2 $gutter/2 $gutter/2 0;			
 			float: left;
 		}
 
 		.normal {
-			margin: $gutter/2 $gutter $gutter/2 $gutter/2;
+			margin: $gutter/2 0 $gutter/2 $gutter/2;
 			float: right;
 		}	
 	}
@@ -368,12 +443,12 @@ $gutter: 20px;
 	.row.right {
 
 		.case-study {
-			margin: $gutter/2 $gutter $gutter/2 $gutter/2;
+			margin: $gutter/2 0 $gutter/2 $gutter/2;
 			float: right;
 		}
 
 		.normal {
-			margin: $gutter/2 $gutter/2 $gutter/2 $gutter;			
+			margin: $gutter/2 $gutter/2 $gutter/2 0;			
 			float: left;
 		}	
 	}
@@ -441,9 +516,9 @@ $gutter: 20px;
 		display: block;
 		position: relative;
 		height: 100%;
-		margin: 0 $gutter;
-		padding-top: $gutter;
-		padding-bottom: $gutter;
+		padding: $gutter $gutter;
+		// padding-top: $gutter;
+		// padding-bottom: $gutter;
 
 
 		.copyright {

@@ -1,12 +1,6 @@
-		</div>
 		<footer class="footer">
-
-
-
 			<div class="container cf">
-
 				<div class="info cf">
-					
 					<div class="inner">
 						<div class="logo">
 							<a class="align-v" href="#">
@@ -23,8 +17,6 @@
 							</ul>
 	 					</div>
 					</div>
-
-
 				</div>
 				<div class="copyright">
 					<p class="align-v">Space Camp LLC &copy; <?php echo date("Y"); ?></p>
