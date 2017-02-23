@@ -38,13 +38,10 @@ $gutter: 20px;
 
 //REEL 
 #featured {
-
 	width: 100%;
 	width: 100vw;
 	height: 100vh;
-
 	position: relative;
-
 	.preview-intro-image {
 		// display: none;
 		overflow: hidden;
@@ -121,6 +118,17 @@ $gutter: 20px;
 
 }
 
+
+//LOGO
+.logo {
+	a {
+		svg {
+			.text, .triangle {
+				fill: $textColor1;
+			}
+		}
+	}
+}
 
 
 //CONTENT
@@ -407,21 +415,60 @@ $gutter: 20px;
 			position: relative;
 			left: 0;
 
-			&:hover .thumbnail{
-				opacity: .5;
-			}
 
-			.animation-rollover {
-
+			.svg-container {
 				position: absolute;
-			    top: 50%;
-			    left: 50%;
-			    height: 50px;
-			    width: 50px;
-			    background-image: url(images/test-sm-seq.png);
-				transform: translate(-50%, -50%);			    
-
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+				-moz-transform: translate(-50%, -50%);
+				-webkit-transform: translate(-50%, -50%) !important;
+				-ms-transform: translate(-50%, -50%) !important;
+				-o-transform: translate(-50%, -50%);
+				width: 400px;
+				height: auto;
 			}
+
+			$svgColor: #FFF;
+			svg {
+			  .divider {
+			    stroke: $svgColor;
+			  }
+			  .triangle-small {
+			    fill: $svgColor;
+			    opacity: 0;
+			    transform-origin: 50% 50%;
+			  }
+			  .outer {
+			    fill: none;
+			    opacity: 0;
+			    transform-origin: 50% 50%;
+			    .node-lg,
+			    .node-sm {
+			      fill: $svgColor;
+			    }
+			    .triangle {
+			      stroke: $svgColor;
+			      fill: none;
+			    }
+			  }
+			}
+
+			&:hover .thumbnail{
+				opacity: .25;
+			}
+
+			// .animation-rollover {
+
+			// 	position: absolute;
+			//     top: 50%;
+			//     left: 50%;
+			//     height: 50px;
+			//     width: 50px;
+			//     background-image: url(images/test-sm-seq.png);
+			// 	transform: translate(-50%, -50%);			    
+
+			// }
 
 		}
 
@@ -635,6 +682,7 @@ $gutter: 20px;
 
 						&:hover svg path {
 						    fill: $colorBlue;
+							transition: all 200ms linear;						    
 						}
 					}
 

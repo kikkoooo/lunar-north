@@ -3,9 +3,7 @@
 				<div class="info cf">
 					<div class="inner">
 						<div class="logo">
-							<a class="align-v" href="#">
-								<?php echo file_get_contents(get_stylesheet_directory_uri().'/images/ln-logo.svg'); ?>
-							</a>
+							<a class="align-v" href="#"><?php echo file_get_contents(get_stylesheet_directory_uri().'/images/ln-logo.svg'); ?></a>
 						</div>
 						<div class="contact">
 							<p class="">hello@lunarnorth.tv <br>645 Griswold St, Suite 2300<br> Detroit, MI 48226</p>

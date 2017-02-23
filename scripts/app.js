@@ -141,31 +141,53 @@ var ln = {
 		// });
 
 		// PROJECT 
+		$(".project .link").mouseenter(function() {
+			$(this).addClass('hover');
+			$(".hover").find(".triangle-small").velocity({opacity: 0, scaleX: 0, scaleY: 0}, {queue:false, duration: 50}).velocity({opacity:1, scaleX: 1, scaleY: 1}, {delay: 0, queue:false, duration: 200});		
+			$(".hover").find(".outer").velocity({opacity: 1}, {queue:false, duration: 50}).velocity({opacity:0, scaleX: 0, scaleY: 0}, {delay: 200, queue:false, duration: 50});		
+			$(".hover").find(".divider-1").velocity({x1: 0}, {delay: 300, queue:false, duration: 200});
+			$(".hover").find(".divider-2").velocity({x2: "100%"}, {delay: 300, queue:false, duration: 200});
+		}).mouseleave(function() {
+			$(".hover").find(".divider-1").velocity("stop").velocity({x1: "40%"}, {queue:false, duration: 200});
+			$(".hover").find(".divider-2").velocity("stop").velocity({x2: "60%"}, {queue:false, duration: 200});
+			$(".hover").find(".outer").velocity("stop").velocity({opacity: 0, scaleX: 1, scaleY: 1}, {delay: 0, queue:false, duration: 50});			
+			$(".hover").find(".triangle-small").velocity("stop").velocity({opacity: 0, scaleX: 1, scaleY: 1}, {delay: 0, queue:false, duration: 50});
+			$(this).removeClass('hover');
+		});
 
-		$(".project .link").hover(function () {
 
-			$tar = $(this).children(".animation-rollover");
-			$link = $(this);
+		$(".logo a").mouseenter(function() {
+			$(this).addClass('hover');
+			$(".hover").find(".triangle").velocity({fill: "#00ADEE"}, {queue:false, duration: 200});
+		}).mouseleave(function() {
+			$(".hover").find(".triangle").velocity("stop").velocity({fill: "#585A5A"}, {queue:false, duration: 200});
+			$(this).removeClass('hover');
+		});
 
-			console.log("hover");
+		// $(".project .link").hover(function () {
 
-			if ($link.data("animated") == false) {
-				$tar.animateSprite({
-				    fps: 30,
-					loop: false,
-				    complete: function () {
-				        $link.animateSprite('frame', 0);
-				    }
-				});
-				$link.data("animated", true);
-			} else {
-				$tar.animateSprite("restart");
-			}
+		// 	$tar = $(this).children(".animation-rollover");
+		// 	$link = $(this);
 
-		}, function () {
-			console.log("out");			
-			$(this).find(".animation-rollover").animateSprite('stop').animateSprite('frame', 0);
-		});		
+		// 	console.log("hover");
+
+		// 	if ($link.data("animated") == false) {
+		// 		$tar.animateSprite({
+		// 		    fps: 30,
+		// 			loop: false,
+		// 		    complete: function () {
+		// 		        $link.animateSprite('frame', 0);
+		// 		    }
+		// 		});
+		// 		$link.data("animated", true);
+		// 	} else {
+		// 		$tar.animateSprite("restart");
+		// 	}
+
+		// }, function () {
+		// 	console.log("out");			
+		// 	$(this).find(".animation-rollover").animateSprite('stop').animateSprite('frame', 0);
+		// });		
 
 
 	},

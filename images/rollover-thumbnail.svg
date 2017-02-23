@@ -1,0 +1,12 @@
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 618 115" style="enable-background:new 0 0 618 115;" xml:space="preserve">
+  <line class="divider-1 divider" x1="40%" y1="54%" x2="40%" y2="54%" />
+  <line class="divider-2 divider" x1="60%" y1="54%" x2="60%" y2="54%" />
+  <polygon class="triangle-small" points="326.8,79.1 309.7,70.7 292.6,79.1 309.7,40.6 " />
+  <g class="outer">
+    <circle class="node-lg" cx="309.2" cy="5" r="5" />
+    <path class="triangle" d="M309.2,4.7c0,0-47.3,106-47,106l47-23l47,25L309.2,4.7z" />
+    <circle class="node-sm" cx="356.2" cy="113" r="2" />
+    <circle class="node-sm" cx="309.2" cy="88" r="2.7" />
+    <circle class="node-sm" cx="262.2" cy="111" r="2" />
+  </g>
+</svg>

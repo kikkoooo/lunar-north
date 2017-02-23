@@ -353,6 +353,9 @@ h3 {
   -ms-transform: translate(-50%, -50%) !important;
   -o-transform: translate(-50%, -50%); }
 
+.logo a svg .text, .logo a svg .triangle {
+  fill: #585A5A; }
+
 #project-detail-container .video-project {
   margin-bottom: 2em; }
   #project-detail-container .video-project img {
@@ -514,16 +517,35 @@ h3 {
     height: 100%;
     position: relative;
     left: 0; }
-    #projects-container .project a:hover .thumbnail {
-      opacity: .5; }
-    #projects-container .project a .animation-rollover {
+    #projects-container .project a .svg-container {
       position: absolute;
       top: 50%;
       left: 50%;
-      height: 50px;
-      width: 50px;
-      background-image: url(images/test-sm-seq.png);
-      transform: translate(-50%, -50%); }
+      transform: translate(-50%, -50%);
+      -moz-transform: translate(-50%, -50%);
+      -webkit-transform: translate(-50%, -50%) !important;
+      -ms-transform: translate(-50%, -50%) !important;
+      -o-transform: translate(-50%, -50%);
+      width: 400px;
+      height: auto; }
+    #projects-container .project a svg .divider {
+      stroke: #FFF; }
+    #projects-container .project a svg .triangle-small {
+      fill: #FFF;
+      opacity: 0;
+      transform-origin: 50% 50%; }
+    #projects-container .project a svg .outer {
+      fill: none;
+      opacity: 0;
+      transform-origin: 50% 50%; }
+      #projects-container .project a svg .outer .node-lg,
+      #projects-container .project a svg .outer .node-sm {
+        fill: #FFF; }
+      #projects-container .project a svg .outer .triangle {
+        stroke: #FFF;
+        fill: none; }
+    #projects-container .project a:hover .thumbnail {
+      opacity: .25; }
 #projects-container .row.left .case-study {
   margin: 10px 10px 10px 0;
   float: left; }
@@ -632,7 +654,8 @@ h3 {
           .footer .container .info .inner .social-media a svg path {
             fill: #585A5A; }
         .footer .container .info .inner .social-media a:hover svg path {
-          fill: #00ADEE; }
+          fill: #00ADEE;
+          transition: all 200ms linear; }
       .footer .container .info .inner .social-media ul {
         margin: 0;
         padding: 0;
