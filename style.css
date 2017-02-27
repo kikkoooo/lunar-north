@@ -510,7 +510,8 @@ h3 {
   margin-bottom: 20px; }
 
 #projects-container .project {
-  position: relative; }
+  position: relative;
+  overflow: hidden; }
   #projects-container .project a {
     display: block;
     width: 100%;
