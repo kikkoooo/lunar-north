@@ -1,8 +1,7 @@
 /**
  * Theme Name:       Lunar North
  * Theme URI:        http://lunarnorth.tv/
- * Version:          0.3.0
- * Description:      Child theme of TwentyTwelve.
+ * Version:          3.0.0
  * Author:           Kikko Paradela
  * Author URI:		 http://youvsjesus.com
  * GitHub Theme URI: https://github.com/kikkoooo/lunar-north
@@ -236,8 +235,20 @@ body {
 .footer .copyright {
   text-align: center; }
 
-.header h3, footer p, .project .title {
+.header h3, footer p, .project .title, .hover-card h2, .menu-box h2, .meta h3.title {
   text-transform: uppercase; }
+
+.menu-box h2, .hover-card h2 {
+  font-weight: normal; }
+
+.hover-card h2 {
+  color: #FFF; }
+
+.hover-card h2 {
+  font-size: 1.5em; }
+  @media screen and (max-width: 900px) {
+    .hover-card h2 {
+      font-size: 1.2em; } }
 
 p {
   margin-top: 0;
@@ -251,7 +262,7 @@ a {
   text-decoration: none; }
 
 a:hover {
-  color: blue; }
+  color: #00ADEE; }
 
 h3 {
   font-size: 1.5em;
@@ -356,16 +367,49 @@ h3 {
 .logo a svg .text, .logo a svg .triangle {
   fill: #585A5A; }
 
+.vimeo-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  cursor: pointer; }
+  .vimeo-wrapper .play-icon {
+    position: absolute;
+    width: 11em;
+    opacity: .8;
+    height: auto;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%) !important;
+    -ms-transform: translate(-50%, -50%) !important;
+    -o-transform: translate(-50%, -50%); }
+    .vimeo-wrapper .play-icon svg polygon {
+      fill: #FFF; }
+    @media screen and (max-width: 900px) {
+      .vimeo-wrapper .play-icon {
+        width: 8em; } }
+    @media screen and (max-width: 600px) {
+      .vimeo-wrapper .play-icon {
+        width: 5em; } }
+
+.x {
+  position: relative; }
+
 #project-detail-container .video-project {
-  margin-bottom: 2em; }
+  margin-bottom: 4em;
+  background: #1E1E1E;
+  width: 100%; }
   #project-detail-container .video-project img {
     width: 100%;
     height: auto;
     display: block; }
 #project-detail-container .content-container {
-  padding: 0 20px; }
+  padding: 0 20px;
+  margin-bottom: 5em; }
   #project-detail-container .content-container .info {
-    margin-bottom: 3em; }
+    max-width: 1100px;
+    margin: 0 auto 5em auto; }
     #project-detail-container .content-container .info > div {
       width: 50%;
       float: left; }
@@ -377,17 +421,29 @@ h3 {
             margin-bottom: 1em; }
           #project-detail-container .content-container .info > div.description {
             margin-bottom: 1em; } }
-  #project-detail-container .content-container .images {
+  #project-detail-container .content-container .section {
     margin-bottom: 20px; }
-    #project-detail-container .content-container .images img {
-      display: block;
-      width: 100%;
-      height: auto; }
-    #project-detail-container .content-container .images.col-2 .col {
-      width: 50%;
-      float: left; }
-    #project-detail-container .content-container .images:last-child {
+    #project-detail-container .content-container .section:last-child {
       margin-bottom: 0; }
+  #project-detail-container .content-container .image img {
+    display: block;
+    width: 100%;
+    height: auto; }
+  #project-detail-container .content-container .image.small.col-2 .col {
+    width: 50%;
+    float: left; }
+  #project-detail-container .content-container .image:last-child {
+    margin-bottom: 0; }
+  #project-detail-container .content-container .video {
+    width: 100%;
+    margin-bottom: 20px; }
+    #project-detail-container .content-container .video img {
+      width: 100%;
+      height: auto;
+      display: block; }
+  #project-detail-container .content-container .text div {
+    max-width: 540px;
+    margin: 5em auto 5em auto; }
 
 .header {
   position: absolute;
@@ -401,7 +457,9 @@ h3 {
       height: 55px; } }
   .header .container {
     position: relative;
-    height: 100%; }
+    height: 100%;
+    z-index: 100;
+    background: #000; }
     .header .container > div {
       height: 100%;
       display: block; }
@@ -451,6 +509,7 @@ h3 {
     right: 0;
     height: 100%;
     display: block;
+    z-index: 100;
     padding: 0 20px; }
     .header .menu-button .nav-toggle {
       cursor: pointer;
@@ -494,14 +553,35 @@ h3 {
     right: 0;
     width: 100vw;
     padding: 20px;
-    background: gray;
+    background: rgba(20, 20, 20, 0.9);
     display: none;
-    z-index: 100;
-    background: #1E1E1E; }
+    z-index: 99; }
     .header nav.menu-box ul, .header nav.menu-box li {
       list-style: none;
       padding: 0;
       text-align: center; }
+    .header nav.menu-box .social-media a {
+      display: block;
+      width: 30px;
+      height: 30px; }
+      .header nav.menu-box .social-media a svg {
+        width: 100%;
+        height: 100%; }
+        .header nav.menu-box .social-media a svg path {
+          fill: #A0A0A0; }
+      .header nav.menu-box .social-media a:hover svg path {
+        fill: #00ADEE;
+        transition: all 200ms linear; }
+    .header nav.menu-box .social-media ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: inline-block; }
+    .header nav.menu-box .social-media li {
+      float: left;
+      margin-right: .75em; }
+      .header nav.menu-box .social-media li:last-child {
+        margin-right: 0; }
 
 #projects-container {
   padding: 0 20px; }
@@ -518,6 +598,33 @@ h3 {
     height: 100%;
     position: relative;
     left: 0; }
+    #projects-container .project a img {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      -moz-transform: translate(-50%, -50%);
+      -webkit-transform: translate(-50%, -50%) !important;
+      -ms-transform: translate(-50%, -50%) !important;
+      -o-transform: translate(-50%, -50%); }
+    #projects-container .project a .hover-card {
+      position: absolute;
+      top: 50%;
+      width: 100%;
+      transform: translateY(-50%);
+      -moz-transform: translateY(-50%);
+      -webkit-transform: translateY(-50%) !important;
+      -ms-transform: translateY(-50%) !important;
+      -o-transform: translateY(-50%); }
+      #projects-container .project a .hover-card h2 {
+        text-align: center;
+        margin: 0;
+        padding: 0;
+        opacity: 0; }
+        #projects-container .project a .hover-card h2:first-child {
+          margin-bottom: .5em; }
+        #projects-container .project a .hover-card h2:last-child {
+          margin-top: .5em; }
     #projects-container .project a .svg-container {
       position: absolute;
       top: 50%;
@@ -527,8 +634,11 @@ h3 {
       -webkit-transform: translate(-50%, -50%) !important;
       -ms-transform: translate(-50%, -50%) !important;
       -o-transform: translate(-50%, -50%);
-      width: 400px;
+      width: 300px;
       height: auto; }
+      @media screen and (max-width: 900px) {
+        #projects-container .project a .svg-container {
+          width: 200px; } }
     #projects-container .project a svg .divider {
       stroke: #FFF; }
     #projects-container .project a svg .triangle-small {
@@ -571,11 +681,18 @@ h3 {
     #projects-container .row .normal .project:first-child {
       margin-top: 0;
       margin-bottom: 10px; }
+      @media screen and (max-width: 900px) {
+        #projects-container .row .normal .project:first-child {
+          margin-bottom: 0;
+          margin-right: 20px; } }
       #projects-container .row .normal .project:first-child a {
         top: 0; }
     #projects-container .row .normal .project:last-child {
       margin-top: 10px;
       margin-bottom: 0; }
+      @media screen and (max-width: 900px) {
+        #projects-container .row .normal .project:last-child {
+          margin-top: 0; } }
       #projects-container .row .normal .project:last-child a {
         bottom: 0; }
   #projects-container .row .thumbnail {

@@ -939,15 +939,18 @@ var DateFormat={};!function(a){var b=["Sunday","Monday","Tuesday","Wednesday","T
               $('#output').text(JSON.stringify(data));
 
               // add wrapper for play icon positioning
-              $e.wrap('<div class="vimeo-wrapper" />');
+              $e.wrap('<div class="vimeo-wrapper"/>');
 
               // swap placeholder image with video thumbnail
               $e.attr('src', data.thumbnail_url);
 
               // add play icon and click event listener
-              $e.parent().prepend('<span class="play-icon"/>').on('click', function(){
-                var $this = $(this);
 
+              var svg = '<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 68 60" style="enable-background:new 0 0 68 60;" xml:space="preserve"><polygon fill="white" points="0,61 15,30.5 0,0 68.6,30.5 "/></svg>';
+
+              $e.parent().on('click', function(){
+
+                var $this = $(this);
                 // only append video once
                 if ( !$this.find('iframe').length ) {
 
@@ -960,6 +963,11 @@ var DateFormat={};!function(a){var b=["Sunday","Monday","Tuesday","Wednesday","T
                   options.onComplete.call(this);
                 }
               });
+
+              $e.parent().append('<span class="play-icon">' + svg + '</span>');
+
+
+
             },
             error: function(errorSender, errorMsg){
               if (options.onError && typeof(options.onError) === 'function') {

@@ -32,13 +32,29 @@ body {
 	}
 }
 
-
 // UPPDERCASE
-.header h3, footer p, .project .title {
+.header h3, footer p, .project .title, .hover-card h2, .menu-box h2, .meta h3.title {
 	text-transform: uppercase;
 }
 
+//Normalize Font Weight
+.menu-box h2, .hover-card h2 {
+	font-weight: normal;
+}
 
+// White text
+.hover-card h2 {
+	color: #FFF;
+}
+
+.hover-card h2 {
+	font-size: 1.5em;
+
+	@media screen and (max-width: $break-medium) {
+		font-size: 1.2em;
+	}
+
+}
 
 
 p {
@@ -56,7 +72,7 @@ a {
 }
 
 a:hover {
-    color: $blue;
+    color: $colorBlue;
 }
 
 h3 {
@@ -82,6 +98,8 @@ h3 {
 	    padding-left: 0;
 	    margin-bottom: 1em;
     }
+
+
 
 }
 

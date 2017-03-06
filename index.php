@@ -6,135 +6,60 @@
 	}
 
 	function thumbSvg() {
-		echo '<div class="svg-container">'.file_get_contents(get_stylesheet_directory_uri().'/images/rollover-thumbnail.svg').'</div>';	
+		echo file_get_contents(get_stylesheet_directory_uri().'/images/rollover-thumbnail.svg');
 	}
 
 ?>	
 <?php get_header(); ?>
 
-	<section id="projects-container">
+	<section id="project-detail-container" class="x" data-page-loaded="false"></section>
+	<section id="about-container" class="x" data-page-loaded="false"></section>
+	<section id="projects-container" class="x" data-page-loaded="true" data-page-id="home">
 
 
 		<div class="row left cf">
-			<div class="case-study col">
-				<div class="project">
-					<a href="<?php echo get_permalink(1); ?>" class="link" data-animated="false">
-						<!-- <span class="animation-rollover"></span> -->
-						<img class="thumbnail" src="<?php testImage()?>"/>
-						<?php thumbSvg() ?>
-					</a>
-				</div>
-			</div>
 
-			<div class="normal col cf">
-				<div class="project">
-					<a href="<?php echo get_permalink(1); ?>" class="link" data-animated="false">
-						<!-- <span class="animation-rollover"></span> -->
-						<img class="thumbnail" src="<?php testImage()?>"/>
-						<?php thumbSvg() ?>
-					</a>
-				</div>
-				<div class="project">
-					<a href="<?php echo get_permalink(1); ?>" class="link" data-animated="false">
-						<!-- <span class="animation-rollover"></span> -->
-						<img class="thumbnail" src="<?php testImage()?>"/>
-						<?php thumbSvg() ?>
-					</a>
-				</div>
-			</div>
+	<?php 
 
-		</div>
+	$posts = get_field('work_case_studies');
 
-		<div class="row right cf">
-			<div class="case-study col">
-				<div class="project">
-					<a href="<?php echo get_permalink(1); ?>" class="link" data-animated="false">
-						<!-- <span class="animation-rollover"></span> -->
-						<img class="thumbnail" src="<?php testImage()?>"/>
-						<?php thumbSvg() ?>
-					</a>
-				</div>
-			</div>
+	if ($posts): 
 
-			<div class="normal col cf">
-				<div class="project">
-					<a href="<?php echo get_permalink(1); ?>" class="link" data-animated="false">
-						<!-- <span class="animation-rollover"></span> -->
-						<img class="thumbnail" src="<?php testImage()?>"/>
-						<?php thumbSvg() ?>
-					</a>
-				</div>
-				<div class="project">
-					<a href="<?php echo get_permalink(1); ?>" class="link" data-animated="false">
-						<!-- <span class="animation-rollover"></span> -->
-						<img class="thumbnail" src="<?php testImage()?>"/>
-						<?php thumbSvg() ?>
-					</a>
-				</div>
-			</div>
-		</div>
+		foreach($posts as $p): // variable must be called $post (IMPORTANT)
+	        // setup_postdata($post);
 
-		<div class="row left cf">
-			<div class="case-study col">
-				<div class="project">
-					<a href="<?php echo get_permalink(1); ?>" class="link" data-animated="false">
-						<!-- <span class="animation-rollover"></span> -->
-						<img class="thumbnail" src="<?php testImage()?>"/>
-						<?php thumbSvg() ?>
-					</a>
-				</div>
-			</div>
+	        echo "hoy";
 
-			<div class="normal col cf">
-				<div class="project">
-					<a href="<?php echo get_permalink(1); ?>" class="link" data-animated="false">
-						<!-- <span class="animation-rollover"></span> -->
-						<img class="thumbnail" src="<?php testImage()?>"/>
-						<?php thumbSvg() ?>
-					</a>
-				</div>
-				<div class="project">
-					<a href="<?php echo get_permalink(1); ?>" class="link" data-animated="false">
-						<!-- <span class="animation-rollover"></span> -->
-						<img class="thumbnail" src="<?php testImage()?>"/>
-						<?php thumbSvg() ?>
-					</a>
-				</div>
-			</div>
+	        echo 	'<div class="case-study col">'
+						.'<div class="project">'
+							.'<a href="'.get_permalink($p->ID).'" class="ajax link url-work" data-animated="false">'
+								.'<img class="thumbnail" src="'.testImage().'"/>'
+								.'<div class="hover-card">'
+									.'<div class="svg-container">'.thumbSvg().'</div>'
+									.'<div class="text-container">'
+										.'<h2 class="client">Client</h2>'
+										.'<h2 class="title">'.the_title($p->ID).'</h2>'
+									.'</div>'
+								.'</div>'
+							.'</a>'
+						.'</div>'
+					.'</div>';
+	    	
+	    	endforeach; 
+		
+		wp_reset_postdata(); // IMPORTANT - reset the $post object so the rest of the page works correctly
+	
+	endif; 
 
-		</div>
+	?>
 
-		<div class="row right cf">
-			<div class="case-study col">
-				<div class="project">
-					<a href="<?php echo get_permalink(1); ?>" class="link" data-animated="false">
-						<!-- <span class="animation-rollover"></span> -->
-						<img class="thumbnail" src="<?php testImage()?>"/>
-						<?php thumbSvg() ?>
-					</a>
-				</div>
-			</div>
 
-			<div class="normal col cf">
-				<div class="project">
-					<a href="<?php echo get_permalink(1); ?>" class="link" data-animated="false">
-						<!-- <span class="animation-rollover"></span> -->
-						<img class="thumbnail" src="<?php testImage()?>"/>
-						<?php thumbSvg() ?>
-					</a>
-				</div>
-				<div class="project">
-					<a href="<?php echo get_permalink(1); ?>" class="link" data-animated="false">
-						<!-- <span class="animation-rollover"></span> -->
-						<img class="thumbnail" src="<?php testImage()?>"/>
-						<?php thumbSvg() ?>
-					</a>
-				</div>
-			</div>
-		</div>
+	</div>
+
 
 
 	</section>
+
 
 
  <?php get_footer(); ?>
