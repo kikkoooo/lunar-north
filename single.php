@@ -12,8 +12,9 @@ get_header(); ?>
 		<?php 
 
 			function testImage() {
-				echo get_stylesheet_directory_uri().'/images/test-1920.jpg'; 
+				return get_stylesheet_directory_uri().'/images/test-1920.jpg'; 
 			}
+
 
 		?>
 		<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
@@ -30,7 +31,7 @@ get_header(); ?>
 				}
 
 				echo	'<div class="video-main video-project">'.
-							'<img src="'.$testImage.'" data-error="'.$testImage.'" class="vimeo-thumb" data-vimeo-id="'.$videoId.'">'.
+							'<img src="'.testImage().'" data-error="'.testImage().'" class="vimeo-thumb" data-vimeo-id="'.$videoId.'">'.
 						'</div>';
 			?>
 

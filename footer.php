@@ -10,8 +10,8 @@
 						</div>
 						<div class="social-media">
 							<ul class="align-v cf">
-								<li><a href="#" target="_blank"><?php echo file_get_contents(get_stylesheet_directory_uri().'/images/ln-social-fb.svg');?></a></li>
-								<li><a href="#" target="_blank"><?php echo file_get_contents(get_stylesheet_directory_uri().'/images/ln-social-ig.svg');?></a></li>
+								<li><a href="https://www.facebook.com/lunarnorthdesign/" target="_blank"><?php echo file_get_contents(get_stylesheet_directory_uri().'/images/ln-social-fb.svg');?></a></li>
+								<li><a href="https://www.instagram.com/lunarnorthdesign/" target="_blank"><?php echo file_get_contents(get_stylesheet_directory_uri().'/images/ln-social-ig.svg');?></a></li>
 							</ul>
 	 					</div>
 					</div>
