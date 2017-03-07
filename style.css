@@ -396,52 +396,52 @@ h3 {
 .x {
   position: relative; }
 
-#project-detail-container .video-project {
+#project-detail-container .video-project, #project-detail-container .image-studio, #about-container .video-project, #about-container .image-studio {
   margin-bottom: 4em;
   background: #1E1E1E;
   width: 100%; }
-  #project-detail-container .video-project img {
+  #project-detail-container .video-project img, #project-detail-container .image-studio img, #about-container .video-project img, #about-container .image-studio img {
     width: 100%;
     height: auto;
     display: block; }
-#project-detail-container .content-container {
+#project-detail-container .content-container, #about-container .content-container {
   padding: 0 20px;
   margin-bottom: 5em; }
-  #project-detail-container .content-container .info {
+  #project-detail-container .content-container .info, #about-container .content-container .info {
     max-width: 1100px;
     margin: 0 auto 5em auto; }
-    #project-detail-container .content-container .info > div {
+    #project-detail-container .content-container .info > div, #about-container .content-container .info > div {
       width: 50%;
       float: left; }
       @media screen and (max-width: 600px) {
-        #project-detail-container .content-container .info > div {
+        #project-detail-container .content-container .info > div, #about-container .content-container .info > div {
           width: 100%;
           float: none; }
-          #project-detail-container .content-container .info > div:first-child {
+          #project-detail-container .content-container .info > div:first-child, #about-container .content-container .info > div:first-child {
             margin-bottom: 1em; }
-          #project-detail-container .content-container .info > div.description {
+          #project-detail-container .content-container .info > div.description, #about-container .content-container .info > div.description {
             margin-bottom: 1em; } }
-  #project-detail-container .content-container .section {
+  #project-detail-container .content-container .section, #about-container .content-container .section {
     margin-bottom: 20px; }
-    #project-detail-container .content-container .section:last-child {
+    #project-detail-container .content-container .section:last-child, #about-container .content-container .section:last-child {
       margin-bottom: 0; }
-  #project-detail-container .content-container .image img {
+  #project-detail-container .content-container .image img, #about-container .content-container .image img {
     display: block;
     width: 100%;
     height: auto; }
-  #project-detail-container .content-container .image.small.col-2 .col {
+  #project-detail-container .content-container .image.small.col-2 .col, #about-container .content-container .image.small.col-2 .col {
     width: 50%;
     float: left; }
-  #project-detail-container .content-container .image:last-child {
+  #project-detail-container .content-container .image:last-child, #about-container .content-container .image:last-child {
     margin-bottom: 0; }
-  #project-detail-container .content-container .video {
+  #project-detail-container .content-container .video, #about-container .content-container .video {
     width: 100%;
     margin-bottom: 20px; }
-    #project-detail-container .content-container .video img {
+    #project-detail-container .content-container .video img, #about-container .content-container .video img {
       width: 100%;
       height: auto;
       display: block; }
-  #project-detail-container .content-container .text div {
+  #project-detail-container .content-container .text div, #about-container .content-container .text div {
     max-width: 540px;
     margin: 5em auto 5em auto; }
 

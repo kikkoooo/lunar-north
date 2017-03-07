@@ -184,9 +184,9 @@ $gutter: 20px;
 
 //CONTENT
 
-#project-detail-container {
+#project-detail-container, #about-container {
 
-	.video-project {
+	.video-project, .image-studio {
 
 		margin-bottom: 4em;
 		background: $colorGrey;
@@ -201,6 +201,16 @@ $gutter: 20px;
 		}
 
 	}
+
+	// .image-studio {
+
+	// 	img {
+
+	// 	width: 100%;
+	// 	height: auto;
+
+	// 	}
+	// }
 
 	.content-container {
 
