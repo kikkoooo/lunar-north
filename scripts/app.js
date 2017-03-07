@@ -137,6 +137,8 @@ var ln = {
 		// 	$(this).animateSprite('stop').animateSprite('frame', 0);
 		// });
 
+
+
 		// PROJECT 
 		$(".project .link").mouseenter(function() {
 
@@ -209,6 +211,46 @@ var ln = {
 
 	},
 	
+	navSvg : function() {
+
+		// PROJECT 
+		$(".project .link").mouseenter(function() {
+
+			$(this).addClass('hover');
+
+			$hover = $(".hover");
+
+			// 2 seconds
+			$hover.find(".thumbnail").velocity({width: "110%", height: "110%"}, {queue:false, duration: 1400, easing: "easeOutQuint"});
+			$hover.find(".triangle-small").velocity({opacity: 0, scaleX: 0, scaleY: 0}, {queue:false, duration: 50}).velocity({opacity:1, scaleX: 1, scaleY: 1}, {delay: 0, queue:false, duration: 800});		
+			$hover.find(".outer").velocity({opacity: 1}, {queue:false, duration: 100}).velocity({opacity:0, scaleX: 0, scaleY: 0}, {delay: 200, queue:false, duration: 400});		
+
+			$hover.find(".divider-1").velocity({x1: 0}, {delay: 500, queue:false, duration: 400, easing: "easeOutQuint"});
+			$hover.find(".divider-2").velocity({x2: "100%"}, {delay: 500, queue:false, duration: 400, easing: "easeOutQuint"});
+
+			$hover.find(".client").velocity({opacity: 1, marginBottom: "2.5em"}, {delay: 500, queue:false, duration: 400, easing: "easeOutQuint"});
+			$hover.find(".title").velocity({opacity: 1, marginTop: "3em"}, {delay: 500, queue:false, duration: 400, easing: "easeOutQuint"});
+
+		}).mouseleave(function() {
+
+			$hover = $(".hover");
+
+			$hover.find(".thumbnail").velocity("stop").velocity({width: "100%", height: "100%"}, {queue:false, duration: 200, easing: "easeOutQuint"});
+			$hover.find(".triangle-small").velocity("stop").velocity({opacity: 0, scaleX: 1, scaleY: 1}, {queue:false, duration: 200});
+			$hover.find(".outer").velocity("stop").velocity({opacity:0, scaleX: 1, scaleY: 1}, {delay: 0, queue:false, duration: 200});		
+
+			$hover.find(".divider-1").velocity("stop").velocity({x1: "40%"}, {delay: 0, queue:false, duration: 200, easing: "easeOutQuint"});
+			$hover.find(".divider-2").velocity("stop").velocity({x2: "60%"}, {delay: 0, queue:false, duration: 200, easing: "easeOutQuint"});
+
+			$hover.find(".client").velocity("stop").velocity({opacity: 0, marginBottom: "1em"}, {delay: 0, queue:false, duration: 200, easing: "easeOutQuint"});
+			$hover.find(".title").velocity("stop").velocity({opacity: 0, marginTop: "1em"}, {delay: 0, queue:false, duration: 200, easing: "easeOutQuint"});
+
+			$(this).removeClass('hover');
+		});
+
+
+	},
+
 	pos : function() {
 
         var h = $(window).height(),
@@ -387,17 +429,37 @@ var ln = {
 
 		// gutter
 		// horizontal gutter
-		$(".row.right .case-study, .row.left .normal").css({
+
+
+		$(".row:nth-child(2n+0) .case-study, .row:nth-child(3n+0) .normal").css({
 			marginTop : ln.gutter/2,
 			marginBottom : ln.gutter/2,
 			marginLeft : ln.gutter/2,
 		});
 
-		$(".row.right .normal, .row.left .case-study").css({
+		$(".row:nth-child(2n+0) .normal, .row:nth-child(3n+0) .case-study").css({
 			marginTop : ln.gutter/2,
 			marginRight : ln.gutter/2,
 			marginBottom : ln.gutter/2,
 		});
+
+
+		// $(".row.right .case-study, .row.left .normal").css({
+		// 	marginTop : ln.gutter/2,
+		// 	marginBottom : ln.gutter/2,
+		// 	marginLeft : ln.gutter/2,
+		// });
+
+		// $(".row.right .normal, .row.left .case-study").css({
+		// 	marginTop : ln.gutter/2,
+		// 	marginRight : ln.gutter/2,
+		// 	marginBottom : ln.gutter/2,
+		// });
+
+
+
+
+
 
 		// vertical gutter for normal column
 		// $(".normal .project:first-child").css({
@@ -950,11 +1012,17 @@ var ln = {
 				},
 				success: function(respond){
 
-					var content	= $(respond).find('.page').html();
-						// objId	= content.attr('id');
 
+					// var content	= $(respond).find('.page').html();
+						// objId	= content.attr('id');
+					var content;
+
+						// $("ul[data-slide='" + current +"']");
 
 						if (incomingPageId == "home") {
+
+							content	= $(respond).find('.data-home').html();
+
 							$('#project-detail-container').fadeOut(200, function() {
 								$('#projects-container').html(content).fadeIn(200, function() {
 								$('#project-detail-container').empty();
@@ -962,10 +1030,15 @@ var ln = {
 								ln.pos();
 								ln.initImages();
 								ln.initReel();
+								ln.navSvg();
 								$(window).scrollTo("#main", 500);
 								});
 							});
+
 						} else {
+
+							content	= $(respond).find('.data-work').html();
+
 							$("#projects-container").fadeOut(200, function() {
 								$('#project-detail-container').html(content).fadeIn(200, function() {
 								ln.detectSize();

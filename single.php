@@ -1,19 +1,22 @@
 <?php 
 
-	// old = https://dummyimage.com/1920x1080/ffd1fa/fff.jpg&text=LN
-	// function testImage() {
-	// 	echo get_stylesheet_directory_uri().'/images/test-1920.jpg'; 
-	// }
+	function testImage() {
+//		return get_stylesheet_directory_uri().'/images/test-1920.jpg'; 
+		return get_stylesheet_directory_uri().'/images/placeholder.jpg'; 
+	}
 
 get_header(); ?>
 
-	<section id="project-detail-container" class="project page x" data-page-id="<?php echo "work-".get_the_ID(); ?>">
+	<section id="about-container" class="project page x data-about" data-page-loaded="false"></section>
+	<section id="projects-container" class="project page x data-home" data-page-loaded="false" data-page-id="home"></section>
+	
+	<section id="project-detail-container" class="project page x data-work" data-page-id="<?php echo "work-".get_the_ID(); ?>" data-page-loaded="true">
 
 		<?php 
 
-			function testImage() {
-				return get_stylesheet_directory_uri().'/images/test-1920.jpg'; 
-			}
+			// function testImage() {
+			// 	return get_stylesheet_directory_uri().'/images/test-1920.jpg'; 
+			// }
 
 
 		?>

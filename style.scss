@@ -645,7 +645,9 @@ $gutter: 20px;
 
 	}
 
-	.row.left {
+	.row:nth-child(1n+0) {
+
+		// background: lime;
 
 		.case-study {
 			margin: $gutter/2 $gutter/2 $gutter/2 0;			
@@ -658,7 +660,9 @@ $gutter: 20px;
 		}	
 	}
 
-	.row.right {
+	.row:nth-child(2n+0) {
+
+		// background: blue;
 
 		.case-study {
 			margin: $gutter/2 0 $gutter/2 $gutter/2;

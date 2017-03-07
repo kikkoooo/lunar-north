@@ -56,7 +56,8 @@
 			'hierarchical' 			=> true,
 			'has_archive' 			=> false,
 	 		'public' 				=> true,
-			'supports' 				=> array('title', 'editor', 'thumbnail'),
+			'supports' 				=> array('title', 'editor', 'thumbnail', 'revisions' ),
+	        'show_ui' 				=> true,			
 			'menu_position'       	=> 1,
 			'exclude_from_search' 	=> false,
 			'capability_type' 		=> 'post',
@@ -68,6 +69,7 @@
 	}
 	
 	add_action( 'init', 'createWorkPostType');
+
 
 	/**
 	 * Remove the slug from published post permalinks. Only affect our custom post type, though.
