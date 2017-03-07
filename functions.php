@@ -56,7 +56,7 @@
 			'hierarchical' 			=> true,
 			'has_archive' 			=> false,
 	 		'public' 				=> true,
-			'supports' 				=> array('title', 'editor'),
+			'supports' 				=> array('title', 'editor', 'thumbnail'),
 			'menu_position'       	=> 1,
 			'exclude_from_search' 	=> false,
 			'capability_type' 		=> 'post',
