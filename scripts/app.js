@@ -37,6 +37,7 @@ var ln = {
 
 		this.ajaxPages();
 
+		this.initMap();
 
 
 		// $('.info').masonry({
@@ -1023,7 +1024,7 @@ var ln = {
 
 							content	= $(respond).find('.data-home').html();
 
-							$('#project-detail-container').fadeOut(200, function() {
+							$('#project-detail-container, #about-container').fadeOut(200, function() {
 								$('#projects-container').html(content).fadeIn(200, function() {
 								$('#project-detail-container').empty();
 								ln.detectSize();
@@ -1035,11 +1036,24 @@ var ln = {
 								});
 							});
 
+						} else if (incomingPageId == "about") {
+
+							content	= $(respond).find('.data-about').html();
+
+							$("#projects-container, #project-detail-container").fadeOut(200, function() {
+								$('#about-container').html(content).fadeIn(200, function() {
+								ln.detectSize();
+								ln.pos();
+								ln.initImages();
+								ln.initReel();
+								$(window).scrollTo("#main", 500);
+								});
+							});
 						} else {
 
 							content	= $(respond).find('.data-work').html();
 
-							$("#projects-container").fadeOut(200, function() {
+							$("#projects-container, #about-container").fadeOut(200, function() {
 								$('#project-detail-container').html(content).fadeIn(200, function() {
 								ln.detectSize();
 								ln.pos();
@@ -1079,5 +1093,15 @@ var ln = {
 				},
 			});	
 		}
+	},
+
+	initMap : function() {
+
+	    // $("#map").googleMap({
+	    //   zoom: 10,
+	    //   coords: [48.895651, 2.290569],
+	    //   type: "ROADMAP"
+	    // });
+
 	}
-}
+};

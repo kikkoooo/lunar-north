@@ -18,22 +18,6 @@
 
 		<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 
-
-			<?php
-
-				// $vimeoUrl = get_field('video_url', false, false);			
-
-				// if (preg_match("/(?:https?:\/\/)?(?:www\.)?vimeo.com\/(?:channels\/(?:\w+\/)?|groups\/([^\/]*)\/videos\/|album\/(\d+)\/video\/|)(\d+)(?:$|\/|\?)/", $vimeoUrl, $id)) {
-				//     $videoId = $id[3];
-				// } else if (preg_match("/^(?:http(?:s)?:\/\/)?(?:www\.)?(?:m\.)?(?:youtu\.be\/|youtube\.com\/(?:(?:watch)?\?(?:.*&)?v(?:i)?=|(?:embed|v|vi|user)\/))([^\?&\"'>]+)/", $vimeoUrl, $id)) {
-				//     $videoId = $id[1];
-				// }
-
-				// echo	'<div class="video-main video-project">'.
-				// 			'<img src="'.testImage().'" data-error="'.testImage().'" class="vimeo-thumb" data-vimeo-id="'.$videoId.'">'.
-				// 		'</div>';
-			?>
-
 			<div class="image-studio">
 				<img src="<?php echo testImage() ?>" class=""/>
 			</div>
@@ -49,7 +33,40 @@
 					</div>			
 				</div>
 
+			<div id="map" class="section image large col-1">
+<!-- 				<iframe
+					width="100%"
+					height="800"
+					frameborder="0" style="border:0"
+					src="https://www.google.com/maps/embed/v1/search?key=AIzaSyBHu_lNJ8fLenPf3QuHMjvWdneGijvgoCM&q=645+Griswold+St,+Detroit,+MI+48226" allowfullscreen>
+				</iframe>
+ -->			</div>
+
+				<script type="text/javascript">
+
+				  $(function() {
+				    $("#map").googleMap({
+				      zoom: 10, // Initial zoom level (optional)
+				      coords: [48.895651, 2.290569], // Map center (optional)
+				      type: "ROADMAP" // Map type (optional)
+				    });
+				  })
+
+				</script>
+
+				<!-- <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBHu_lNJ8fLenPf3QuHMjvWdneGijvgoCM&callback=ln.initMap"></script> -->
+
+				<!-- <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBHu_lNJ8fLenPf3QuHMjvWdneGijvgoCM"></script> -->
+
+
 				<?php
+
+					// echo 	'<div class="section image large col-1">'.
+					// 			'<div>'.
+					// 				'<img src="'.get_sub_field('image').'">'.
+					// 			'</div>'.
+					// 		'</div>';
+
 
 				// if (have_rows('custom_content')):
 

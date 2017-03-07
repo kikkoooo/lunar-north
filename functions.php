@@ -120,14 +120,25 @@
 	        ),
 	        array(
 	            'title' => 'Normal',
-	            'block' => 'p',
-	            'classes' => 'normal',
+	            'inline' => '',
+	            'classes' => '',
 	        )
 	    );
 
 	    $settings['style_formats'] = json_encode( $style_formats );
 	    return $settings;
 	}
+
+	add_filter('tiny_mce_before_init', 'tiny_mce_remove_unused_formats' );
+	/*
+	 * Modify TinyMCE editor to remove H1.
+	 */
+	function tiny_mce_remove_unused_formats($init) {
+		// Add block format elements you want to show in dropdown
+		$init['block_formats'] = 'Paragraph=p;Heading 4=h4';
+		return $init;
+	}
+
 
 	// Apply styles to the visual editor
 	add_filter( 'mce_css', 'fb_mcekit_editor_style');
@@ -154,5 +165,7 @@
 	    remove_menu_page('edit-comments.php'); //Comments
 	}
 	add_action('admin_menu', 'remove_menus');
+
+
 
 ?>

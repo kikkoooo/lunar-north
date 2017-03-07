@@ -1,11 +1,5 @@
-.normal {
-	font-size: 1em;
-	text-transform: normal;
-	margin: 0 1em;
-}
-
 .section {
 	font-size: 1.1em;
-	margin: 0;
-	text-transform: uppercase;
+/*	margin: 0;
+*/	text-transform: uppercase;
 }

@@ -425,6 +425,10 @@ h3 {
     margin-bottom: 20px; }
     #project-detail-container .content-container .section:last-child, #about-container .content-container .section:last-child {
       margin-bottom: 0; }
+  #project-detail-container .content-container .map, #about-container .content-container .map {
+    width: 100%;
+    height: 400px;
+    background-color: grey; }
   #project-detail-container .content-container .image img, #about-container .content-container .image img {
     display: block;
     width: 100%;
