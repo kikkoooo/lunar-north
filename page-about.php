@@ -33,19 +33,7 @@
 					</div>			
 				</div>
 
-				<?php 
-
-				$location = get_field('map');
-
-				if ( !empty($location) ):
-
-					echo '<div id="map" class="section image large" data-lat="'.$location['lat'].'" data-lng="'.$location['lng'].'>"></div>';
-
-				endif;
-
-				?>
-
-
+				<?php echo '<div id="map" class="section image large" data-lat="'.$location['lat'].'" data-lng="'.$location['lng'].'>"></div>'; ?>
 
 			</div>
 
