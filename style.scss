@@ -36,10 +36,12 @@ $gutter: 20px;
 
 //REEL 
 #featured {
+
 	width: 100%;
 	width: 100vw;
 	height: 100vh;
 	position: relative;
+
 	.preview-intro-image {
 		// display: none;
 		overflow: hidden;
@@ -83,11 +85,7 @@ $gutter: 20px;
 
 #featured .video-content {
 
-	// height: auto;
-
-
 	.vimeo-wrapper {
-
 
 		img {
 		    display: block;
@@ -111,8 +109,6 @@ $gutter: 20px;
 
 	height: 100%;
 	width: 100%;		
-	// max-width: 1280px;
-	// max-height: 100%;
     display: block;
 	position: absolute;
 	top: 50%;
@@ -202,16 +198,6 @@ $gutter: 20px;
 
 	}
 
-	// .image-studio {
-
-	// 	img {
-
-	// 	width: 100%;
-	// 	height: auto;
-
-	// 	}
-	// }
-
 	.content-container {
 
 		padding: 0 $gutter;
@@ -222,9 +208,23 @@ $gutter: 20px;
 
 			max-width: 1100px;
 			margin: 0 auto 5em auto;
-			//border: 1px solid lime;
 
-			.col {
+			.meta {
+
+				.credits {
+
+					ul, ol {
+					
+						margin: 0 0 0 0;
+						padding: 0;
+
+						li {
+							list-style: none;
+							margin: 0 0 .15em 0;
+						}
+					}	
+				}
+
 			}
 
 			> div {
@@ -256,13 +256,17 @@ $gutter: 20px;
 			}
 		}
 
-		.map {
-
-	        width: 100%;
-	        height: 400px;
+		#map {
+			width: 100%;
+			height: 800px;	
 	        background-color: grey;
+		
+			@media screen and (max-width: $break-medium) {
+				height: 400px;	
+			}
 
 		}
+
 
 		.image {
 
@@ -759,16 +763,12 @@ $gutter: 20px;
 	background: $colorGrey;
 	position: relative;
 
-
 	.container {
 
 		display: block;
 		position: relative;
 		height: 100%;
 		padding: $gutter $gutter;
-		// padding-top: $gutter;
-		// padding-bottom: $gutter;
-
 
 		.copyright {
 
@@ -909,3 +909,5 @@ $gutter: 20px;
 	}
 
 }
+
+

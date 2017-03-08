@@ -22,6 +22,8 @@ var ln = {
     	mode	: null
     },
 
+    map : null,
+
     init : function() {
 
 		// this.ajaxPagess();
@@ -38,14 +40,6 @@ var ln = {
 		this.ajaxPages();
 
 		this.initMap();
-
-
-		// $('.info').masonry({
-		//   // options
-		//   itemSelector: '.grid-item',
-		//   columnWidth: "33%"
-		// });
-
 
 		$(".video-project, .video").fitVids();
 
@@ -323,6 +317,8 @@ var ln = {
 				height: "auto"
 			});
 
+
+
 		} else if (ln.screen.mode == "medium") {
 
 			$(".case-study").css({
@@ -334,6 +330,7 @@ var ln = {
 				width: "100%",
 				height: "auto"
 			});
+
 
 
 		} else {
@@ -348,6 +345,8 @@ var ln = {
 				width: normalColW,
 				height: (caseStudyColW) * (9/16)			
 			});
+
+
 
 
 		}
@@ -616,6 +615,8 @@ var ln = {
 		// 	$(this).height(($(this).closest(".normal").siblings(".case-study").height() - 20) / 2);
 		// });
 		// this.movingLine.resize();
+
+
 	},
 	
 	// loadingBar : function(option) {
@@ -1027,12 +1028,12 @@ var ln = {
 							$('#project-detail-container, #about-container').fadeOut(200, function() {
 								$('#projects-container').html(content).fadeIn(200, function() {
 								$('#project-detail-container').empty();
-								ln.detectSize();
-								ln.pos();
-								ln.initImages();
-								ln.initReel();
-								ln.navSvg();
-								$(window).scrollTo("#main", 500);
+									ln.detectSize();
+									ln.pos();
+									ln.initImages();
+									ln.initReel();
+									ln.navSvg();
+									$(window).scrollTo("#main", 500);
 								});
 							});
 
@@ -1042,24 +1043,26 @@ var ln = {
 
 							$("#projects-container, #project-detail-container").fadeOut(200, function() {
 								$('#about-container').html(content).fadeIn(200, function() {
-								ln.detectSize();
-								ln.pos();
-								ln.initImages();
-								ln.initReel();
-								$(window).scrollTo("#main", 500);
+									ln.detectSize();
+									ln.pos();
+									ln.initImages();
+									ln.initReel();
+									ln.initMap();
+									$(window).scrollTo("#main", 500);
 								});
 							});
+
 						} else {
 
 							content	= $(respond).find('.data-work').html();
 
 							$("#projects-container, #about-container").fadeOut(200, function() {
 								$('#project-detail-container').html(content).fadeIn(200, function() {
-								ln.detectSize();
-								ln.pos();
-								ln.initImages();
-								ln.initReel();
-								$(window).scrollTo("#main", 500);
+									ln.detectSize();
+									ln.pos();
+									ln.initImages();
+									ln.initReel();
+									$(window).scrollTo("#main", 500);
 								});
 							});
 						};
@@ -1097,11 +1100,41 @@ var ln = {
 
 	initMap : function() {
 
-	    // $("#map").googleMap({
-	    //   zoom: 10,
-	    //   coords: [48.895651, 2.290569],
-	    //   type: "ROADMAP"
-	    // });
+
+		//gmaps.js
+		//https://hpneo.github.io/gmaps/documentation.html
+		
+		var coords = {
+			lat: 42.3302632,
+			lng: -83.04755119999999,
+		};
+
+		var map = new GMaps({
+			el: '#map',
+			lat: coords.lat,
+			lng: coords.lng,
+	    	zoom: 17,
+		    scrollwheel: false,
+		    navigationControl: false,
+		    mapTypeControl: false,
+		    scaleControl: false,
+		});
+
+		map.addMarker({
+			lat: coords.lat,
+			lng: coords.lng,
+			title: 'Lunar North',
+		});
+
+
+
+		$(window).resize(function() {
+			map.setCenter(coords.lat, coords.lng);
+		});
+
+
+
+
 
 	}
 };

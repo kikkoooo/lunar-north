@@ -11,7 +11,6 @@
 	<link rel="pingback" href="<?php bloginfo('pingback_url'); ?>">
 	<?php wp_head(); ?>
 
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBHu_lNJ8fLenPf3QuHMjvWdneGijvgoCM"></script>	
 </head>
 <body>
 

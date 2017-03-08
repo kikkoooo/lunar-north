@@ -235,7 +235,7 @@ body {
 .footer .copyright {
   text-align: center; }
 
-.header h3, footer p, .project .title, .hover-card h2, .menu-box h2, .meta h3.title {
+.header h3, footer p, .project .title, .hover-card h2, .menu-box h2, .meta h3.title, .credits h4 {
   text-transform: uppercase; }
 
 .menu-box h2, .hover-card h2 {
@@ -263,6 +263,9 @@ a {
 
 a:hover {
   color: #00ADEE; }
+
+a:focus {
+  outline: none; }
 
 h3 {
   font-size: 1.5em;
@@ -410,6 +413,12 @@ h3 {
   #project-detail-container .content-container .info, #about-container .content-container .info {
     max-width: 1100px;
     margin: 0 auto 5em auto; }
+    #project-detail-container .content-container .info .meta .credits ul, #project-detail-container .content-container .info .meta .credits ol, #about-container .content-container .info .meta .credits ul, #about-container .content-container .info .meta .credits ol {
+      margin: 0 0 0 0;
+      padding: 0; }
+      #project-detail-container .content-container .info .meta .credits ul li, #project-detail-container .content-container .info .meta .credits ol li, #about-container .content-container .info .meta .credits ul li, #about-container .content-container .info .meta .credits ol li {
+        list-style: none;
+        margin: 0 0 .15em 0; }
     #project-detail-container .content-container .info > div, #about-container .content-container .info > div {
       width: 50%;
       float: left; }
@@ -425,10 +434,13 @@ h3 {
     margin-bottom: 20px; }
     #project-detail-container .content-container .section:last-child, #about-container .content-container .section:last-child {
       margin-bottom: 0; }
-  #project-detail-container .content-container .map, #about-container .content-container .map {
+  #project-detail-container .content-container #map, #about-container .content-container #map {
     width: 100%;
-    height: 400px;
+    height: 800px;
     background-color: grey; }
+    @media screen and (max-width: 900px) {
+      #project-detail-container .content-container #map, #about-container .content-container #map {
+        height: 400px; } }
   #project-detail-container .content-container .image img, #about-container .content-container .image img {
     display: block;
     width: 100%;

@@ -6,19 +6,31 @@
 	// Load jQuery
 	if ( !is_admin() ) {
 		
-	   $url = get_stylesheet_directory_uri() . '/scripts/';
+		$url = get_stylesheet_directory_uri() . '/scripts/';
 
 		
-	   wp_deregister_script('jquery');
-	   wp_register_script('jquery', ($url.'jquery.min.js'), true, '2.0.0', true );
-	   wp_register_script('jquery-ui', ($url.'jquery-ui.min.js'), true, '', true );
+		wp_deregister_script('jquery');
+		wp_register_script('jquery', ($url.'jquery.min.js'), true, '2.0.0', true );
+		wp_register_script('jquery-ui', ($url.'jquery-ui.min.js'), true, '', true );
 
-	   wp_enqueue_script('jquery');
-//	   wp_enqueue_script('jquery-ui');
+		wp_enqueue_script('jquery');
+		//	   wp_enqueue_script('jquery-ui');
 
-	   wp_enqueue_script( 'plugins', "{$url}plugins.js", array('jquery'), '', true );
-	   wp_enqueue_script( 'app', "{$url}app.js", array('jquery'), '', true );
+
+		wp_enqueue_script('google-maps', 'https://maps.googleapis.com/maps/api/js?key=AIzaSyBRgNewsIotsE5KXK8KElfTZohRurpTjbY', true, null, true );
+		wp_enqueue_script('google-jsapi','https://www.google.com/jsapi', true, null, true );
+
+		wp_enqueue_script( 'plugins', "{$url}plugins.js", array('jquery'), '', true );
+
+		wp_enqueue_script( 'app', "{$url}app.js", array('jquery'), '', true );
 	}
+
+	// function add_scripts() {
+	//   wp_enqueue_script('google-maps', 'https://maps.googleapis.com/maps/api/js?key=AIzaSyBRgNewsIotsE5KXK8KElfTZohRurpTjbY');
+	//   // wp_enqueue_script('google-jsapi','https://www.google.com/jsapi');     
+	// }
+	// add_action('wp_enqueue_scripts', 'add_scripts');
+
 
 
 	$ajax = !empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest';
@@ -165,6 +177,17 @@
 	    remove_menu_page('edit-comments.php'); //Comments
 	}
 	add_action('admin_menu', 'remove_menus');
+
+
+
+
+
+	// function my_acf_init() {
+	// 	acf_update_setting('google_api_key', 'AIzaSyBRgNewsIotsE5KXK8KElfTZohRurpTjbY');
+	// }
+	// add_action('acf/init', 'my_acf_init');
+
+
 
 
 

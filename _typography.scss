@@ -32,8 +32,9 @@ body {
 	}
 }
 
+
 // UPPDERCASE
-.header h3, footer p, .project .title, .hover-card h2, .menu-box h2, .meta h3.title {
+.header h3, footer p, .project .title, .hover-card h2, .menu-box h2, .meta h3.title, .credits h4 {
 	text-transform: uppercase;
 }
 
@@ -73,6 +74,10 @@ a {
 
 a:hover {
     color: $colorBlue;
+}
+
+a:focus {
+    outline: none;
 }
 
 h3 {
