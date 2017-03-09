@@ -1,41 +1,31 @@
 <?php 
 
-	function testImage() {
-//		return get_stylesheet_directory_uri().'/images/test-1920.jpg'; 
-		return get_stylesheet_directory_uri().'/images/placeholder.jpg'; 
-	}
+get_header(); 
 
-get_header(); ?>
+?>
+	<section id="about-container" class="page data-about" data-page-loaded="false"></section>
+	<section id="projects-container" class="page data-home" data-page-loaded="false" data-page-id="home"></section>
+	<section id="project-detail-container" class="page data-work" data-page-id="<?php echo "work-".get_the_ID(); ?>" data-page-loaded="true">
 
-	<section id="about-container" class="project page x data-about" data-page-loaded="false"></section>
-	<section id="projects-container" class="project page x data-home" data-page-loaded="false" data-page-id="home"></section>
-	
-	<section id="project-detail-container" class="project page x data-work" data-page-id="<?php echo "work-".get_the_ID(); ?>" data-page-loaded="true">
-
-		<?php 
-
-			// function testImage() {
-			// 	return get_stylesheet_directory_uri().'/images/test-1920.jpg'; 
-			// }
-
-
-		?>
 		<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
-
 
 			<?php
 
-				$vimeoUrl = get_field('video_url', false, false);			
+				$videoUrl = get_field('video_url', false, false);
 
-				if (preg_match("/(?:https?:\/\/)?(?:www\.)?vimeo.com\/(?:channels\/(?:\w+\/)?|groups\/([^\/]*)\/videos\/|album\/(\d+)\/video\/|)(\d+)(?:$|\/|\?)/", $vimeoUrl, $id)) {
+				if (preg_match("/(?:https?:\/\/)?(?:www\.)?vimeo.com\/(?:channels\/(?:\w+\/)?|groups\/([^\/]*)\/videos\/|album\/(\d+)\/video\/|)(\d+)(?:$|\/|\?)/", $videoUrl, $id)) {
 				    $videoId = $id[3];
-				} else if (preg_match("/^(?:http(?:s)?:\/\/)?(?:www\.)?(?:m\.)?(?:youtu\.be\/|youtube\.com\/(?:(?:watch)?\?(?:.*&)?v(?:i)?=|(?:embed|v|vi|user)\/))([^\?&\"'>]+)/", $vimeoUrl, $id)) {
+					echo	'<div class="video-main video-project">'.
+								'<img src="'.getPlaceHolder().'" data-error="'.getPlaceHolder().'" class="video-vimeo" data-vimeo-id="'.$videoId.'"/>'.
+							'</div>';
+				} else if (preg_match("/^(?:http(?:s)?:\/\/)?(?:www\.)?(?:m\.)?(?:youtu\.be\/|youtube\.com\/(?:(?:watch)?\?(?:.*&)?v(?:i)?=|(?:embed|v|vi|user)\/))([^\?&\"'>]+)/", $videoUrl, $id)) {
 				    $videoId = $id[1];
+
+					echo '<div class="video-main video-project video-youtube" data-youtube-id="'.$videoId.'"></div>';
+
 				}
 
-				echo	'<div class="video-main video-project">'.
-							'<img src="'.testImage().'" data-error="'.testImage().'" class="vimeo-thumb" data-vimeo-id="'.$videoId.'">'.
-						'</div>';
+
 			?>
 
 			<div class="content-container">
@@ -60,10 +50,12 @@ get_header(); ?>
 
 				<?php
 
+				// Flexible content
 				if (have_rows('custom_content')):
 
 				    while (have_rows('custom_content')) : the_row();
 
+						// Full image
 				        if (get_row_layout() == 'image_full'):
 
 							echo 	'<div class="section image large col-1">'.
@@ -71,6 +63,7 @@ get_header(); ?>
 											'<img src="'.get_sub_field('image').'">'.
 										'</div>'.
 									'</div>';
+
 
 				        elseif (get_row_layout() == 'image_small'): 
 
@@ -85,20 +78,26 @@ get_header(); ?>
 										'</div>'.
 									'</div>';
 
+						// Video
+
 				        elseif (get_row_layout() == 'video'): 
 
-							$vimeoUrl = get_field('video', false, false);			
+							$videoUrl = get_sub_field('video', false, false);
 
-							if (preg_match("/(?:https?:\/\/)?(?:www\.)?vimeo.com\/(?:channels\/(?:\w+\/)?|groups\/([^\/]*)\/videos\/|album\/(\d+)\/video\/|)(\d+)(?:$|\/|\?)/", $vimeoUrl, $id)) {
-							    $videoId = $id[3];
-							} else if (preg_match("/^(?:http(?:s)?:\/\/)?(?:www\.)?(?:m\.)?(?:youtu\.be\/|youtube\.com\/(?:(?:watch)?\?(?:.*&)?v(?:i)?=|(?:embed|v|vi|user)\/))([^\?&\"'>]+)/", $vimeoUrl, $id)) {
+							if (preg_match("/(?:https?:\/\/)?(?:www\.)?vimeo.com\/(?:channels\/(?:\w+\/)?|groups\/([^\/]*)\/videos\/|album\/(\d+)\/video\/|)(\d+)(?:$|\/|\?)/", $videoUrl, $id)) {
+							     $videoId = $id[3];
+								echo	'<div class="section video">'.
+											'<img src="'.getPlaceHolder().'" data-error="'.getPlaceHolder().'" class="video-vimeo" data-vimeo-id="'.$videoId.'"/>'.
+										'</div>';
+							} else if (preg_match("/^(?:http(?:s)?:\/\/)?(?:www\.)?(?:m\.)?(?:youtu\.be\/|youtube\.com\/(?:(?:watch)?\?(?:.*&)?v(?:i)?=|(?:embed|v|vi|user)\/))([^\?&\"'>]+)/", $videoUrl, $id)) {
 							    $videoId = $id[1];
+								echo '<div class="section video-project video-youtube" data-youtube-id="'.$videoId.'"></div>';
+							} else {
+								echo "POOP";
 							}
 
-							echo	'<div class="section video">'.
-										'<img src="'.$testImage.'" data-error="'.$testImage.'" class="vimeo-thumb" data-vimeo-id="'.$videoId.'">'.
-									'</div>';
 
+						// Text block			
 				        elseif (get_row_layout() == 'text'): 
 
 							echo 	'<div class="section text large col-1">'.
@@ -118,7 +117,6 @@ get_header(); ?>
 				?>
 
 			</div>
-
 
 		<?php endwhile; endif; ?>
 

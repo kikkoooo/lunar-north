@@ -26,25 +26,120 @@ var ln = {
 
     init : function() {
 
-		// this.ajaxPagess();
+
+
 
 		this.detectSize();
 		this.pos();
 
+
+		this.reel.init();
+		this.embedVideo($(".video-vimeo"));
+		this.embedVideo($(".video-youtube"));
+
 		this.initImages();
-		this.introImage();
 		this.initSticky();
 		this.navigation();
-		this.initReel();
 
 		this.ajaxPages();
 
 		this.initMap();
 
-		$(".video-project, .video").fitVids();
+		// $(".video-project, .video, .reel-container").fitVids();
 
 	}, 
-	
+
+    reel : {
+
+    	el : $(".reel-container"),
+
+    	init: function() {
+    		this.ratio();
+    		ln.embedVideo(this.el.find(".video"));
+    	},
+
+    	ratio : function() {
+
+			var videoW = 1920,
+				videoH = 1080,
+				videoRatio = videoW/videoH,
+				el = this.el;
+
+			function setMax() {
+				el.css({
+					maxHeight: el.parent().width() * videoRatio,
+					maxWidth: el.parent().height() * videoRatio,
+				});
+			}
+			setMax();
+			$(window).resize(setMax);
+
+    	}
+    
+    },
+
+    embedVideo : function(tar) {
+
+    	// If Vimeo
+    	if (tar.data("vimeo-id")) {
+
+	        tar.smartVimeoEmbed({
+	            width: 1280, //vimeo thumnail image
+	            onComplete: function() {
+	                $(this).parent().fitVids();
+	            },
+
+	          onError: function() {
+		          // Fallback image
+		          var bi = $(this).attr('data-error');
+		          $(this).attr('src', bi);
+	          }
+
+	        });
+
+    	// If Youtube
+	     } else {
+
+			var embedYoutube = function(el) {
+				var v = el;
+					$.each(v, function(n) {
+						var i = getThumb($(this).data('youtube-id')),
+						p = $('<div class="youtube-thumb-container">' + i + '</div>');
+						p.appendTo($(this))
+					p.click(makeIframe);
+				});
+			}
+
+			embedYoutube(tar);
+
+			svg = '<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 68 60" style="enable-background:new 0 0 68 60;" xml:space="preserve"><polygon fill="white" points="0,61 15,30.5 0,0 68.6,30.5 "/></svg>';
+			
+			function getThumb(id) {
+				return '<img class="youtube-thumb" src="//i2.ytimg.com/vi/' + id + '/maxresdefault.jpg"><span class="play-icon">'+ svg +'</span>';
+			}
+
+			function makeIframe() {
+				var url = '//www.youtube.com/embed/' + $(this).parent().data('youtube-id') + '?autoplay=1&autohide=2&border=0&wmode=opaque&enablejsapi=1&controls=0&showinfo=0'
+				var iframe = $('<iframe src="' + url + '" frameborder="0" scrolling="no" class="youtube-iframe"></iframe>');
+				$(this).replaceWith(iframe);
+				$('.video-youtube').fitVids();
+			}
+
+		}
+    },
+
+
+
+
+
+
+
+
+
+
+
+
+
 	initImages : function () {
 
 		// Might not be necessary for now
@@ -60,33 +155,6 @@ var ln = {
 		});
 
 	},
-
-    initReel : function() {
-
-        $('.vimeo-thumb').smartVimeoEmbed({
-            width: 1280,
-            onComplete: function() {
-                // $('#featured').fitVids();
-                $(this).parent().fitVids();
-            },
-          onError: function() {
-	          // Fallback image
-	          var bi = $(this).attr('data-error');
-	          $(this).attr('src', bi);
-          }
-        });
-
-    },
-
-    introImage : function() {
-
-		var $introImage = $('.preview-intro-image'),
-			introImageObj = $introImage.data('intro-image');
-		// if ($introImage.length) $introImage.backstretch(introImageObj, {fade: 100});
-		if ($introImage.length) $introImage.backstretch(introImageObj);
-
-
-    },
 
 	navigation : function() {
 
@@ -108,7 +176,7 @@ var ln = {
 
 		$(".nav-toggle").click(function() {
 			$(this).toggleClass("active");
-		})
+		});
 
 		// // NAV 
 		// $(".menu-button a").hover(function () {
@@ -138,7 +206,6 @@ var ln = {
 		$(".project .link").mouseenter(function() {
 
 			$(this).addClass('hover');
-
 			$hover = $(".hover");
 
 			// 2 seconds
@@ -169,7 +236,6 @@ var ln = {
 			$(this).removeClass('hover');
 		});
 
-
 		$(".logo a").mouseenter(function() {
 			$(this).addClass('hover');
 			$(".hover").find(".triangle").velocity({fill: "#00ADEE"}, {queue:false, duration: 200});
@@ -177,31 +243,6 @@ var ln = {
 			$(".hover").find(".triangle").velocity("stop").velocity({fill: "#585A5A"}, {queue:false, duration: 200});
 			$(this).removeClass('hover');
 		});
-
-		// $(".project .link").hover(function () {
-
-		// 	$tar = $(this).children(".animation-rollover");
-		// 	$link = $(this);
-
-		// 	console.log("hover");
-
-		// 	if ($link.data("animated") == false) {
-		// 		$tar.animateSprite({
-		// 		    fps: 30,
-		// 			loop: false,
-		// 		    complete: function () {
-		// 		        $link.animateSprite('frame', 0);
-		// 		    }
-		// 		});
-		// 		$link.data("animated", true);
-		// 	} else {
-		// 		$tar.animateSprite("restart");
-		// 	}
-
-		// }, function () {
-		// 	console.log("out");			
-		// 	$(this).find(".animation-rollover").animateSprite('stop').animateSprite('frame', 0);
-		// });		
 
 
 	},
@@ -255,6 +296,12 @@ var ln = {
 			$main = $("#main"),
             headerH = $header.outerHeight(false);
 
+        // Adjust tagline widths
+		$header.find(".tagline").css({
+			width: ($header.find(".ln-container").innerWidth() - $header.find(".logo").outerWidth()) / 2
+		});
+
+
 
         // if (ln.featured == true) {
 			// Featured
@@ -272,9 +319,6 @@ var ln = {
 		// }
 
 		// Header sub text
-		$(".header .sub-text").css({
-			width : ($(".header .container").innerWidth() - $(".header .logo").outerWidth()) / 2
-		});
 		
 
 
@@ -346,17 +390,12 @@ var ln = {
 				height: (caseStudyColW) * (9/16)			
 			});
 
-
-
-
 		}
 
-
-
-		$(".video-main").css({
-			width: "100%",
-			height: w * (9/16),
-		})
+		// $(".video-main").css({
+		// 	width: "100%",
+		// 	height: w * (9/16),
+		// })
 
 		$(".content-container .video").css({
 			width: "100%",
@@ -560,17 +599,6 @@ var ln = {
 
 
 
-		// Make Vimeo proportional and responsive on Width
-		var videoContent = $('.video-content'),
-			videoW = 1920,
-			videoH = 1080,
-			videoRatio = videoW/videoH;
-
-		videoContent.css({
-			//maxWidth: videoContent.parent().height() * videoRatio
-			// width: videoContent.parent().height() * videoRatio
-			maxHeight: videoContent.parent().width() * videoRatio			
-		});
 
 
 	},
@@ -601,6 +629,15 @@ var ln = {
 
 		console.log(ln.screen.mode);
 
+		// var videoContent = $('.reel-container'),
+		// 	videoW = 1920,
+		// 	videoH = 1080,
+		// 	videoRatio = videoW/videoH;
+
+		// videoContent.css({
+		// 	maxWidth: videoContent.parent().height() * videoRatio
+		// });		
+
 	},
 	
 	resize : function() {
@@ -615,6 +652,16 @@ var ln = {
 		// 	$(this).height(($(this).closest(".normal").siblings(".case-study").height() - 20) / 2);
 		// });
 		// this.movingLine.resize();
+
+		// var videoContent = $('.reel-container'),
+		// 	videoW = 1920,
+		// 	videoH = 1080,
+		// 	videoRatio = videoW/videoH;
+
+		// videoContent.css({
+		// 	maxWidth: videoContent.parent().height() * videoRatio
+		// });
+
 
 
 	},
@@ -1062,6 +1109,7 @@ var ln = {
 									ln.pos();
 									ln.initImages();
 									ln.initReel();
+									// ln.embedVideo($(".video-vimeo"));
 									$(window).scrollTo("#main", 500);
 								});
 							});
@@ -1100,10 +1148,10 @@ var ln = {
 
 	initMap : function() {
 
-
 		//gmaps.js
 		//https://hpneo.github.io/gmaps/documentation.html
-		
+		//add if page or #map exists then do this
+
 		var coords = {
 			lat: 42.3302632,
 			lng: -83.04755119999999,
@@ -1126,15 +1174,9 @@ var ln = {
 			title: 'Lunar North',
 		});
 
-
-
 		$(window).resize(function() {
 			map.setCenter(coords.lat, coords.lng);
 		});
-
-
-
-
 
 	}
 };

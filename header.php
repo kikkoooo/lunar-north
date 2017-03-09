@@ -6,39 +6,40 @@
 	<title><?php if (is_home()) { echo bloginfo('name'); } else { wp_title('-','true','right'); }?></title>
 	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
 	<link rel="icon" href="/favicon.ico" type="image/x-icon">
-	<link rel="stylesheet" href="<?php bloginfo('template_directory'); ?>/normalize.css">	
 	<link rel="stylesheet" href="<?php bloginfo('stylesheet_url'); ?>">
 	<link rel="pingback" href="<?php bloginfo('pingback_url'); ?>">
 	<?php wp_head(); ?>
-
 </head>
 <body>
 
 	<?php
 
-	$testImage = get_stylesheet_directory_uri().'/images/test-intro.jpg';
-
-	function testIntroImage() {
-		echo get_stylesheet_directory_uri().'/images/test-intro.jpg'; 
+	function getPlaceHolder() {
+		return get_stylesheet_directory_uri().'/images/placeholder.jpg'; 
 	}
-	
+
+	if (is_home()) { 
+
+		$vimeoUrl = get_field('reel', options, false, false);			
+
+		if (preg_match("/(?:https?:\/\/)?(?:www\.)?vimeo.com\/(?:channels\/(?:\w+\/)?|groups\/([^\/]*)\/videos\/|album\/(\d+)\/video\/|)(\d+)(?:$|\/|\?)/", $vimeoUrl, $id)) {
+		    $videoId = $id[3];
+		}
+
+		echo 	'<div id="featured">'.
+					'<div class="reel-container">'.
+						'<img src="'.getPlaceHolder().'" data-error="'.getPlaceHolder().'" class="video vimeo-thumb" data-vimeo-id="'.$videoId.'">'.
+					'</div>'.
+				'</div>';
+	} 
+
 	?>
 
-	<?php if (!is_single()) { ?>
-		<div id="featured">
-			<!-- <div class="preview-intro-image" data-intro-image="<?php// testIntroImage(); ?>"></div> -->
-			<?php 
-				echo	'<div class="video-content">'.
-							'<img src="'.$testImage.'" data-error="'.$testImage.'" class="vimeo-thumb" data-vimeo-id="128843408">'.
-						'</div>';
-			?>
-		</div>
-	<?php } ?>
 	<div id="main">
 		<header class="header">
-			<div class="container cf">
-				<div class="sub-text align-right"><h3>Design and Animation</h3></div>
-				<div class="sub-text align-left"><h3>Detroit, Michigan</h3></div>
+			<div class="ln-container cf">
+				<div class="tagline align-right"><h3>Design and Animation</h3></div>
+				<div class="tagline align-left"><h3>Detroit, Michigan</h3></div>
 				<div class="logo"><a href="<?php echo esc_url(home_url('/'));?>" class="ajax link url-home" data-page-id="home"><?php echo file_get_contents(get_stylesheet_directory_uri().'/images/ln-logo.svg');?></a></div>
 			</div>
 			<div class="menu-button"><a href="#" class="nav-toggle icon-btn" data-animated="false"><span></span></a></div>	
