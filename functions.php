@@ -20,9 +20,9 @@
 		wp_enqueue_script('google-maps', 'https://maps.googleapis.com/maps/api/js?key=AIzaSyBRgNewsIotsE5KXK8KElfTZohRurpTjbY', true, null, true );
 		wp_enqueue_script('google-jsapi','https://www.google.com/jsapi', true, null, true );
 
-		wp_enqueue_script( 'plugins', "{$url}plugins.js", array('jquery'), '', true );
+		wp_enqueue_script( 'plugins', "{$url}plugins.js", array('jquery'), null, true );
 
-		wp_enqueue_script( 'app', "{$url}app.js", array('jquery'), '', true );
+		wp_enqueue_script( 'app', "{$url}app.js", array('jquery'), null, true );
 	}
 
 	// function add_scripts() {

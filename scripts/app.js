@@ -1050,67 +1050,33 @@ var ln = {
 				$(window).stop(true).scrollTo("#main", 500); 
 			}
 
-			// console.log($e.attr("id") + " | " + type + " " + tar);
 			console.log(type + "   .page-" + tar);
 
-			if (tar == "home" && type == "new") {
+			$(".page").not(".page-" + tar).css({position: "absolute"}).velocity("fadeOut", 200);
 
-				$(".page").not(".page-" + tar).fadeOut(200);
-				$(".page-" + tar).html(content).fadeIn(200, function() {
-					ln.display();
-					ln.detectSize();
+			$(".footer").velocity({ opacity: 0 }, {duration: 100});
+
+			if (type == "new") { $(".page-" + tar).html(content); }
+			$(".page-" + tar).css({position: "relative"}).velocity("fadeIn", 200, function() {
+
+				$(".footer").velocity({ opacity: 1 }, {duration: 100});
+
+				ln.display();
+				ln.detectSize();
+
+				if (tar == "home") {
 					ln.navigation.thumbnails();
-					scrollW();
-				});
-
-				ln.page.loaded.home = true;
-
-			} else if (tar == "home" && type == "old") {
-
-				$(".page").not(".page-" + tar).fadeOut(200);
-				$(".page-" + tar).fadeIn(200, function() {
-
-					ln.detectSize();
-					ln.display();
-					ln.navigation.thumbnails();
-					scrollW();
-
-				});
-
-
-			} else if (tar == "about" && type == "new") {
-
-				$(".page").not(".page-" + tar).fadeOut(200);
-				$(".page-" + tar).html(content).fadeIn(200, function() {
-					ln.display();
-					ln.detectSize();
-					scrollW();
-					ln.map.init();					
-				});
-
-				ln.page.loaded.about = true;
-
-			} else if (tar == "about" && type == "old") {
-
-				$(".page").not(".page-" + tar).fadeOut(200);
-				$(".page-" + tar).fadeIn(200, function() {
-					ln.detectSize();
-					ln.display();
-					scrollW();
-				});
-
-			// WORK	
-			} else if (tar == "work") {
-
-				$(".page").not(".page-" + tar).fadeOut(200);
-				$(".page-" + tar).html(content).fadeIn(200, function() {
-					ln.display();
-					ln.detectSize();
+				} else if (tar == "about") {
+					ln.map.init();
+				} else {
 					ln.embedVideo($(".video-vimeo"));
 					ln.embedVideo($(".video-youtube"));
-					scrollW();
-				});
-			}
+				}
+
+				scrollW();
+
+			});
+
 
 		};
 
@@ -1163,7 +1129,7 @@ var ln = {
 						} else {
 
 							content	= $(respond).find('.page-work').html();								
-							showContent("work", null, content);
+							showContent("work", "new", content);
 
 						}
 		
