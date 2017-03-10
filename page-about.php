@@ -11,7 +11,7 @@
 ?>
 	<section id="projects-container" class="page data-home" data-page-loaded="false" data-page-id="home"></section>
 	<section id="project-detail-container" class="page data-work" data-page-loaded="false"></section>
-	<section id="about-container" class="page data-about" data-page-loaded="true" data-page-id="about">
+	<section id="about-container" class="page data-about" data-page-loaded="true" data-page-id="about" data-page-active="true">
 
 		<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 

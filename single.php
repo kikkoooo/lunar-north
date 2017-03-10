@@ -2,7 +2,9 @@
 
 get_header(); 
 
+
 ?>
+
 	<section id="about-container" class="page data-about" data-page-loaded="false"></section>
 	<section id="projects-container" class="page data-home" data-page-loaded="false" data-page-id="home"></section>
 	<section id="project-detail-container" class="page data-work" data-page-id="<?php echo "work-".get_the_ID(); ?>" data-page-loaded="true">
@@ -59,9 +61,9 @@ get_header();
 				        if (get_row_layout() == 'image_full'):
 
 							echo 	'<div class="section image large col-1">'.
-										'<div>'.
+										// '<div>'.
 											'<img src="'.get_sub_field('image').'">'.
-										'</div>'.
+										// '</div>'.
 									'</div>';
 
 
@@ -91,7 +93,7 @@ get_header();
 										'</div>';
 							} else if (preg_match("/^(?:http(?:s)?:\/\/)?(?:www\.)?(?:m\.)?(?:youtu\.be\/|youtube\.com\/(?:(?:watch)?\?(?:.*&)?v(?:i)?=|(?:embed|v|vi|user)\/))([^\?&\"'>]+)/", $videoUrl, $id)) {
 							    $videoId = $id[1];
-								echo '<div class="section video-project video-youtube" data-youtube-id="'.$videoId.'"></div>';
+								echo '<div class="section video video-youtube" data-youtube-id="'.$videoId.'"></div>';
 							} else {
 								echo "POOP";
 							}
