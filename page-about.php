@@ -9,9 +9,9 @@
 	get_header(); 
 
 ?>
-	<section id="projects-container" class="page data-home" data-page-loaded="false" data-page-id="home"></section>
-	<section id="project-detail-container" class="page data-work" data-page-loaded="false"></section>
-	<section id="about-container" class="page data-about" data-page-loaded="true" data-page-id="about" data-page-active="true">
+	<section id="projects-container" class="page page-home data-home" data-page-id="home" data-init="false" data-page-loaded="false"></section>
+	<section id="project-detail-container" class="page page-work data-work" data-init="false" data-page-loaded="false"></section>
+	<section id="about-container" class="page page-about data-about" data-page-id="about" data-init="true" data-page-loaded="true" data-page-active="true">
 
 		<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 
