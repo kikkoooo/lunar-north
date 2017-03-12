@@ -25,10 +25,15 @@
 		if ($caseStudiesObj): 
 			foreach($caseStudiesObj as $post):
 		        setup_postdata($post);
+
+				$image = get_field('thumbnail');
+				$imageW = $image['width'];
+				if ($imageW > 1200): $imageUrl = aq_resize($image['url'], 1200); endif;
+
 		        $e 	=	'<div class="case-study col">'
 							.'<div class="project">'
 								.'<a href="'.get_permalink().'" class="ajax link url-work" data-animated="false">'
-									.'<img class="thumbnail" src="'.get_field('thumbnail').'"/>'
+									.'<img class="thumbnail" src="'.$imageUrl.'"/>'
 									.'<div class="hover-card">'
 										.'<div class="svg-container">'.getThumbSvg().'</div>'
 										.'<div class="text-container">'
@@ -49,9 +54,14 @@
 		if ($normalObj): 
 			foreach($normalObj as $post):
 		        setup_postdata($post);
+
+				$image = get_field('thumbnail');
+				$imageW = $image['width'];
+				if ($imageW > 600): $imageUrl = aq_resize($image['url'], 600); endif;
+
 				$e 	=	'<div class="project">'
 						.	'<a href="'.get_permalink().'" class="ajax link url-work" data-animated="false">'
-						.		'<img class="thumbnail" src="'.get_field('thumbnail').'"/>'
+						.		'<img class="thumbnail" src="'.$imageUrl.'"/>'
 						.		'<div class="hover-card">'
 						.			'<div class="svg-container">'
 						.				getThumbSvg()

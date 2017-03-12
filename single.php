@@ -58,23 +58,48 @@ get_header();
 						// Full image
 				        if (get_row_layout() == 'image_full'):
 
-							echo 	'<div class="section image large col-1">'.
-										// '<div>'.
-											'<img src="'.get_sub_field('image').'">'.
-										// '</div>'.
-									'</div>';
+							// Aqua resize
+							$image = get_sub_field('image');
+							$imageW = $image['width'];
 
+							if ($image['width'] > 1600) {
+								$imageUrl = aq_resize($image['url'], 1600);
+							} else {
+								$imageUrl = $image['url'];
+							}
+
+							echo 	'<div class="section image large col-1">'.
+										'<img src="'.$imageUrl.'">'.
+									'</div>';
 
 				        elseif (get_row_layout() == 'image_small'): 
 
 							$rows = get_sub_field('images');
 
+							$image1 = $rows[0]['image_1'];
+							$image1W = $image1['width'];
+
+							if ((pathinfo($image1['url'], PATHINFO_EXTENSION)) != 'gif' && $image1W > 820) {
+								$image1Url = aq_resize($image1['url'], 820);
+							} else {
+								$image1Url = $image1['url'];
+							}
+
+							$image2 = $rows[0]['image_2'];
+							$image2W = $image2['width'];
+
+							if ((pathinfo($image2['url'], PATHINFO_EXTENSION)) != 'gif' && $image2W > 820) {
+								$image2Url = aq_resize($image2['url'], 820);
+							} else {
+								$image2Url = $image2['url'];
+							}
+
 							echo 	'<div class="section image small col-2 cf">'.
 										'<div class="col">'.
-											'<img src="'.$rows[0]['image_1'].'">'.
+											'<img src="'.$image1Url.'">'.
 										'</div>'.
 										'<div class="col">'.
-											'<img src="'.$rows[0]['image_2'].'">'.
+											'<img src="'.$image2Url.'">'.
 										'</div>'.
 									'</div>';
 
@@ -95,7 +120,6 @@ get_header();
 							} else {
 								echo "POOP";
 							}
-
 
 						// Text block			
 				        elseif (get_row_layout() == 'text'): 

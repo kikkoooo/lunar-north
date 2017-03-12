@@ -16,7 +16,22 @@
 		<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 
 			<div class="image-studio">
-				<img src="<?php echo get_field('image') ?>" class=""/>
+
+			<?php
+
+				$image = get_field('image');
+				$imageW = $image['widtŽ'];
+
+				if ($image['width'] > 1600) {
+					$imageUrl = aq_resize($image['url'], 1600);
+				} else {
+					$imageUrl = $image['url'];
+				}
+
+				echo '<img src="'.$imageUrl.'" class=""/>';
+
+			?>
+
 			</div>
 
 			<div class="content-container">

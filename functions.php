@@ -110,6 +110,9 @@
 	}
 	add_action( 'pre_get_posts', 'gp_parse_request_trick' );
 
+	/* Aqua Image Resizer */
+	require_once('aq_resizer.php');
+
 
 
 	// function my_mce4_options($init) {
