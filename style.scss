@@ -26,7 +26,12 @@ $gutter: 20px;
 
 
 #main {
-	position: relative;
+	position: absolute;
+	width: 100%;
+	left: 0;
+	top: vh - $headerHeight;
+	// background: rgba(0,0,0,.9);
+	background: $bgColor;
 }
 
 //REEL 
@@ -35,7 +40,9 @@ $gutter: 20px;
 	width: 100%;
 	width: 100vw;
 	height: 100vh;
-	position: relative;
+	position: absolute;
+	top: 0;
+	left: 0;
 
 	.reel-container {
 
@@ -410,7 +417,7 @@ $gutter: 20px;
 //Section containers
 .page {
 	margin-bottom: $gutter;
-	position: relative;	
+	position: absolute;	
 	top: 0;
 	left: 0;
 	width: 100%;
@@ -666,6 +673,7 @@ $gutter: 20px;
 
 		padding: 0 $gutter;
 		margin-bottom: 5em;
+		min-height: 100vh;
 
 
 		.info {

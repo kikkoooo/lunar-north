@@ -18,7 +18,7 @@
 		return get_stylesheet_directory_uri().'/images/placeholder.jpg'; 
 	}
 
-	if (is_home()) { 
+	// if (is_home()) { 
 
 		$vimeoUrl = get_field('reel', options, false, false);			
 
@@ -31,7 +31,7 @@
 						'<img src="'.getPlaceHolder().'" data-error="'.getPlaceHolder().'" class="video vimeo-thumb" data-vimeo-id="'.$videoId.'">'.
 					'</div>'.
 				'</div>';
-	} 
+	// } 
 
 	?>
 

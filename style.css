@@ -302,13 +302,19 @@ h3 {
   font-weight: normal;
   font-style: normal; }
 #main {
-  position: relative; }
+  position: absolute;
+  width: 100%;
+  left: 0;
+  top: vh-110px;
+  background: #000; }
 
 #featured {
   width: 100%;
   width: 100vw;
   height: 100vh;
-  position: relative; }
+  position: absolute;
+  top: 0;
+  left: 0; }
   #featured .reel-container {
     width: 100%;
     height: auto;
@@ -555,7 +561,7 @@ h3 {
 
 .page {
   margin-bottom: 20px;
-  position: relative;
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%; }
@@ -697,7 +703,8 @@ h3 {
     display: block; }
 #project-detail-container .content-container, #about-container .content-container {
   padding: 0 20px;
-  margin-bottom: 5em; }
+  margin-bottom: 5em;
+  min-height: 100vh; }
   #project-detail-container .content-container .info, #about-container .content-container .info {
     max-width: 1100px;
     margin: 0 auto 5em auto; }
