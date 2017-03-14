@@ -1,3 +1,15 @@
+// var manualStateChange = true;
+
+// History.Adapter.bind(window,'statechange',function(){
+//     if(manualStateChange == true){
+//      // BACK BUTTON WAS PRESSED
+//     }
+//     manualStateChange = true;
+// });
+
+
+
+
 var checkNum = 0;
 
 $(document).ready(function(){     
@@ -123,10 +135,18 @@ var ln = {
 				videoH = 1080,
 				videoRatio = videoW/videoH,
 				el = this.el;
+
+	            $header = $(".header");
+
 			function setMax() {
+				
+	            headerH = $header.outerHeight(false) * .65;
+
+				$(".reel-container").css({paddingTop: headerH});
+
 				el.css({
 					maxHeight: el.parent().width() * videoRatio,
-					maxWidth: el.parent().height() * videoRatio,
+					maxWidth: (el.parent().height()-headerH) * videoRatio,
 				});
 			}
 			setMax();
@@ -368,8 +388,10 @@ var ln = {
 
 		// $(".page").not(':hidden').css({
 		// 	background: "red",
-		// 	// minHeight: h
 		// });
+
+		// 		$(".footer").velocity({ opacity: 1 }, {duration: 100});
+
 
 	  //       var h = $(window).height(),
 	  //           w = $(window).width(),
@@ -1111,6 +1133,15 @@ var ln = {
 			incomingWorkId	= null,
 			siteTitle		= 'Lunar North';
 
+
+
+		// History.Adapter.bind(window,'statechange',function(){
+		// 	var State = History.getState();
+		// 	console.log("BACK");
+		// });
+
+
+
 	    $(document).on('click', '.ajax.link', "[href^='" + siteUrl + "']:not([href*='/wp-admin/']):not([href*='/wp-login.php']):not([href$='/feed/'])", function (e) {
 
 			e.preventDefault();
@@ -1120,19 +1151,22 @@ var ln = {
 			
 			// clickTarget = $(this).data('page');
 
+
+
 			ajaxContent = 'page';								
+
+				// manualStateChange = false;
+				// History.pushState(null, null, path);
 
 			//If home
 			if ($(this).hasClass("url-reel")) {
 				ln.reel.toggle();
 			} else {
 				incomingPageId = $(this).data("page-id");
-				// console.log(incomingPageId);
 				if (title != siteTitle) title += ' - ' + siteTitle; 
 				History.pushState('ajax', title, path);
 				currentPage();
 			}
-
 
 			if ($(this).closest(".menu-box")) {
 				$(".menu-box").delay(200).velocity("fadeOut", 200);
@@ -1186,14 +1220,12 @@ var ln = {
 		// 	ln.loadingBar(false);
 		// }
 
+		console.log(siteUrl);
+
+
 	    History.Adapter.bind(window, 'statechange', function() {
 			loadPageAjax();
-			// console.log("CHECK" + checkNum); checkNum++;
-
-	  //       if (ajaxContent == 'page') { 
-		 //        loadPageAjax();
-			// }
-
+			// console.log("hoy " + State.url);
 	    });
 		
 		// function closeNotes() {
@@ -1271,21 +1303,25 @@ var ln = {
 				$(window).stop(true).scrollTo("#main", 500); 
 			}
 
+			ln.reel.mode = "close";								
 			// console.log(type + "   .page-" + tar);
 
-			$(".footer").velocity({ opacity: 0 }, {duration: 50});
 
 			$(".page").not(".page-" + tar).css({position: "absolute"}).velocity("fadeOut", 200);
+
+			// $(".footer").velocity({ opacity: 0 }, {duration: 50});
 
 
 			if (type == "new") { $(".page-" + tar).html(content); }
 
 			$(".page-" + tar).css({position: "relative"}).velocity("fadeIn", 200, function() {
 
-				$(".footer").velocity({ opacity: 1 }, {duration: 100});
 
 				ln.display();
 				ln.detectSize();
+
+				// $(".footer").velocity({ opacity: 1 }, {duration: 100});
+
 
 				if (tar == "home") {
 					ln.navigation.thumbnails();
@@ -1299,6 +1335,8 @@ var ln = {
 				scrollW();
 
 			});
+
+			
 
 
 		};
@@ -1339,42 +1377,60 @@ var ln = {
 
 					// objId	= content.attr('id');
 
-					var content;
+					// var content;
+						// console.log(incomingPageId);
+						// console.log(incomingPageId + " " + ln.page.loaded.home + " " + State.url);
+
+							// var content	= $(respond).find('.page').html();	
+							// var type = $(respond).find('.page').data("page-id");
+
+
+							var content	= $(respond).find('.page[data-page-active="true"]').html();	
+							var type = $(respond).find('.page[data-page-active="true"]').data("page-id");
+
+							console.log(type);
+							showContent(type, "new", content);
 
 						// Old Home
-						if (incomingPageId == "home" && ln.page.loaded.home === true) {
+						// if (incomingPageId == "home" && ln.page.loaded.home === true) {
 
-								showContent(incomingPageId, "old");
+						// 		showContent(incomingPageId, "old");
 
-						// New Home
-						} else if (incomingPageId == "home" && ln.page.loaded.home === false) {
+						// // New Home
+						// } else if (incomingPageId == "home" && ln.page.loaded.home === false) {
 
-								content	= $(respond).find('.page-home').html();								
-								showContent(incomingPageId, "new", content);
+						// 		content	= $(respond).find('.page-home').html();								
+						// 		showContent(incomingPageId, "new", content);
 
-						// Old About
-						} else if (incomingPageId == "about" && ln.page.loaded.about === true) {
+						// // Old About
+						// } else if (incomingPageId == "about" && ln.page.loaded.about === true) {
 
-								showContent(incomingPageId, "old");
+						// 		showContent(incomingPageId, "old");
 
-						// New About
-						} else if (incomingPageId == "about" && ln.page.loaded.about === false) {
+						// // New About
+						// } else if (incomingPageId == "about" && ln.page.loaded.about === false) {
 
-								content	= $(respond).find('.page-about').html();								
-								showContent(incomingPageId, "new", content);
+						// 		content	= $(respond).find('.page-about').html();								
+						// 		showContent(incomingPageId, "new", content);
 
-						// Load Work		
-						} else {
+						// // Load Work		
+						// } else if (incomingPageId == "work"){
 
-							content	= $(respond).find('.page-work').html();								
-							showContent("work", "new", content);
+						// 	content	= $(respond).find('.page-work').html();								
+						// 	showContent("work", "new", content);
 
-						}
+						// } else {
+
+						// 	console.log("hoy " + State.url);
+						// 	// console.log("YAY");
+
+						// }
+
 		
 
 				},
 				complete: function() {
-						ln.reel.mode = "close";								
+						// ln.reel.mode = "close";								
 
 					// if (clickTarget != 'work') ln.loadingBar(false);
 

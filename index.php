@@ -7,10 +7,10 @@
 	get_header(); 
 
 ?>
-
-	<section id="project-detail-container" class="page page-work data-work"></section>
-	<section id="about-container" class="page page-about data-about" data-page-id="about"></section>
-	<section id="projects-container" class="page page-home data-home" data-page-id="home">
+ 
+	<section id="project-detail-container" class="page page-work data-work" style="display:none" data-page-id="work" data-page-active="false"></section>
+	<section id="about-container" class="page page-about data-about" style="display:none" data-page-id="about" data-page-active="false"></section>
+	<section id="projects-container" class="page page-home data-home" style="position:relative" data-page-id="home" data-page-active="true">
 
 	<?php 
 
@@ -32,7 +32,7 @@
 
 		        $e 	=	'<div class="case-study col">'
 							.'<div class="project">'
-								.'<a href="'.get_permalink().'" class="ajax link url-work" data-animated="false">'
+								.'<a href="'.get_permalink().'" class="ajax link url-work" data-animated="false" data-page-id="work">'
 									.'<img class="thumbnail" src="'.$imageUrl.'"/>'
 									.'<div class="hover-card">'
 										.'<div class="svg-container">'.getThumbSvg().'</div>'
@@ -60,7 +60,7 @@
 				if ($imageW > 600): $imageUrl = aq_resize($image['url'], 600); endif;
 
 				$e 	=	'<div class="project">'
-						.	'<a href="'.get_permalink().'" class="ajax link url-work" data-animated="false">'
+						.	'<a href="'.get_permalink().'" class="ajax link url-work" data-animated="false" data-page-id="work">'
 						.		'<img class="thumbnail" src="'.$imageUrl.'"/>'
 						.		'<div class="hover-card">'
 						.			'<div class="svg-container">'
