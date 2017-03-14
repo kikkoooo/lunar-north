@@ -19,7 +19,6 @@
 				<div class="copyright">
 					<p class="align-v">Space Camp LLC &copy; <?php echo date("Y"); ?></p>
 				</div>
-
 			</div>
 		</footer>
 	</div>

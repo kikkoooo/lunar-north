@@ -949,3 +949,15 @@ $gutter: 20px;
 }
 
 
+
+.progress {
+    position: fixed;
+    width: 100%;
+    left: 0;
+    bottom: 0;
+    padding: 2em;
+    z-index: 999999;
+    color: #FFF;
+    font-size: 2em;
+    text-transform: uppercase;
+}

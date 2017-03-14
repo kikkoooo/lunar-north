@@ -32,7 +32,7 @@
 
 		        $e 	=	'<div class="case-study col">'
 							.'<div class="project">'
-								.'<a href="'.get_permalink().'" class="ajax link url-work" data-animated="false" data-page-id="work">'
+								.'<a href="'.get_permalink().'" class="ajax link url-work" data-animated="false" data-page-id="work" data-title="'.get_the_title().'">'
 									.'<img class="thumbnail" src="'.$imageUrl.'"/>'
 									.'<div class="hover-card">'
 										.'<div class="svg-container">'.getThumbSvg().'</div>'
@@ -60,7 +60,7 @@
 				if ($imageW > 600): $imageUrl = aq_resize($image['url'], 600); endif;
 
 				$e 	=	'<div class="project">'
-						.	'<a href="'.get_permalink().'" class="ajax link url-work" data-animated="false" data-page-id="work">'
+						.	'<a href="'.get_permalink().'" class="ajax link url-work" data-animated="false" data-page-id="work" data-title="'.get_the_title().'">'
 						.		'<img class="thumbnail" src="'.$imageUrl.'"/>'
 						.		'<div class="hover-card">'
 						.			'<div class="svg-container">'

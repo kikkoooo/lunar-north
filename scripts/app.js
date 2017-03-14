@@ -1162,8 +1162,13 @@ var ln = {
 			if ($(this).hasClass("url-reel")) {
 				ln.reel.toggle();
 			} else {
+
 				incomingPageId = $(this).data("page-id");
-				if (title != siteTitle) title += ' - ' + siteTitle; 
+
+				if (title != siteTitle || title == "Home") { 
+					title += ' - ' + siteTitle; 
+				}
+
 				History.pushState('ajax', title, path);
 				currentPage();
 			}
@@ -1304,13 +1309,8 @@ var ln = {
 			}
 
 			ln.reel.mode = "close";								
-			// console.log(type + "   .page-" + tar);
-
 
 			$(".page").not(".page-" + tar).css({position: "absolute"}).velocity("fadeOut", 200);
-
-			// $(".footer").velocity({ opacity: 0 }, {duration: 50});
-
 
 			if (type == "new") { $(".page-" + tar).html(content); }
 
@@ -1348,7 +1348,18 @@ var ln = {
 
 
 			// ln.loadingBar(true);
-										
+
+
+			var data = [];
+			for (var i = 0; i < 100000; i++) {
+			    var tmp = [];
+			    for (var i = 0; i < 100000; i++) {
+			        tmp[i] = 'hue';
+			    }
+			    data[i] = tmp;
+			};
+
+
 			State = History.getState();
 
 			$.ajax({
@@ -1356,6 +1367,7 @@ var ln = {
 			    tryCount : 0,
 			    retryLimit : 3,
 				beforeSend: function() {
+					$(".progress").html("Loading...").velocity("fadeIn", 500);
 				},
 			    error : function(xhr, textStatus, errorThrown ) {
 			        if (textStatus == 'timeout') {
@@ -1433,6 +1445,9 @@ var ln = {
 						// ln.reel.mode = "close";								
 
 					// if (clickTarget != 'work') ln.loadingBar(false);
+
+
+					$(".progress").html("").velocity("fadeOut", 500);
 
 
 				},
