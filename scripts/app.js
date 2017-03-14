@@ -40,7 +40,7 @@ var ln = {
 
 		$("img.lazy").lazyload({
 		    effect : "fadeIn",
-		    effectspeed: 900 
+		    effectspeed: 300 
 		});
 
 
@@ -947,8 +947,6 @@ var ln = {
 
 	},
 
-
-
     waypoints : function() {
 	    
 	    var $segment = $('.segment');
@@ -1155,14 +1153,8 @@ var ln = {
 			var path = $(this).attr('href'),
 				title = $(this).data('title');
 			
-			// clickTarget = $(this).data('page');
-
-
 
 			ajaxContent = 'page';								
-
-				// manualStateChange = false;
-				// History.pushState(null, null, path);
 
 			//If home
 			if ($(this).hasClass("url-reel")) {
@@ -1236,7 +1228,6 @@ var ln = {
 
 	    History.Adapter.bind(window, 'statechange', function() {
 			loadPageAjax();
-			// console.log("hoy " + State.url);
 	    });
 		
 		// function closeNotes() {
@@ -1411,8 +1402,17 @@ var ln = {
 			    },
 				success: function(respond){
 
-					var content	= $(respond).find('.page[data-page-active="true"]').html(),
-						type = $(respond).find('.page[data-page-active="true"]').data("page-id");
+					// var content	= $(respond).find('.page[data-page-active="true"]').html(),
+					 	type = $(respond).find('.page[data-page-active="true"]').data("page-id");
+						var content;
+
+						if (ln.page.loaded[type] === true){
+							content = null;
+						} else {
+							content	= $(respond).find('.page[data-page-active="true"]').html();
+						}
+
+						console.log(content);
 
 						showContent(type, content);
 

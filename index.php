@@ -1,8 +1,5 @@
 <?php 
 
-	function getThumbSvg() {
-		return file_get_contents(get_stylesheet_directory_uri().'/images/rollover-thumbnail.svg');
-	}
 
 	get_header(); 
 

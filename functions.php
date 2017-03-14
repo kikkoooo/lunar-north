@@ -183,6 +183,14 @@
 
 
 
+	function getThumbSvg() {
+		return file_get_contents(get_stylesheet_directory_uri().'/images/rollover-thumbnail.svg');
+	}
+
+	function getPlaceHolder() {
+		return get_stylesheet_directory_uri().'/images/placeholder.jpg'; 
+	}
+
 
 
 	// function my_acf_init() {

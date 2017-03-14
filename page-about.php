@@ -2,10 +2,6 @@
 
 	/* Template Name: About */
 
-	function testImage() {
-		return get_stylesheet_directory_uri().'/images/placeholder.jpg'; 
-	}
-
 	get_header(); 
 
 ?>
