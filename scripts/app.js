@@ -269,25 +269,6 @@ var ln = {
     		}
 
 
-			// // Featured/reel container height 
-			// $featured.css({height: h-headerH});
-
-
-			// if (ln.page.loaded.home === true) {
-			// 	$main.css({top: h-headerH});
-			// } else {
-			// 	$main.css({top: 0});
-			// }
-
-
-
-			// if (direction == "seqFwd") {
-			// 	$.Velocity.RunSequence(seqFwd);
-			// } else {
-			// 	$all.velocity("stop", true);
-			// 	$.Velocity.RunSequence(seqRev);
-			// }
-
     	}
     },
 
@@ -384,38 +365,6 @@ var ln = {
 			$main.css({top: 0});
 		}
 
-		// alert($(".page").not(':hidden').length);
-
-		// $('.page').each(function() {
-		//    if ($(this).height()>=0) {
-		//       $(this).width(...);
-		//    }
-		// });
-
-		// $(".page").not(':hidden').css({
-		// 	background: "red",
-		// });
-
-		// 		$(".footer").velocity({ opacity: 1 }, {duration: 100});
-
-
-	  //       var h = $(window).height(),
-	  //           w = $(window).width(),
-			// 	$featured = $("#featured"),
-			// 	$main = $("#main"),
-	  //           $header = $(".header"),
-			// 	headerH = $header.outerHeight(false);
-
-   //  		this.ratio();
-   //  		ln.embedVideo(this.el.find(".video"));
-
-   //  		function setSize() {
-			// 	$featured.css({height: h-headerH});
-			// 	$main.css({top: h-headerH});
-			// }
-
-			// setSize();
-			// $(window).resize(setSize);
 
 
 
@@ -493,14 +442,6 @@ var ln = {
 			$normalProject = $normalContainer.find(".project");
 			$caseStudyProject = $caseStudyContainer.find(".project");
 
-		// $normalProject.css({
-		// 	background: "red"
-		// });
-
-		// $caseStudyProject.css({
-		// 	background: "blue"
-		// });
-
 		if (ln.screen.mode == "large") {
 
 			$normalProject.css({			
@@ -512,12 +453,6 @@ var ln = {
 				width: caseStudyColW,
 				height: (caseStudyColW) * (9/16),
 			});
-
-			// $caseStudyProject.find(".thumbnail").css({
-			// 	width: caseStudyColW,
-			// 	height: (caseStudyColW) * (9/16),
-			// });
-
 
 		} else if (ln.screen.mode == "medium") {
 
@@ -582,7 +517,6 @@ var ln = {
 		});
 
     },
-
 
 	initImages : function () {
 
@@ -902,19 +836,6 @@ var ln = {
 
 	},
 	
-	// loadingBar : function(option) {
-		
-	// 	var $lb = $('.loading-bar'),
-	// 		s = 300;
-	
-	// 	if (option == false) {
-	// 		$lb.delay(s).fadeOut(s);
-	// 	} else {
-	// 		$lb.fadeIn(s);		
-	// 	}
-			
-	// },
-
 	stickHeader : function() {
 
 		$navBar = $(".header");
@@ -945,185 +866,6 @@ var ln = {
 
 		sticky();
 
-	},
-
-    waypoints : function() {
-	    
-	    var $segment = $('.segment');
-	    
-//	    $('#test').html(ln.page.current);
-
-        $segment.waypoint(function(direction) {
-            if (direction === 'down') {
-
-				var la 		= $(this.element).data('latitude'),
-					lo 		= $(this.element).data('longitude'),
-					mode	= $(this.element).data('mode'),
-					imgNum 	= $(this.element).data('image-number'),
-					title 	= $(this.element).data('title');
-					
-
-				if (ln.page.current == 'work') {
-
-					if (mode == 'day') {
-						$('body').stop(true, true).addClass('day').removeClass('night');					
-					} else {
-						$('body').stop(true, true).addClass('night').removeClass('day');					
-					}
-						
-					$('.latitude').html('<span class="direction">N</span>' + la);
-					$('.longitude').html('<span class="direction">W</span>' + lo);
-					$('.opponent').text(title);
-					$('.count .current').text(imgNum);
-					$('.tags').hide();
-					$('#tag-image-'+imgNum).show();
-					
-					ln.segment.active = $(this.element);
-				}
-
-            }
-        }, {
-            offset: '25%',
-            context: '#work .container'
-        });
-        
-        $segment.waypoint(function(direction) {
-            if (direction === 'up') {
-
-				var la 		= $(this.element).data('latitude'),
-					lo 		= $(this.element).data('longitude'),
-					mode	= $(this.element).data('mode'),
-					imgNum 	= $(this.element).data('image-number'),
-					title 	= $(this.element).data('title');
-					
-				if (ln.page.current == 'work') {
-
-					if (mode == 'day') {
-						$('body').stop(true, true).addClass('day').removeClass('night');					
-					} else {
-						$('body').stop(true, true).addClass('night').removeClass('day');					
-					}
-						
-					$('.latitude').html('<span class="direction">N</span>' + la);
-					$('.longitude').html('<span class="direction">W</span>' + lo);
-					$('.opponent').text(title);
-					$('.count .current').text(imgNum);
-					$('.tags').hide();
-					$('#tag-image-'+imgNum).show();
-					
-					ln.segment.active = $(this.element);
-				}
-
-            }
-        }, {
-            offset: '-25%',
-            context: '#work .container'
-        });
-        
-        
-		var mouseY;
-
-		$('#work').mousemove(function(e) {
-		
-	        var h = $(window).height(),
-	            w = $(window).width(),
-				mouseY = e.pageY;
-
-			if (ln.segment.active.hasClass('first')) {
-				$('#work').addClass('bottom').removeClass('top');
-				ln.mousePosY = 'down';
-			} else if (ln.segment.active.hasClass('last') && ln.segment.last === false ) {
-				if (mouseY >= h/2) {
-					$('#work').addClass('bottom').removeClass('top');
-					ln.mousePosY = 'down';
-				} else {
-					$('#work').addClass('top').removeClass('bottom');			
-					ln.mousePosY = 'up';					
-				}
-		    } else if (ln.segment.active.hasClass('last') && ln.segment.last === true) {
-				$('#work').addClass('top').removeClass('bottom');			
-				ln.mousePosY = 'up';
-			} else { 
-				if (mouseY >= h/2) {
-					$('#work').addClass('bottom').removeClass('top');
-					ln.mousePosY = 'down';
-				} else {
-					$('#work').addClass('top').removeClass('bottom');			
-					ln.mousePosY = 'up';					
-				}
-			}
-		
-		}).mouseover();
-
-        $(document).keydown(function(e) {
-			
-			if (e.keyCode == 40) { // Down Arrow
-				e.stopImmediatePropagation();
-				e.preventDefault();
-				var next = ln.segment.active.next();
-	            if (ln.segment.active.hasClass('last')) {
-		            $('#work .container').stop(true).scrollTo($('#work .container footer'), {
-		                duration: 200,
-		                onAfter: function() {
-							ln.segment.last = true;
-		                }
-		            });
-	            } else {
-		            $('#work .container').stop(true).scrollTo(next, {
-		                duration: 200
-		            });
-	            }
-	            
-            } else if (e.keyCode == 38) { // Up Arrow
-				e.stopImmediatePropagation();
-				e.preventDefault();
-	            if (!ln.segment.active.hasClass('first')) {
-					var prev = ln.segment.active.prev();
-		            $('#work .container').stop(true).scrollTo(prev, {
-		                duration: 200,
-		                onAfter: function() {
-							ln.segment.last = false;
-		                }
-		            });
-	            }
-			}
-        });
-
-        
-		//Slide images
-		$('#work .container').click(function(e) {
-
-			e.stopImmediatePropagation();
-			e.preventDefault();
-
-			if (ln.page.current == 'work') {
-				if (ln.mousePosY != 'up') {
-					var next = ln.segment.active.next();
-		            if (ln.segment.active.hasClass('last')) {
-			            $('#work .container').stop(true).scrollTo($('#work .container footer'), {
-			                duration: 200,
-			                onAfter: function() {
-								ln.segment.last = true;
-			                }
-			            });
-		            } else {
-			            $('#work .container').stop(true).scrollTo(next, {
-			                duration: 200
-			            });
-		            }
-				} else {
-					var prev = ln.segment.active.prev();
-		            if (!ln.segment.active.hasClass('first')) {
-			            $('#work .container').stop(true).scrollTo(prev, {
-			                duration: 200,
-			                onAfter: function() {
-								ln.segment.last = false;
-			                }
-			            });
-		            }
-				}
-			}			
-		});
 	},
 	
 	ajaxPages : function() {
@@ -1345,8 +1087,10 @@ var ln = {
 					$(".page-work").html("");
 
 				} else {
+
 					ln.embedVideo($(".video-vimeo"));
 					ln.embedVideo($(".video-youtube"));
+
 				}
 
 				scrollW();
@@ -1357,13 +1101,10 @@ var ln = {
 		};
 
 
-
 		// Load Ajax
 		function loadPageAjax() {
 
-
 			// ln.loadingBar(true);
-
 			var data = [];
 			for (var i = 0; i < 100000; i++) {
 			    var tmp = [];
@@ -1371,8 +1112,7 @@ var ln = {
 			        tmp[i] = 'hue';
 			    }
 			    data[i] = tmp;
-			};
-
+			}
 
 			State = History.getState();
 
@@ -1402,25 +1142,36 @@ var ln = {
 			    },
 				success: function(respond){
 
-					// var content	= $(respond).find('.page[data-page-active="true"]').html(),
-					 	type = $(respond).find('.page[data-page-active="true"]').data("page-id");
-						var content;
+					content	= $(respond).find('.page[data-page-active="true"]').html();
+				 	type = $(respond).find('.page[data-page-active="true"]').data("page-id");
 
-						if (ln.page.loaded[type] === true){
-							content = null;
-						} else {
-							content	= $(respond).find('.page[data-page-active="true"]').html();
+					var content = null;
+						type  = null;
+
+					if (ln.page.loaded.home === true || ln.page.loaded.about === true){
+
+						content = null;
+
+						if (ln.page.loaded.about === true) {
+ 						type = "about";
+						} else if (ln.page.loaded.about === true) {
+						type = "home";
 						}
 
-						console.log(content);
+					} else {
 
-						showContent(type, content);
+						content	= $(respond).find('.page[data-page-active="true"]').html();
+					 	type = $(respond).find('.page[data-page-active="true"]').data("page-id");
+
+					}
+
+					console.log("type = " + type + " | content = " + content);
+					showContent(type, content);
 
 				},
 				complete: function() {
 
-						// ln.reel.mode = "close";								
-
+						// ln.reel.mode = "close";	
 					// if (clickTarget != 'work') ln.loadingBar(false);
 					$("img.lazy").lazyload({
 					    effect : "fadeIn"

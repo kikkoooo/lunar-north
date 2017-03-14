@@ -9,14 +9,10 @@
 	<link rel="stylesheet" href="<?php bloginfo('stylesheet_url'); ?>">
 	<link rel="pingback" href="<?php bloginfo('pingback_url'); ?>">
 	<?php wp_head(); ?>
-</head>
+</head>	
 <body>
 
 	<?php
-
-	function getPlaceHolder() {
-		return get_stylesheet_directory_uri().'/images/placeholder.jpg'; 
-	}
 
 	// if (is_home()) { 
 
