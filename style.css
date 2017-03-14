@@ -703,8 +703,7 @@ h3 {
     display: block; }
 #project-detail-container .content-container, #about-container .content-container {
   padding: 0 20px;
-  margin-bottom: 5em;
-  min-height: 100vh; }
+  margin-bottom: 5em; }
   #project-detail-container .content-container .info, #about-container .content-container .info {
     max-width: 1100px;
     margin: 0 auto 5em auto; }
