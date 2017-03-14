@@ -69,7 +69,7 @@ get_header();
 							}
 
 							echo 	'<div class="section image large col-1">'.
-										'<img src="'.$imageUrl.'">'.
+										'<img class="lazy" data-original="'.$imageUrl.'">'.
 									'</div>';
 
 				        elseif (get_row_layout() == 'image_small'): 
@@ -96,10 +96,10 @@ get_header();
 
 							echo 	'<div class="section image small col-2 cf">'.
 										'<div class="col">'.
-											'<img src="'.$image1Url.'">'.
+											'<img class="lazy" data-original="'.$image1Url.'">'.
 										'</div>'.
 										'<div class="col">'.
-											'<img src="'.$image2Url.'">'.
+											'<img class="lazy" data-original="'.$image2Url.'">'.
 										'</div>'.
 									'</div>';
 

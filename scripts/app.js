@@ -38,6 +38,12 @@ var ln = {
     init : function() {
 
 
+		$("img.lazy").lazyload({
+		    effect : "fadeIn",
+		    effectspeed: 900 
+		});
+
+
 		var checkInitPage = function() {	
 
 			if ($("#projects-container").html().length > 0) {
@@ -1300,9 +1306,11 @@ var ln = {
 		// }
 
 
-		var showContent = function(tar, type, content) {
+		var showContent = function(tar, content) {
 
 			// $e = $("#"+tar);
+			var el = ".page-" + tar;
+				type = null;
 
 			function scrollW() { 
 				$(window).stop(true).scrollTo("#main", 500); 
@@ -1310,23 +1318,41 @@ var ln = {
 
 			ln.reel.mode = "close";								
 
-			$(".page").not(".page-" + tar).css({position: "absolute"}).velocity("fadeOut", 200);
+			if (ln.page.loaded[tar] === true){
+				type = "old";
+			} else if (ln.page.loaded[tar] !== false) {
+				type = "new";
+			} else {
+				type = "new";
+			}
+ 
+			console.log(type + " " + tar);
 
-			if (type == "new") { $(".page-" + tar).html(content); }
+			$(".page").not(el).css({position: "absolute"}).velocity("fadeOut", 200);
 
-			$(".page-" + tar).css({position: "relative"}).velocity("fadeIn", 200, function() {
+			if (type == "new") { 
+				$(el).html(content); 
+			}
 
+			$(el).css({position: "relative"}).velocity("fadeIn", 200, function() {
 
 				ln.display();
 				ln.detectSize();
 
 				// $(".footer").velocity({ opacity: 1 }, {duration: 100});
 
-
 				if (tar == "home") {
+
 					ln.navigation.thumbnails();
+					ln.page.loaded.home = true;
+					$(".page-work").html("");
+
 				} else if (tar == "about") {
+
 					ln.map.init();
+					ln.page.loaded.about = true;
+					$(".page-work").html("");
+
 				} else {
 					ln.embedVideo($(".video-vimeo"));
 					ln.embedVideo($(".video-youtube"));
@@ -1335,8 +1361,6 @@ var ln = {
 				scrollW();
 
 			});
-
-			
 
 
 		};
@@ -1348,7 +1372,6 @@ var ln = {
 
 
 			// ln.loadingBar(true);
-
 
 			var data = [];
 			for (var i = 0; i < 100000; i++) {
@@ -1364,12 +1387,13 @@ var ln = {
 
 			$.ajax({
 	            url: State.url,
-			    tryCount : 0,
-			    retryLimit : 3,
+			    tryCount: 0,
+			    cache: true,
+			    retryLimit: 3,
 				beforeSend: function() {
 					$(".progress").html("Loading...").velocity("fadeIn", 500);
 				},
-			    error : function(xhr, textStatus, errorThrown ) {
+			    error: function(xhr, textStatus, errorThrown ) {
 			        if (textStatus == 'timeout') {
 			            this.tryCount++;
 			            if (this.tryCount <= this.retryLimit) {
@@ -1387,65 +1411,20 @@ var ln = {
 			    },
 				success: function(respond){
 
-					// objId	= content.attr('id');
+					var content	= $(respond).find('.page[data-page-active="true"]').html(),
+						type = $(respond).find('.page[data-page-active="true"]').data("page-id");
 
-					// var content;
-						// console.log(incomingPageId);
-						// console.log(incomingPageId + " " + ln.page.loaded.home + " " + State.url);
-
-							// var content	= $(respond).find('.page').html();	
-							// var type = $(respond).find('.page').data("page-id");
-
-
-							var content	= $(respond).find('.page[data-page-active="true"]').html();	
-							var type = $(respond).find('.page[data-page-active="true"]').data("page-id");
-
-							console.log(type);
-							showContent(type, "new", content);
-
-						// Old Home
-						// if (incomingPageId == "home" && ln.page.loaded.home === true) {
-
-						// 		showContent(incomingPageId, "old");
-
-						// // New Home
-						// } else if (incomingPageId == "home" && ln.page.loaded.home === false) {
-
-						// 		content	= $(respond).find('.page-home').html();								
-						// 		showContent(incomingPageId, "new", content);
-
-						// // Old About
-						// } else if (incomingPageId == "about" && ln.page.loaded.about === true) {
-
-						// 		showContent(incomingPageId, "old");
-
-						// // New About
-						// } else if (incomingPageId == "about" && ln.page.loaded.about === false) {
-
-						// 		content	= $(respond).find('.page-about').html();								
-						// 		showContent(incomingPageId, "new", content);
-
-						// // Load Work		
-						// } else if (incomingPageId == "work"){
-
-						// 	content	= $(respond).find('.page-work').html();								
-						// 	showContent("work", "new", content);
-
-						// } else {
-
-						// 	console.log("hoy " + State.url);
-						// 	// console.log("YAY");
-
-						// }
-
-		
+						showContent(type, content);
 
 				},
 				complete: function() {
+
 						// ln.reel.mode = "close";								
 
 					// if (clickTarget != 'work') ln.loadingBar(false);
-
+					$("img.lazy").lazyload({
+					    effect : "fadeIn"
+					});
 
 					$(".progress").html("").velocity("fadeOut", 500);
 
