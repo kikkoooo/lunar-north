@@ -31,12 +31,20 @@ var ln = {
 	    	reel: null,
 	    },
 	    active: null,
+	    home: {
+	    	loaded: null,
+	    },
+	    about: {
+	    	loaded: null,
+	    }
     },
     screen: {
     	mode: null
     },
     init : function() {
 
+
+    	var activePage;
 
 		$("img.lazy").lazyload({
 		    effect : "fadeIn",
@@ -46,20 +54,34 @@ var ln = {
 
 		var checkInitPage = function() {	
 
-			if ($("#projects-container").html().length > 0) {
-				ln.page.loaded.home = true;
-				ln.reel.mode = "open";
-			} else if ($("#about-container").html().length > 0) {
-				ln.page.loaded.about = true;
-				ln.reel.mode = "close";
-			} else if ($("#project-detail-container").html().length > 0) {
-				ln.reel.mode = "close";
+			activePage = $('.page[data-page-load="true"]').data("page-id");
+
+			if (activePage != "work") {
+				ln.page[activePage]["loaded"] = true;
+				// console.log(activePage + " = " + ln.page[activePage]["loaded"]);
+				console.log("About = " + ln.page.about.loaded);
+				console.log("Home = " + ln.page.home.loaded);
+			} else {
+				console.log("WORK");
 			}
-			console.log("About:" + ln.page.loaded.about + "| Home:" + ln.page.loaded.home + " |Active:" + ln.page.active);
+
+			// console.log(activePage + " = " + ln.page[activePage]["loaded"]);
+	 		// type = $(respond).find('.page[data-page-active="true"]').data("page-id");
+
+
+			// if ($("#projects-container").html().length > 0) {
+			// 	ln.page.loaded.home = true;
+			// 	ln.reel.mode = "open";
+			// } else if ($("#about-container").html().length > 0) {
+			// 	ln.page.loaded.about = true;
+			// 	ln.reel.mode = "close";
+			// } else if ($("#project-detail-container").html().length > 0) {
+			// 	ln.reel.mode = "close";
+			// }
+			// console.log("About:" + ln.page.loaded.about + " | Home:" + ln.page.loaded.home + " | Active:" + ln.page.active);
 		};
 
 		checkInitPage();
-
 
 		this.detectSize();
 
@@ -77,7 +99,7 @@ var ln = {
 			this.map.init();
 		}
 
-
+		console.log("INIT LN...");
 	}, 
 
     featured : {
@@ -870,14 +892,17 @@ var ln = {
 	
 	ajaxPages : function() {
 
-	    siteUrl = "http://" + top.location.host.toString();
+	    var siteUrl = "http://" + top.location.host.toString();
 	
+		var incoming;
+
 		var History			= window.History,
 			State 			= History.getState(),
 			ajaxContent		= '',
 			incomingPageId	= null,
 			incomingWorkId	= null,
 			siteTitle		= 'Lunar North';
+
 
 
 
@@ -910,7 +935,6 @@ var ln = {
 				}
 
 				History.pushState('ajax', title, path);
-				currentPage();
 			}
 
 			if ($(this).closest(".menu-box")) {
@@ -920,130 +944,49 @@ var ln = {
 
 		});
 
-
-
-		// var checkInitPage = function() {
-		// 	if ($(".data-about").data("page-active") === true) {
-		// 		ln.page.loaded.about = true;
-		// 		ln.page.active = "about";
-		// 	} else if ($(".data-home").data("page-active") === true) {
-		// 		ln.page.loaded.home = true;
-		// 		ln.page.active = "home";
-		// 	}
-
-		// 	// if ($(".data-about").data("page-loaded") === true && $(".data-about").data("page-active") === true) {
-		// 	// 	ln.page.loaded.about = true;
-		// 	// 	ln.page.active = "about";
-		// 	// } else if ($(".data-home").data("page-loaded") === true && $(".data-home").data("page-active") === true) {
-		// 	// 	ln.page.loaded.home = true;
-		// 	// 	ln.page.active = "home";
-		// 	// }
-		// 	console.log(ln.page.active);
-		// };
-
-
 		var currentPage = function() {
 
 			currentState = History.getState();
 	        activeUrl = currentState.url; 
+
 			$activeContent = $('.menu-box .link[href="' + activeUrl + '\"]');
 			$(".menu-box .link").removeClass("active");
 			$activeContent.addClass("active");
+
 
 		};
 
 		currentPage();
 
-		// Load Data Images if landing homepage
-		// if ($('#work').hasClass('init')) {
-		// 	ln.page.current = 'work';
-		// 	ln.getFlickrData();
-		// 	ln.pageLoaded.hp = true;
-		// }
-
-		// if (!$('#work').length) {
-		// 	ln.loadingBar(false);
-		// }
-
-		console.log(siteUrl);
-
 
 	    History.Adapter.bind(window, 'statechange', function() {
+
+
 			loadPageAjax();
+
+			currentState = History.getState();
+	        activeUrl = currentState.url; 
+
+	        dUrl = siteUrl + "/wp";
+
+			if (activeUrl == dUrl || activeUrl == dUrl+"/") {
+				incoming = "home";
+			} else if (activeUrl == dUrl+"/about" || activeUrl == dUrl+"/about/") {
+				incoming = "about";
+			} else {
+				incoming = "work";
+			}
+
 	    });
 		
-		// function closeNotes() {
-		// 	State = History.getState();
-		// 	$('.close-btn').fadeOut(100);			
-		// 	$('#notes-content-container').stop(true).animate({
-		// 		top: '100%'
-		// 	}, { 
-		// 		duration: 150,
-		// 		queue: false,
-		// 		complete: function() {
-		// 			ln.loadingBar(false);
-		// 			$('#site-header').removeClass('notes-x');
-		// 		}
-		// 	});
-		// }
-		
-
-		// function slideThis(objId) {
-
-		// 	// Slide and hide the outgoing pages
-		// 	$('#'+objId).css('opacity', 1).stop().animate({
-		// 		left: '0'
-		// 	}, { 
-		// 		duration: 200,
-		// 		queue: false,
-		// 	});
-
-		// 	// Slide incoming page
-		// 	$('.page').not('#'+objId).stop().animate({
-		// 		left: '-100%'
-		// 	}, { 
-		// 		duration: 200,
-		// 		queue: false,
-		// 		beforeSend: function() {
-		// 		},
-		// 		complete: function() {
-
-		// 			$(this).css({
-		// 				left: '100%',
-		// 				opacity: 0
-		// 			});
-		// 			if ($(this).not('#work')) {
-		// 				$(this).scrollTop(0);
-		// 			}
-					
-		// 			if (ln.notes.toggle == true && objId != 'notes') {
-		// 				$('#site-header').removeClass('notes-x');								
-		// 			} else if (ln.notes.toggle == true && objId == 'notes') {
-		// 				$('#site-header').addClass('notes-x');
-		// 			} else if (ln.notes.toggle == false) {
-		// 				$('#site-header').removeClass('notes-x');								
-		// 			}
-															
-		// 		}
-		// 	});
-		// 	ln.pos();
-			
-		// 	// Scroll to current
-		// 	if (objId == 'work' && ln.segment.active.length) {
-	 //            $('#work .container').stop().scrollTo(ln.segment.active, {
-	 //                duration: 500
-	 //            });
-		// 	}
-			
-			
-		// }
 
 
-		var showContent = function(tar, content) {
+		var showContent = function(tar, content, option) {
 
 			// $e = $("#"+tar);
 			var el = ".page-" + tar;
-				type = null;
+
+			var type = option;
 
 			function scrollW() { 
 				$(window).stop(true).scrollTo("#main", 500); 
@@ -1051,15 +994,16 @@ var ln = {
 
 			ln.reel.mode = "close";								
 
-			if (ln.page.loaded[tar] === true){
-				type = "old";
-			} else if (ln.page.loaded[tar] !== false) {
-				type = "new";
-			} else {
-				type = "new";
-			}
+			// if (ln.page.loaded[tar] === true){
+			// 	type = "old";
+			// } else if (ln.page.loaded[tar] !== false) {
+			// 	type = "new";
+			// } else {
+			// 	type = "new";
+			// }
+
  
-			console.log(type + " " + tar);
+			// console.log(type + " " + tar);
 
 			$(".page").not(el).css({position: "absolute"}).velocity("fadeOut", 200);
 
@@ -1077,13 +1021,15 @@ var ln = {
 				if (tar == "home") {
 
 					ln.navigation.thumbnails();
-					ln.page.loaded.home = true;
+					// ln.page.loaded.home = true;
+					ln.page.home.loaded = true;
 					$(".page-work").html("");
 
 				} else if (tar == "about") {
 
 					ln.map.init();
-					ln.page.loaded.about = true;
+					// ln.page.loaded.about = true;
+					ln.page.about.loaded = true;
 					$(".page-work").html("");
 
 				} else {
@@ -1100,19 +1046,10 @@ var ln = {
 
 		};
 
+	 	//console.log("incoming=" + incoming + " | ln.page.loaded.about=" + ln.page.loaded.about);
 
 		// Load Ajax
 		function loadPageAjax() {
-
-			// ln.loadingBar(true);
-			var data = [];
-			for (var i = 0; i < 100000; i++) {
-			    var tmp = [];
-			    for (var i = 0; i < 100000; i++) {
-			        tmp[i] = 'hue';
-			    }
-			    data[i] = tmp;
-			}
 
 			State = History.getState();
 
@@ -1142,37 +1079,107 @@ var ln = {
 			    },
 				success: function(respond){
 
-					content	= $(respond).find('.page[data-page-active="true"]').html();
-				 	type = $(respond).find('.page[data-page-active="true"]').data("page-id");
+					// var content	= $(respond).find('.page[data-page-active="true"]').html();
+				 // 		type = $(respond).find('.page[data-page-active="true"]').data("page-id");
 
-					var content = null;
-						type  = null;
 
-					if (ln.page.loaded.home === true || ln.page.loaded.about === true){
+				 	// console.log("INCOMING = " + incoming + " | " + ln.page[incoming]["loaded"] + " = " + ln.page[incoming]["loaded"])
 
-						content = null;
+				 	console.log("===");
+				 	console.log("INCOMING = " + incoming);
+				 	console.log("HOME = " + ln.page.home.loaded);
+				 	console.log("ABOUT = " + ln.page.about.loaded);
 
-						if (ln.page.loaded.about === true) {
- 						type = "about";
-						} else if (ln.page.loaded.about === true) {
-						type = "home";
-						}
 
-					} else {
+				 	if (incoming != "work" && ln.page[incoming]["loaded"] === true) {
+				 		// console.log(incoming + " = OLD STUFF")
+						showContent(incoming, null, "old");
+					 	console.log("OLD! " + incoming);
 
-						content	= $(respond).find('.page[data-page-active="true"]').html();
-					 	type = $(respond).find('.page[data-page-active="true"]').data("page-id");
 
-					}
+				 	} else {
 
-					console.log("type = " + type + " | content = " + content);
-					showContent(type, content);
+						var content	= $(respond).find('.page[data-page-active="true"]').html();
+					 		type = $(respond).find('.page[data-page-active="true"]').data("page-id");
+
+							showContent(incoming, content, "new");
+						 	console.log("NEW! " + incoming);
+
+				 	}
+
+					// ln.page[activePage]["loaded"] = true;
+
+
+				 	// var whichKind;
+
+				 	// if (incoming == "home" && ln.page.loaded.home === true ) {
+						
+						// showContent("home", null, "old");
+						// whichKind = "home old";
+
+				 	// } else if (incoming == "about" && ln.page.loaded.about === true ) {
+
+						// showContent("about", null, "old");
+						// whichKind = "about old";
+
+				 	// } else if (incoming == "home" && ln.page.loaded.home !== true ) {
+
+						// var content	= $(respond).find('.page[data-page-active="true"]').html();
+					 // 		type = $(respond).find('.page[data-page-active="true"]').data("page-id");
+						
+						// showContent(type, content, "new");
+						// whichKind = "home new";
+
+				 	// } else if (incoming == "about" && ln.page.loaded.about !== true ) {
+
+						// var content	= $(respond).find('.page[data-page-active="true"]').html();
+					 // 		type = $(respond).find('.page[data-page-active="true"]').data("page-id");
+
+						// showContent(type, content, "new");
+						// whichKind = "about new";
+
+
+				 	// } else if (incoming == "work") {
+
+						// var content	= $(respond).find('.page[data-page-active="true"]').html();
+					 // 		type = $(respond).find('.page[data-page-active="true"]').data("page-id");
+
+						// showContent(type, content, "new");
+						// whichKind = "new stuff";
+
+				 	// }
+
+//				 	console.log(whichKind);
+
+				 	// console.log("incoming=" + incoming + " | ln.page.loaded.home=" + ln.page.loaded.home + " | " + whichKind);
+					// var content = null;
+					// 	type  = null;
+
+					// if (ln.page.loaded.home === true || ln.page.loaded.about === true){
+
+					// 	content = null;
+
+					// 	if (ln.page.loaded.about === true) {
+ 				// 		type = "about";
+					// 	} else if (ln.page.loaded.about === true) {
+					// 	type = "home";
+					// 	}
+
+					// } else {
+
+					// 	content	= $(respond).find('.page[data-page-active="true"]').html();
+					//  	type = $(respond).find('.page[data-page-active="true"]').data("page-id");
+
+					// }
+
+					// console.log(type);
+
+					// console.log("type = " + type + " | content = " + content);
+					// showContent(type, content);
 
 				},
 				complete: function() {
 
-						// ln.reel.mode = "close";	
-					// if (clickTarget != 'work') ln.loadingBar(false);
 					$("img.lazy").lazyload({
 					    effect : "fadeIn"
 					});

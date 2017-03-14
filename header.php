@@ -24,7 +24,7 @@
 
 		echo 	'<div id="featured">'.
 					'<div class="reel-container">'.
-						'<img src="'.getPlaceHolder().'" data-error="'.getPlaceHolder().'" class="video vimeo-thumb" data-vimeo-id="'.$videoId.'">'.
+						'<img src="'.getPlaceHolder().'" data-error="'.getPlaceHolder().'" class="video vimeo-thumb lazy" data-vimeo-id="'.$videoId.'">'.
 					'</div>'.
 				'</div>';
 	// } 

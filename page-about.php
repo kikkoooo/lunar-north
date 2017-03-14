@@ -5,9 +5,9 @@
 	get_header(); 
 
 ?>
-	<section id="projects-container" class="page page-home data-home" data-page-id="home" style="display:none" data-page-active="false"></section>
-	<section id="project-detail-container" class="page page-work data-work" data-page-id="work" style="display:none" data-page-active="false"></section>
-	<section id="about-container" class="page page-about data-about" data-page-id="about" style="position:relative;" data-page-active="true">
+	<section id="projects-container" class="page page-home data-home" data-page-id="home" style="display:none" data-page-active="false" data-page-load="false"></section>
+	<section id="project-detail-container" class="page page-work data-work" data-page-id="work" style="display:none" data-page-active="false"  data-page-load="false"></section>
+	<section id="about-container" class="page page-about data-about" data-page-id="about" style="position:relative;" data-page-active="true" data-page-load="true">
 
 		<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 
@@ -24,7 +24,10 @@
 					$imageUrl = $image['url'];
 				}
 
-				echo '<img src="'.$imageUrl.'" class=""/>';
+				// echo '<img class="lazy" data-original="'.$imageUrl.'"/>';
+				echo '<img class="lazy" src="'.$imageUrl.'"/>';
+
+
 
 			?>
 
