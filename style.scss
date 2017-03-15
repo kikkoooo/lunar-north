@@ -26,7 +26,7 @@ $gutter: 20px;
 
 
 #main {
-	position: absolute;
+	position: relative;
 	width: 100%;
 	left: 0;
 	top: vh - $headerHeight;
@@ -551,6 +551,14 @@ $gutter: 20px;
 				margin: $gutter/2 0 $gutter/2 $gutter/2;
 				float: right;
 			}
+
+			@media screen and (max-width: $break-medium) {
+				.case-study, .normal {
+					margin-left: 0;
+					margin-right: 0;
+				}
+			}
+
 		}	
 
 		&:nth-child(2n+0) {
@@ -562,7 +570,22 @@ $gutter: 20px;
 				margin: $gutter/2 $gutter/2 $gutter/2 0;			
 				float: left;
 			}	
+
+			@media screen and (max-width: $break-medium) {
+					.case-study, .normal {
+						margin-left: 0;
+						margin-right: 0;
+					}
+				}
+
 		}
+
+		// @media screen and (max-width: $break-medium) {
+		// 	.case-study, .normal {
+		// 		margin-left: 0;
+		// 		margin-right: 0;
+		// 	}
+		// }
 
 		@media screen and (max-width: $break-small) {
 			.case-study, .normal {
@@ -719,6 +742,11 @@ $gutter: 20px;
 		.description {
 		}
 
+		#map {
+			// width:  calc(100vw - $gutter - $gutter); 
+			height: 800px;
+			border: 1px solid red;
+		}
 		.section {
 
 			margin-bottom: $gutter;
@@ -957,7 +985,7 @@ $gutter: 20px;
     left: 0;
     top: 0;
     z-index: 999999;
-    background: rgba(0,0,0,.85);
+    background: rgba(0,0,0,.9);
 
 	.svg-container {
 

@@ -16,7 +16,7 @@
 			<?php
 
 				$image = get_field('image');
-				$imageW = $image['widtŽ'];
+				$imageW = $image['width'];
 
 				if ($image['width'] > 1600) {
 					$imageUrl = aq_resize($image['url'], 1600);
@@ -41,7 +41,7 @@
 					</div>			
 				</div>
 
-				<?php echo '<div id="map" class="section image large" data-lat="'.$location['lat'].'" data-lng="'.$location['lng'].'>"></div>'; ?>
+				<?php echo '<div id="map" style="width:100%;height:800px" class="section image large"></div>'; ?>
 
 			</div>
 
