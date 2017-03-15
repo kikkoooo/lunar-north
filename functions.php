@@ -191,6 +191,9 @@
 		return get_stylesheet_directory_uri().'/images/placeholder.jpg'; 
 	}
 
+	function getPreloaderSvg() {
+		return file_get_contents(get_stylesheet_directory_uri().'/images/preloader.svg');
+	}
 
 	// function my_acf_init() {
 	// 	acf_update_setting('google_api_key', 'AIzaSyBRgNewsIotsE5KXK8KElfTZohRurpTjbY');

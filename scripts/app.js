@@ -44,12 +44,16 @@ var ln = {
     init : function() {
 
 
+    	this.test();
+
     	var activePage;
 
 		$("img.lazy").lazyload({
 		    effect : "fadeIn",
 		    effectspeed: 300 
 		});
+
+		this.preloader();
 
 
 		var checkInitPage = function() {	
@@ -100,6 +104,7 @@ var ln = {
 		}
 
 		console.log("INIT LN...");
+
 	}, 
 
     featured : {
@@ -540,6 +545,25 @@ var ln = {
 
     },
 
+
+    test : function() {
+
+		$(document).keyup(function (e){
+			if (e.keyCode == 65) {
+				
+				console.log("a");
+				ln.preloader("play");
+
+			} else if (e.keyCode == 83) {
+				
+				console.log("s");
+				ln.preloader("stop");
+
+			}
+		})
+
+
+    },
 	initImages : function () {
 
 		// Might not be necessary for now
@@ -555,6 +579,77 @@ var ln = {
 		// });
 
 	},
+
+	preloader: function(mode) {
+
+
+		if (mode == "play") {
+			stopAnimations();
+			$(".progress").velocity("fadeIn", 200, function() {
+				randomize($("#icon-1"), 100);
+				randomize($("#icon-2"), 200);
+				randomize($("#icon-3"), 300);
+				randomize($("#icon-4"), 400);
+			});
+
+		} else if (mode == "stop") {
+			$(".progress").velocity("fadeOut", 200, function() {
+				stopAnimations();
+			});
+		}
+
+		// sv = 200;
+		// dr = 50;
+		sv = 100;
+		dr = 20;
+
+
+		// total = (dr * 3) + (sv * 5);
+
+		$tar = $(".char");
+
+		var combine, c = 1;
+
+		$.each($tar, function() {
+			if (c == 1 ) {
+				combine = "#"+$(this).attr("id") + ",";
+			} else if (c == 4 ) {
+				combine += "#"+$(this).attr("id");
+			} else {
+				combine += "#"+$(this).attr("id") + ",";
+			}
+			c++;
+		});
+
+		console.log(combine);
+
+		function stopAnimations() {
+			$tar.each(function() {
+				$(this).find(".box").velocity("stop", true).css({opacity: 1});
+				$(this).find(".x").velocity("stop", true).css({opacity: 0});
+			})
+		} 
+
+        function randomize(tar, timing) {
+
+        	var randomEl = Math.floor(Math.random() * 4) + 1;	
+        		delayRelay = timing;
+
+			var seqFwd = [
+				{ e: tar.find(".box"), p: { opacity: 0 }, o: { delay: delayRelay, duration: dr} },
+				{ e: tar.find(".x-"+randomEl), p: { opacity: 1 }, o: { delay: sv, sequenceQueue: true, duration: dr} },
+				{ e: tar.find(".x-"+randomEl), p: { opacity: 0 }, o: { delay: sv, sequenceQueue: true, duration: dr} },
+				{ e: tar.find(".box"), p: { opacity: 1 }, o: { easdelay: sv,  sequenceQueue: true, duration: dr, 
+					complete: function() {
+						randomize(tar, timing);
+						}
+					}
+				},
+			];
+			$.Velocity.RunSequence(seqFwd);			
+        }
+
+	},	
 
 	navigation : {
 
@@ -576,6 +671,7 @@ var ln = {
 			$(".menu-button a").click(function(e) {
 				e.preventDefault();
 				var $menu = $(".menu-box");
+				$(window).stop(true).scrollTo("#main", 200); 
 				if ($menu.is(":visible")) {
 					$menu.velocity("fadeOut", 200);
 				} else {
@@ -585,6 +681,7 @@ var ln = {
 			});
 
 		},
+
 
 		thumbnails : function() {
 
@@ -599,6 +696,7 @@ var ln = {
 				$client = el.find(".client");
 
 				$all = $triangleSm.add($thumbnail).add($triangleLg).add($divider1).add($divider2).add($title).add($client);
+
 
 				sv = 1/1.5;
 
@@ -815,6 +913,7 @@ var ln = {
 				$(this).removeClass('hover');
 
 
+
 			});
 			
 
@@ -959,26 +1058,6 @@ var ln = {
 		currentPage();
 
 
-	    History.Adapter.bind(window, 'statechange', function() {
-
-
-			loadPageAjax();
-
-			currentState = History.getState();
-	        activeUrl = currentState.url; 
-
-	        dUrl = siteUrl + "/wp";
-
-			if (activeUrl == dUrl || activeUrl == dUrl+"/") {
-				incoming = "home";
-			} else if (activeUrl == dUrl+"/about" || activeUrl == dUrl+"/about/") {
-				incoming = "about";
-			} else {
-				incoming = "work";
-			}
-
-	    });
-		
 
 
 		var showContent = function(tar, content, option) {
@@ -994,21 +1073,13 @@ var ln = {
 
 			ln.reel.mode = "close";								
 
-			// if (ln.page.loaded[tar] === true){
-			// 	type = "old";
-			// } else if (ln.page.loaded[tar] !== false) {
-			// 	type = "new";
-			// } else {
-			// 	type = "new";
-			// }
-
- 
 			// console.log(type + " " + tar);
 
 			$(".page").not(el).css({position: "absolute"}).velocity("fadeOut", 200);
 
 			if (type == "new") { 
 				$(el).html(content); 
+				console.log("ADDING NEW");
 			}
 
 			$(el).css({position: "relative"}).velocity("fadeIn", 200, function() {
@@ -1039,12 +1110,44 @@ var ln = {
 
 				}
 
+					$("img.lazy").lazyload({
+					    effect : "fadeIn"
+					});
+
 				scrollW();
 
 			});
 
 
 		};
+
+	    History.Adapter.bind(window, 'statechange', function() {
+
+
+			currentState = History.getState();
+	        activeUrl = currentState.url; 
+
+	        dUrl = siteUrl + "/wp";
+
+			if (activeUrl == dUrl || activeUrl == dUrl+"/") {
+				incoming = "home";
+			} else if (activeUrl == dUrl+"/about" || activeUrl == dUrl+"/about/") {
+				incoming = "about";
+			} else {
+				incoming = "work";
+			}
+
+		 	if (incoming != "work" && ln.page[incoming]["loaded"] === true) {
+				showContent(incoming, null, "old");
+			 	console.log("OLD! " + incoming);
+				$(".project .link").removeClass('hover');
+		 	} else {
+				loadPageAjax();
+			}
+
+	    });
+		
+
 
 	 	//console.log("incoming=" + incoming + " | ln.page.loaded.about=" + ln.page.loaded.about);
 
@@ -1059,7 +1162,7 @@ var ln = {
 			    cache: true,
 			    retryLimit: 3,
 				beforeSend: function() {
-					$(".progress").html("Loading...").velocity("fadeIn", 500);
+					ln.preloader("play");					
 				},
 			    error: function(xhr, textStatus, errorThrown ) {
 			        if (textStatus == 'timeout') {
@@ -1079,103 +1182,35 @@ var ln = {
 			    },
 				success: function(respond){
 
-					// var content	= $(respond).find('.page[data-page-active="true"]').html();
-				 // 		type = $(respond).find('.page[data-page-active="true"]').data("page-id");
-
-
-				 	// console.log("INCOMING = " + incoming + " | " + ln.page[incoming]["loaded"] + " = " + ln.page[incoming]["loaded"])
-
 				 	console.log("===");
 				 	console.log("INCOMING = " + incoming);
 				 	console.log("HOME = " + ln.page.home.loaded);
 				 	console.log("ABOUT = " + ln.page.about.loaded);
 
 
-				 	if (incoming != "work" && ln.page[incoming]["loaded"] === true) {
-				 		// console.log(incoming + " = OLD STUFF")
-						showContent(incoming, null, "old");
-					 	console.log("OLD! " + incoming);
+				 	// if (incoming != "work" && ln.page[incoming]["loaded"] === true) {
+				 	// 	// console.log(incoming + " = OLD STUFF")
+						// showContent(incoming, null, "old");
+					 // 	console.log("OLD! " + incoming);
 
+				 	// } else {
 
-				 	} else {
+						// var content	= $(respond).find('.page[data-page-active="true"]').html();
+					 // 		type = $(respond).find('.page[data-page-active="true"]').data("page-id");
+
+						// 	showContent(incoming, content, "new");
+						//  	console.log("NEW! " + incoming);
+
+				 	// }
 
 						var content	= $(respond).find('.page[data-page-active="true"]').html();
 					 		type = $(respond).find('.page[data-page-active="true"]').data("page-id");
 
 							showContent(incoming, content, "new");
+						 	console.log("HOY");
 						 	console.log("NEW! " + incoming);
 
-				 	}
 
-					// ln.page[activePage]["loaded"] = true;
-
-
-				 	// var whichKind;
-
-				 	// if (incoming == "home" && ln.page.loaded.home === true ) {
-						
-						// showContent("home", null, "old");
-						// whichKind = "home old";
-
-				 	// } else if (incoming == "about" && ln.page.loaded.about === true ) {
-
-						// showContent("about", null, "old");
-						// whichKind = "about old";
-
-				 	// } else if (incoming == "home" && ln.page.loaded.home !== true ) {
-
-						// var content	= $(respond).find('.page[data-page-active="true"]').html();
-					 // 		type = $(respond).find('.page[data-page-active="true"]').data("page-id");
-						
-						// showContent(type, content, "new");
-						// whichKind = "home new";
-
-				 	// } else if (incoming == "about" && ln.page.loaded.about !== true ) {
-
-						// var content	= $(respond).find('.page[data-page-active="true"]').html();
-					 // 		type = $(respond).find('.page[data-page-active="true"]').data("page-id");
-
-						// showContent(type, content, "new");
-						// whichKind = "about new";
-
-
-				 	// } else if (incoming == "work") {
-
-						// var content	= $(respond).find('.page[data-page-active="true"]').html();
-					 // 		type = $(respond).find('.page[data-page-active="true"]').data("page-id");
-
-						// showContent(type, content, "new");
-						// whichKind = "new stuff";
-
-				 	// }
-
-//				 	console.log(whichKind);
-
-				 	// console.log("incoming=" + incoming + " | ln.page.loaded.home=" + ln.page.loaded.home + " | " + whichKind);
-					// var content = null;
-					// 	type  = null;
-
-					// if (ln.page.loaded.home === true || ln.page.loaded.about === true){
-
-					// 	content = null;
-
-					// 	if (ln.page.loaded.about === true) {
- 				// 		type = "about";
-					// 	} else if (ln.page.loaded.about === true) {
-					// 	type = "home";
-					// 	}
-
-					// } else {
-
-					// 	content	= $(respond).find('.page[data-page-active="true"]').html();
-					//  	type = $(respond).find('.page[data-page-active="true"]').data("page-id");
-
-					// }
-
-					// console.log(type);
-
-					// console.log("type = " + type + " | content = " + content);
-					// showContent(type, content);
 
 				},
 				complete: function() {
@@ -1184,8 +1219,9 @@ var ln = {
 					    effect : "fadeIn"
 					});
 
-					$(".progress").html("").velocity("fadeOut", 500);
+					// $(".progress").html("").velocity("fadeOut", 500);
 
+					ln.preloader("stop");
 
 				},
 			});	

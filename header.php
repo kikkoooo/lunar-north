@@ -14,7 +14,6 @@
 
 	<?php
 
-	// if (is_home()) { 
 
 		$vimeoUrl = get_field('reel', options, false, false);			
 
@@ -27,11 +26,25 @@
 						'<img src="'.getPlaceHolder().'" data-error="'.getPlaceHolder().'" class="video vimeo-thumb lazy" data-vimeo-id="'.$videoId.'">'.
 					'</div>'.
 				'</div>';
-	// } 
 
 	?>
 
-	<div class="progress"></div>
+	<div class="progress">
+
+		<div class="svg-container cf">
+			<?php 
+
+			for ($i = 1; $i <= 4; $i++) {
+			    echo 	'<div id="icon-'.$i.'" class="char svg-box-'.$i.'">'
+			    		.	getPreloaderSvg()
+			    		.'</div>';
+			}
+
+			?>
+
+		</div>
+
+	</div>
 	<div id="main">
 		<header class="header">
 			<div class="ln-container cf">

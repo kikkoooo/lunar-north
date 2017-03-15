@@ -12,87 +12,82 @@
 	<?php 
 
 		$caseStudiesObj = get_field('work_case_studies', options);
-		$normalObj = get_field('work_normal', options);
+		$count = 1;
 
-		//Init arrays
-		$caseStudiesElements = [];
-		$normalElements = [];
+		foreach($caseStudiesObj as $p):
 
-		//Get all the Case Study works and make an array with of their html elements
-		if ($caseStudiesObj): 
-			foreach($caseStudiesObj as $post):
-		        setup_postdata($post);
+			if ($count == 1) {
 
-				$image = get_field('thumbnail');
+				$image = get_field('thumbnail', $p->ID);
 				$imageW = $image['width'];
-				if ($imageW > 1200): $imageUrl = aq_resize($image['url'], 1200); endif;
+				if ($imageW > 1200): $imageUrl = aq_resize($image['url'], 1100); endif;
 
-		        $e 	=	'<div class="case-study col">'
+				echo '<div class="row cf">';
+		        echo 	'<div class="case-study col">'
 							.'<div class="project">'
-								.'<a href="'.get_permalink().'" class="ajax link url-work" data-animated="false" data-page-id="work" data-title="'.get_the_title().'">'
+								.'<a href="'.get_permalink($p->ID).'" class="ajax link url-work" data-animated="false" data-page-id="work" data-title="'.get_the_title($p->ID).'">'
 									.'<img class="thumbnail lazy" data-original="'.$imageUrl.'"/>'
 									.'<div class="hover-card">'
 										.'<div class="svg-container">'.getThumbSvg().'</div>'
 										.'<div class="text-container">'
-											.'<h2 class="client">'.get_field('client').'</h2>'
+											.'<h2 class="client">'.get_field('client', $p->ID).'</h2>'
 											.'<h2 class="title">'.get_the_title().'</h2>'
 										.'</div>'
 									.'</div>'
 								.'</a>'
 							.'</div>'
 						.'</div>';
-				$caseStudiesElements[] = $e;
-		    	endforeach; 
-			wp_reset_postdata();
-		endif; 
 
-		//Get all the Normal works and make an array with of their html elements
 
-		if ($normalObj): 
-			foreach($normalObj as $post):
-		        setup_postdata($post);
+			} else if ($count == 2) {
 
-				$image = get_field('thumbnail');
+				$image = get_field('thumbnail', $p->ID);
 				$imageW = $image['width'];
-				if ($imageW > 600): $imageUrl = aq_resize($image['url'], 600); endif;
+				if ($imageW > 600): $imageUrl = aq_resize($image['url'], 500); endif;
 
-				$e 	=	'<div class="project">'
-						.	'<a href="'.get_permalink().'" class="ajax link url-work" data-animated="false" data-page-id="work" data-title="'.get_the_title().'">'
+				echo '<div class="normal col cf">';
+				echo	'<div class="project">'
+						.	'<a href="'.get_permalink($p->ID).'" class="ajax link url-work" data-animated="false" data-page-id="work" data-title="'.get_the_title($p->ID).'">'
 									.'<img class="thumbnail lazy" data-original="'.$imageUrl.'"/>'
 						.		'<div class="hover-card">'
-						.			'<div class="svg-container">'
-						.				getThumbSvg()
-						.			'</div>'
+						.			'<div class="svg-container">'.getThumbSvg().'</div>'
 						.			'<div class="text-container">'
-						.				'<h2 class="client">'.get_field('client').'</h2>'
-						.				'<h2 class="title">'.get_the_title().'</h2>'
+						.				'<h2 class="client">'.get_field('client', $p->ID).'</h2>'
+						.				'<h2 class="title">'.get_the_title($p->ID).'</h2>'
 						.			'</div>'
 						.		'</div>'
 						.	'</a>'
 						.'</div>';
-				$normalElements[] = $e;
-		    	endforeach; 
-			wp_reset_postdata();
-		endif; 
 
-		$count = 0;
-		$projects;
+			} else if ($count == 3) {
 
-		//For each Case Study make the row element and add two Normal works
-		foreach($caseStudiesElements as $index=>$value): // variable must be called $post (IMPORTANT)
+				$image = get_field('thumbnail', $p->ID);
+				$imageW = $image['width'];
+				if ($imageW > 600): $imageUrl = aq_resize($image['url'], 500); endif;
 
-			$projects 	.=	'<div class="row cf">'
-						.		$value
-						.		'<div class="normal col cf">'
-			 			.			$normalElements[$count];
-			$count++; 			
-			$projects 	.=			$normalElements[$count]; 
-			$count++; 			
-			$projects 	.=		'</div>'
-						.	'</div>';
+				echo	'<div class="project">'
+						.	'<a href="'.get_permalink($p->ID).'" class="ajax link url-work" data-animated="false" data-page-id="work" data-title="'.get_the_title($p->ID).'">'
+									.'<img class="thumbnail lazy" data-original="'.$imageUrl.'"/>'
+						.		'<div class="hover-card">'
+						.			'<div class="svg-container">'.getThumbSvg().'</div>'
+						.			'<div class="text-container">'
+						.				'<h2 class="client">'.get_field('client', $p->ID).'</h2>'
+						.				'<h2 class="title">'.get_the_title($p->ID).'</h2>'
+						.			'</div>'
+						.		'</div>'
+						.	'</a>'
+						.'</div>';
 
-		endforeach;
-		echo $projects;
+				echo '</div>';
+				echo '</div>';
+
+				$count = 0;
+
+			}
+
+			$count++;
+
+    	endforeach; 
 
 	?>
 	</section>

@@ -841,14 +841,40 @@ h3 {
           margin-right: 0; }
 
 .progress {
+  display: none;
   position: fixed;
   width: 100%;
+  height: 100%;
   left: 0;
-  bottom: 0;
-  padding: 2em;
+  top: 0;
   z-index: 999999;
-  color: #FFF;
-  font-size: 2em;
-  text-transform: uppercase; }
+  background: rgba(0, 0, 0, 0.85); }
+  .progress .svg-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%) !important;
+    -ms-transform: translate(-50%, -50%) !important;
+    -o-transform: translate(-50%, -50%); }
+    .progress .svg-container .char {
+      float: left;
+      width: 100px;
+      margin-right: 20px; }
+      @media screen and (max-width: 900px) {
+        .progress .svg-container .char {
+          width: 50px;
+          margin-right: 10px; } }
+      @media screen and (max-width: 600px) {
+        .progress .svg-container .char {
+          width: 30px; } }
+      .progress .svg-container .char:last-child {
+        margin-right: 0; }
+  .progress svg .box {
+    fill: #FFF; }
+  .progress svg .x-1, .progress svg .x-2, .progress svg .x-3, .progress svg .x-4 {
+    fill: #FFF;
+    opacity: 0; }
 
 /*# sourceMappingURL=style.css.map */
