@@ -9,13 +9,7 @@ $(window).resize(function(){
 var ln = {
 	gutter: 20,
     page: {
-	    current: null,
 	    incoming: null,
-	    loaded: {
-	    	home: false,
-	    	about: false,
-	    	reel: null,
-	    },
 	    active: null,
 	    home: {
 	    	loaded: null,
@@ -34,7 +28,7 @@ var ln = {
 		this.detectInitPage();
 		this.detectSize();
 		this.display();
-//		this.reel.init();
+		this.reel.init();
 
 		this.stickHeader.init();
 		this.navigation.global();
@@ -63,76 +57,20 @@ var ln = {
 		}
 
 		if (activePage == "about") {
-			if ($("#map").length !== 0) {
-				ln.map.init();
-			}
+			ln.gmap.init();	
 		}
 		if (activePage == "home") {
-			// ln.reel.toggle();
+			ln.reel.mode = true;
 		}
 
-
 	},
-
-    featured : {
-
-    	mode: null,
-    	init: function() {
-
-			// $featured = $("#featured");
-			// $main = $("#main");
-
-			// $(window).resize(function() {
-
-			// });
-
-
-    	},
-
-    	navigation : function() {
-
-			// $featured = $("#featured");
-			// $main = $("#main");
-
-			// $featured.css({height: h-headerH});
-			// $main.css({top: h-headerH});
-
-    	}
-
-
-    },
-
-
     reel : {
     	el : $(".reel-container"),
     	mode : null,
     	init : function() {
-    		this.ratio();
     		ln.embedVideo(this.el.find(".video"));
     	},
-    	ratio : function() {
-			var videoW = 1920,
-				videoH = 1080,
-				videoRatio = videoW/videoH,
-				el = this.el;
-
-	            $header = $(".header");
-
-			function setMax() {
-				
-	            headerH = $header.outerHeight(false) * .65;
-
-				$(".reel-container").css({paddingTop: headerH});
-
-				el.css({
-					maxHeight: el.parent().width() * videoRatio,
-					maxWidth: (el.parent().height()-headerH) * videoRatio,
-				});
-			}
-			setMax();
-			$(window).resize(setMax);
-    	},
-    	toggle : function() {
+    	toggle : function(cmd) {
 
 	        var h = $(window).height(),
 	            w = $(window).width(),
@@ -143,61 +81,28 @@ var ln = {
 
 			var showReel = [
 			    { 
-			    	e: $("#main"), 
-			    	p: {
-			    		top: h-headerH,
-			    	},
-			    	o: { 
-			    		duration: 500,
-			    		easing: "easeOutQuint",
-			    	}
-			    	// e: $("#featured"), 
-			    	// p: {
-			    	// 	top: 0,
-			    	// },
-			    	// o: { 
-			    	// 	duration: 500,
-			    	// 	complete: scrollNow()
-			    	// }
+			    	e: $("#main"), p: { top: h-headerH, },
+			    	o: { duration: 500, easing: "easeOutQuint", }
 			    },
 				{
 			    	e: $("#featured"), 
-			    	p: {
-			    		top: 0,
-			    	},
-			    	o: { 
-			    		sequenceQueue: true,
-			    		duration: 500,
-			    		complete: scrollNow()
-			    	}
+			    	p: { top: 0, },
+			    	o: { sequenceQueue: true, duration: 500, complete: scrollNow() }
 			    }
 			];
-
 
 			var closeReel = [
 			    { 
 			    	e: $("#main"), 
-			    	p: {
-			    		top: 0,
-			    		// top: h-headerH,
-			    	},
-			    	o: { 
-			    		duration: 0,
-			    		easing: "easeOutQuint",
-			    	}
+			    	p: { top: 0, },
+			    	o: { duration: 200, easing: "easeOutQuint", }
 			    },
 				{
 			    	e: $("#featured"), 
-			    	p: {
-			    		top: 0,
-			    	},
-			    	o: { 
-			    		sequenceQueue: true,
-			    		duration: 0,
-			    	}
+			    	p: { top: 0, },
+			    	o: { sequenceQueue: true, duration: 200 }
 			    }
 			];
-
 
 			function scrollNow() {
 		        $("#featured").velocity('scroll', {
@@ -208,24 +113,36 @@ var ln = {
 
 			// console.log("MODE = " + ln.reel.mode);
 
-    		if (ln.reel.mode != "open") {
-
-	    		console.log(ln.reel.mode + "    it's close. Will open");
-	    		$.Velocity.RunSequence(showReel);
-
-				ln.reel.mode = "open";
-
-    		} else {
-
-	    		console.log(ln.reel.mode + "    already open");
-				$(window).stop(true).scrollTo("#featured", 500); 
+			if (cmd == "close") {
 	    		$.Velocity.RunSequence(closeReel);
+	    		ln.reel.mode = "closed";
+		        $('iframe[src*="vimeo.com"]').each(function() {
+		            $f(this).api('unload');
+		        });                
 
-	    		ln.reel.mode = "close";
+			} else if (cmd == "open") {
+	    		$.Velocity.RunSequence(showReel);
+	    		ln.reel.mode = "open";
+			}
 
+    // 		if (ln.reel.mode != "open") {
+
+	   //  		console.log(ln.reel.mode + "    it's close. Will open");
+	   //  		$.Velocity.RunSequence(showReel);
+
+				// ln.reel.mode = "open";
+
+    // 		} else {
+
+	   //  		console.log(ln.reel.mode + "    already open");
 				// $(window).stop(true).scrollTo("#featured", 500); 
+	   //  		$.Velocity.RunSequence(closeReel);
 
-    		}
+	   //  		ln.reel.mode = "closed";
+
+				// // $(window).stop(true).scrollTo("#featured", 500); 
+
+    // 		}
 
 
     	}
@@ -274,12 +191,9 @@ var ln = {
     },
 
     images : {
-
     	init : function() {
-
 			// Might not be necessary for now
 			var count = 1;
-
 			$(".case-study .thumbnail").one("load", function() {
 				h = $(this).closest(".case-study").height();
 				$project = $(this).closest(".case-study").siblings(".normal").find(".project");
@@ -288,11 +202,8 @@ var ln = {
 			}).each(function() {
 				if(this.complete) $(this).load();
 			});
-
     	},
-    	size : {
-    	} 
-
+    	size : {} 
     },
 
     display : function(){
@@ -305,19 +216,49 @@ var ln = {
             headerH = $header.outerHeight(false),
             $footer = $(".footer");
 
+        // Reel    
+		var videoW = 1920,
+			videoH = 1080,
+			videoRatio = videoW/videoH,
+            wFull = window.innerWidth,
+            $reelCon = $(".reel-container");
+
+			// Featured/reel container height 
+			$featured.css({height: h-headerH});
+
+			if (ln.reel.mode === true) {
+		        $main.css({
+		        	top: h-headerH
+		        });
+		        $featured.css({
+		        	top: 0
+		        });
+			} else if (ln.reel.mode === false) {
+		        $main.css({
+		        	top: 0
+		        });
+		        $featured.css({
+		        	top: "-100%"
+		        });
+			}
+
+			var topSpacing = headerH * 3/4;
+
+			function setMax() {
+				$reelCon.css({
+					maxWidth: ($reelCon.parent().height() - topSpacing)* videoRatio,
+					paddingTop: topSpacing
+				});
+			}
+
+			setMax();
+
+
+
         // Header taglines widths
 		$header.find(".tagline").css({
 			width: ($header.find(".ln-container").innerWidth() - $header.find(".logo").outerWidth()) / 2
 		});
-
-		// Featured/reel container height 
-		$featured.css({height: h-headerH});
-
-		// if (ln.page.loaded.home === true) {
-		// 	$main.css({top: h-headerH});
-		// } else {
-		// 	$main.css({top: 0});
-		// }
 
 
 		// Footer
@@ -557,16 +498,17 @@ var ln = {
 			if (e.keyCode == 65) {
 				
 				// console.log("a");
-				// // ln.preloader("play");
+				ln.preloader("play");
 				// ln.display();
 				// ln.detectSize();
 				// ln.display();
-				ln.map.init();
+				// ln.map.init();
 
 			} else if (e.keyCode == 83) {
 				
 				console.log("s");
-				// ln.preloader("stop");
+				ln.preloader("stop");
+				ln.map.init();
 
 			}
 		});
@@ -978,7 +920,7 @@ var ln = {
 			
 			// If reel is clicked
 			if ($(this).hasClass("url-reel")) {
-				ln.reel.toggle();
+				ln.reel.toggle("open");				
 			} else {
 				if (title != siteTitle || title == "Home") title += ' - ' + siteTitle; 
 				History.pushState('ajax', title, path);
@@ -1009,24 +951,22 @@ var ln = {
 	        });
 		};
 
-
 		var showContent = function(page, content, option) {
 
-			var el = ".page-" + page,
+			var el = "#page-" + page,
 				type = option;
 
 			ln.reel.mode = "close";				
 
 			// Hide none active pages
 			$(".page").not(el).css({position:'absolute'}).velocity("transition.slideDownOut", 200);
-			if (content !== null) { 
+			if (content.length > 0) { 
 				$(el).html(content);
 			}
 			$(el).velocity("transition.slideUpIn", 500).css({position:'relative'});
-			if (page != "work") { $(".page-work").empty(); }
+			if (page != "work") { $("#page-work").empty(); }
 
 			if (content !== null) { 
-				console.log(el + " | do this");
 				$(el).find("img.lazy").lazyload({
 					threshold : 200,
 				    effect : "fadeIn",
@@ -1035,7 +975,7 @@ var ln = {
 			}
 
 			updateNav();
-			scrollToMain();
+			// scrollToMain();
 
 		};
 
@@ -1050,14 +990,14 @@ var ln = {
 
 			if (activeUrl == mainUrl || activeUrl == mainUrl+"/") {
 				incoming = "home";
-			} else if (activeUrl == mainUrl+"/about" || activeUrl == mainUrl+"/about/") {
+			} else if (activeUrl == mainUrl+"about" || activeUrl == mainUrl+"about/") {
 				incoming = "about";
 			} else {
 				incoming = "work";
 			}
 
 		 	if (incoming != "work" && ln.page[incoming]["loaded"] === true) {
-				content = null;
+				content = 0;
 				showContent(incoming, content, "old");
 				$(".project .link").removeClass('hover');
 		 	} else {
@@ -1123,7 +1063,8 @@ var ln = {
 
 						ln.page.about.loaded = true;
 						$(".page-work").empty();
-						console.log(incoming);			
+						console.log("HOY");
+						ln.gmap.init();	
 
 					} else {
 
@@ -1131,46 +1072,51 @@ var ln = {
 						ln.embedVideo($(".video-youtube"));
 					}
 
+					ln.reel.toggle("close");
+
+
 				},
 			});	
 		}
 	},
 
-	map : {
+	gmap : {
 		loaded : null, 
-		init : function() {
+		init : function(type) {
 
-			// if (ln.map !== true) {
+			console.log("initializing map");
 
-				var coords = {
-					lat: 42.3302632,
-					lng: -83.04755119999999,
-				};
+			var coords = {
+				lat: 42.3302632,
+				lng: -83.04755119999999,
+			};
 
-				var map = new GMaps({
-					el: '#map',
-					lat: coords.lat,
-					lng: coords.lng,
-			    	zoom: 17,
-				    scrollwheel: false,
-				    navigationControl: false,
-				    mapTypeControl: false,
-				    scaleControl: false,
-				});
+			var map = new GMaps({
+				el: '.map',
+				lat: coords.lat,
+				lng: coords.lng,
+		    	zoom: 17,
+			    scrollwheel: false,
+			    navigationControl: false,
+			    mapTypeControl: false,
+			    scaleControl: false,
+		        width: '100%',
+		        height: '600px',
+			});
 
-				map.addMarker({
-					lat: coords.lat,
-					lng: coords.lng,
-					title: 'Lunar North',
-				});
+			map.addMarker({
+				lat: coords.lat,
+				lng: coords.lng,
+				title: 'Lunar North',
+			});
 
-				$(window).resize(function() {
-					map.setCenter(coords.lat, coords.lng);
-				});
+			$(window).resize(function() {
+				map.setCenter(coords.lat, coords.lng);
+			});
 
-				this.loaded = true;
+			console.log("making map...");
+			this.loaded = true;
 
-			// }
 
 		}
 

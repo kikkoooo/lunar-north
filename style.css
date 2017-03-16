@@ -320,11 +320,12 @@ body {
   height: 100vh;
   position: absolute;
   top: 0;
-  left: 0;
-  display: none; }
+  left: 0; }
   #featured .reel-container {
+    height: 100%;
     width: 100%;
-    height: auto;
+    max-width: 1280px;
+    max-height: 100%;
     display: block;
     position: absolute;
     top: 50%;
@@ -335,9 +336,33 @@ body {
     -ms-transform: translate(-50%, -50%) !important;
     -o-transform: translate(-50%, -50%); }
     #featured .reel-container img {
+      display: block;
+      position: absolute;
+      top: 50%;
+      left: 50%;
       width: 100%;
-      height: 100%;
-      display: block; }
+      max-width: 100%;
+      max-height: 100%;
+      transform: translate(-50%, -50%);
+      -moz-transform: translate(-50%, -50%);
+      -webkit-transform: translate(-50%, -50%) !important;
+      -ms-transform: translate(-50%, -50%) !important;
+      -o-transform: translate(-50%, -50%); }
+    #featured .reel-container .fluid-width-video-wrapper {
+      display: block;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 100%;
+      max-width: 100%;
+      max-height: 100%;
+      transform: translate(-50%, -50%);
+      -moz-transform: translate(-50%, -50%);
+      -webkit-transform: translate(-50%, -50%) !important;
+      -ms-transform: translate(-50%, -50%) !important;
+      -o-transform: translate(-50%, -50%); }
+    #featured .reel-container .video-content {
+      max-height: 100%; }
 
 .video-content {
   width: 100%;
@@ -383,6 +408,8 @@ body {
   cursor: pointer;
   overflow: hidden;
   /* assuming that the video has a 16:9 ratio */ }
+  .video-youtube .fluid-width-video-wrapper {
+    padding-top: 56.25%; }
   .video-youtube .play-icon {
     position: absolute;
     width: 11em;
@@ -573,12 +600,12 @@ body {
   left: 0;
   width: 100%; }
 
-#projects-container {
+#page-home {
   padding: 0 20px; }
-  #projects-container .project {
+  #page-home .project {
     position: relative;
     overflow: hidden; }
-    #projects-container .project a {
+    #page-home .project a {
       display: block;
       width: 100%;
       height: 100%;
@@ -586,7 +613,7 @@ body {
       min-width: 100%;
       position: relative;
       left: 0; }
-      #projects-container .project a img {
+      #page-home .project a img {
         position: absolute;
         top: 50%;
         left: 50%;
@@ -597,7 +624,7 @@ body {
         -webkit-transform: translate(-50%, -50%) !important;
         -ms-transform: translate(-50%, -50%) !important;
         -o-transform: translate(-50%, -50%); }
-      #projects-container .project a .hover-card {
+      #page-home .project a .hover-card {
         position: absolute;
         top: 50%;
         width: 100%;
@@ -606,16 +633,16 @@ body {
         -webkit-transform: translateY(-50%) !important;
         -ms-transform: translateY(-50%) !important;
         -o-transform: translateY(-50%); }
-        #projects-container .project a .hover-card h2 {
+        #page-home .project a .hover-card h2 {
           text-align: center;
           margin: 0;
           padding: 0;
           opacity: 0; }
-          #projects-container .project a .hover-card h2:first-child {
+          #page-home .project a .hover-card h2:first-child {
             margin-bottom: .5em; }
-          #projects-container .project a .hover-card h2:last-child {
+          #page-home .project a .hover-card h2:last-child {
             margin-top: .5em; }
-      #projects-container .project a .svg-container {
+      #page-home .project a .svg-container {
         position: absolute;
         top: 50%;
         left: 50%;
@@ -627,56 +654,56 @@ body {
         width: 300px;
         height: auto; }
         @media screen and (max-width: 900px) {
-          #projects-container .project a .svg-container {
+          #page-home .project a .svg-container {
             width: 200px; } }
-      #projects-container .project a svg .divider {
+      #page-home .project a svg .divider {
         stroke: #FFF; }
-      #projects-container .project a svg .triangle-small {
+      #page-home .project a svg .triangle-small {
         fill: #FFF;
         opacity: 0;
         transform-origin: 50% 50%; }
-      #projects-container .project a svg .outer {
+      #page-home .project a svg .outer {
         fill: none;
         opacity: 0;
         transform-origin: 50% 50%; }
-        #projects-container .project a svg .outer .node-lg,
-        #projects-container .project a svg .outer .node-sm {
+        #page-home .project a svg .outer .node-lg,
+        #page-home .project a svg .outer .node-sm {
           fill: #FFF; }
-        #projects-container .project a svg .outer .triangle {
+        #page-home .project a svg .outer .triangle {
           stroke: #FFF;
           fill: none; }
-      #projects-container .project a:hover .thumbnail {
+      #page-home .project a:hover .thumbnail {
         opacity: .25; }
-  #projects-container .row > div {
+  #page-home .row > div {
     float: left; }
-  #projects-container .row:nth-child(1n+0) .case-study {
+  #page-home .row:nth-child(1n+0) .case-study {
     float: left; }
-  #projects-container .row:nth-child(1n+0) .normal {
+  #page-home .row:nth-child(1n+0) .normal {
     float: right; }
-  #projects-container .row:nth-child(2n+0) .case-study {
+  #page-home .row:nth-child(2n+0) .case-study {
     float: right; }
-  #projects-container .row:nth-child(2n+0) .normal {
+  #page-home .row:nth-child(2n+0) .normal {
     float: left; }
   @media screen and (max-width: 600px) {
-    #projects-container .row .case-study, #projects-container .row .normal {
+    #page-home .row .case-study, #page-home .row .normal {
       margin: 0; } }
-  #projects-container .row {
+  #page-home .row {
     width: 100%;
     display: block;
     position: relative; }
-    #projects-container .row .col {
+    #page-home .row .col {
       position: relative; }
-    #projects-container .row .normal .project {
+    #page-home .row .normal .project {
       overflow: hidden;
       float: left; }
-      #projects-container .row .normal .project:first-child a {
+      #page-home .row .normal .project:first-child a {
         top: 0; }
       @media screen and (max-width: 900px) {
-        #projects-container .row .normal .project:last-child {
+        #page-home .row .normal .project:last-child {
           margin-top: 0; } }
-      #projects-container .row .normal .project:last-child a {
+      #page-home .row .normal .project:last-child a {
         bottom: 0; }
-    #projects-container .row .thumbnail {
+    #page-home .row .thumbnail {
       width: 100%;
       height: 100%;
       display: block;
@@ -685,66 +712,66 @@ body {
 .logo a svg .text, .logo a svg .triangle {
   fill: #585A5A; }
 
-#project-detail-container .video-project, #project-detail-container .image-studio, #about-container .video-project, #about-container .image-studio {
+#page-work .video-project, #page-work .image-studio, #page-about .video-project, #page-about .image-studio {
   margin-bottom: 4em;
   background: #1E1E1E;
   width: 100%; }
-  #project-detail-container .video-project img, #project-detail-container .image-studio img, #about-container .video-project img, #about-container .image-studio img {
+  #page-work .video-project img, #page-work .image-studio img, #page-about .video-project img, #page-about .image-studio img {
     width: 100%;
     height: auto;
     display: block; }
-#project-detail-container .content-container, #about-container .content-container {
+#page-work .content-container, #page-about .content-container {
   padding: 0 20px;
   margin-bottom: 5em; }
-  #project-detail-container .content-container .info, #about-container .content-container .info {
+  #page-work .content-container .map, #page-about .content-container .map {
+    width: 100%;
+    height: 800px;
+    background-color: grey; }
+    @media screen and (max-width: 900px) {
+      #page-work .content-container .map, #page-about .content-container .map {
+        height: 400px; } }
+  #page-work .content-container .info, #page-about .content-container .info {
     max-width: 1100px;
     margin: 0 auto 5em auto; }
-    #project-detail-container .content-container .info .meta .credits ul, #project-detail-container .content-container .info .meta .credits ol, #about-container .content-container .info .meta .credits ul, #about-container .content-container .info .meta .credits ol {
+    #page-work .content-container .info .meta .credits ul, #page-work .content-container .info .meta .credits ol, #page-about .content-container .info .meta .credits ul, #page-about .content-container .info .meta .credits ol {
       margin: 0 0 0 0;
       padding: 0; }
-      #project-detail-container .content-container .info .meta .credits ul li, #project-detail-container .content-container .info .meta .credits ol li, #about-container .content-container .info .meta .credits ul li, #about-container .content-container .info .meta .credits ol li {
+      #page-work .content-container .info .meta .credits ul li, #page-work .content-container .info .meta .credits ol li, #page-about .content-container .info .meta .credits ul li, #page-about .content-container .info .meta .credits ol li {
         list-style: none;
         margin: 0 0 .15em 0; }
-    #project-detail-container .content-container .info > div, #about-container .content-container .info > div {
+    #page-work .content-container .info > div, #page-about .content-container .info > div {
       width: 50%;
       float: left; }
       @media screen and (max-width: 600px) {
-        #project-detail-container .content-container .info > div, #about-container .content-container .info > div {
+        #page-work .content-container .info > div, #page-about .content-container .info > div {
           width: 100%;
           float: none; }
-          #project-detail-container .content-container .info > div:first-child, #about-container .content-container .info > div:first-child {
+          #page-work .content-container .info > div:first-child, #page-about .content-container .info > div:first-child {
             margin-bottom: 1em; }
-          #project-detail-container .content-container .info > div.description, #about-container .content-container .info > div.description {
+          #page-work .content-container .info > div.description, #page-about .content-container .info > div.description {
             margin-bottom: 1em; } }
-  #project-detail-container .content-container #map, #about-container .content-container #map {
+  #page-work .content-container #map, #page-about .content-container #map {
     height: 800px; }
-  #project-detail-container .content-container .section, #about-container .content-container .section {
+  #page-work .content-container .section, #page-about .content-container .section {
     margin-bottom: 20px; }
-    #project-detail-container .content-container .section#map, #about-container .content-container .section#map {
-      width: 100%;
-      height: 800px;
-      background-color: grey; }
-      @media screen and (max-width: 900px) {
-        #project-detail-container .content-container .section#map, #about-container .content-container .section#map {
-          height: 400px; } }
-    #project-detail-container .content-container .section.image img, #about-container .content-container .section.image img {
+    #page-work .content-container .section.image img, #page-about .content-container .section.image img {
       display: block;
       width: 100%;
       height: auto; }
-    #project-detail-container .content-container .section.image:last-child, #about-container .content-container .section.image:last-child {
+    #page-work .content-container .section.image:last-child, #page-about .content-container .section.image:last-child {
       margin-bottom: 0; }
-    #project-detail-container .content-container .section.video, #about-container .content-container .section.video {
+    #page-work .content-container .section.video, #page-about .content-container .section.video {
       width: 100%; }
-      #project-detail-container .content-container .section.video img, #about-container .content-container .section.video img {
+      #page-work .content-container .section.video img, #page-about .content-container .section.video img {
         width: 100%;
         height: auto;
         display: block; }
-    #project-detail-container .content-container .section.text, #about-container .content-container .section.text {
+    #page-work .content-container .section.text, #page-about .content-container .section.text {
       margin: 5em auto 5em auto; }
-      #project-detail-container .content-container .section.text div, #about-container .content-container .section.text div {
+      #page-work .content-container .section.text div, #page-about .content-container .section.text div {
         max-width: 540px;
         margin: 0 auto; }
-    #project-detail-container .content-container .section:last-child, #about-container .content-container .section:last-child {
+    #page-work .content-container .section:last-child, #page-about .content-container .section:last-child {
       margin-bottom: 0; }
 
 .footer {
@@ -848,17 +875,19 @@ body {
     -moz-transform: translate(-50%, -50%);
     -webkit-transform: translate(-50%, -50%) !important;
     -ms-transform: translate(-50%, -50%) !important;
-    -o-transform: translate(-50%, -50%); }
+    -o-transform: translate(-50%, -50%);
+    width: 100%;
+    text-align: center; }
     .progress .svg-container .icon {
-      float: left;
+      display: inline-block;
       width: 100px;
       height: 106px;
-      margin-right: 20px; }
+      margin-right: 50px; }
       @media screen and (max-width: 900px) {
         .progress .svg-container .icon {
           width: 50px;
           height: 56px;
-          margin-right: 10px; } }
+          margin-right: 20px; } }
       @media screen and (max-width: 600px) {
         .progress .svg-container .icon {
           width: 30px;

@@ -5,9 +5,9 @@ get_header();
 
 ?>
 
-	<section id="about-container" class="page page-about data-about" style="display:none" data-page-active="false" data-page-load="false"></section>
-	<section id="projects-container" class="page page-home data-home" style="display:none" data-page-active="false" data-page-id="home"  data-page-load="false"></section>
-	<section id="project-detail-container" class="page page-work data-work" style="position:relative" data-page-id="work" data-page-active="true"  data-page-load="true">
+	<section id="page-about" class="page page-about data-about" style="display:none" data-page-active="false" data-page-load="false"></section>
+	<section id="page-home" class="page page-home data-home" style="display:none" data-page-active="false" data-page-id="home"  data-page-load="false"></section>
+	<section id="page-work" class="page page-work data-work" style="position:relative" data-page-id="work" data-page-active="true"  data-page-load="true">
 
 		<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 

@@ -5,9 +5,9 @@
 
 ?>
  
-	<section id="project-detail-container" class="page page-work data-work" style="display:none" data-page-id="work" data-page-active="false" data-page-load="false"></section>
-	<section id="about-container" class="page page-about data-about" style="display:none" data-page-id="about" data-page-active="false" data-page-load="false"></section>
-	<section id="projects-container" class="page page-home data-home" style="position:relative" data-page-id="home" data-page-active="true"  data-page-load="true">
+	<section id="page-work" class="page page-work data-work" style="display:none" data-page-id="work" data-page-active="false" data-page-load="false"></section>
+	<section id="page-about" class="page page-about data-about" style="display:none" data-page-id="about" data-page-active="false" data-page-load="false"></section>
+	<section id="page-home" class="page page-home data-home" style="position:relative" data-page-id="home" data-page-active="true"  data-page-load="true">
 
 	<?php 
 

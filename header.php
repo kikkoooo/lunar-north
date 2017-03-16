@@ -33,6 +33,8 @@
 		    $videoId = $id[3];
 		}
 
+		//slide content
+		//video content
 		echo 	'<div id="featured">'.
 					'<div class="reel-container">'.
 						'<img src="'.getPlaceHolder().'" data-error="'.getPlaceHolder().'" class="video vimeo-thumb lazy" data-vimeo-id="'.$videoId.'">'.
