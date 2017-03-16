@@ -11,7 +11,7 @@
 
 	<?php 
 
-		$caseStudiesObj = get_field('work_case_studies', options);
+		$caseStudiesObj = get_field('selected_work', options);
 		$count = 1;
 
 		foreach($caseStudiesObj as $p):

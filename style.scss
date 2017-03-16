@@ -37,8 +37,8 @@ body {
 	width: 100%;
 	left: 0;
 	top: vh - $headerHeight;
-	// background: rgba(0,0,0,.9);
 	background: $bgColor;
+	opacity: 0;
 }
 
 //REEL 
@@ -51,6 +51,7 @@ body {
 	top: 0;
 	left: 0;
 	display: none;
+	background: $bgColor;	
 
 	.reel-container {
 
@@ -465,6 +466,7 @@ body {
 	top: 0;
 	left: 0;
 	width: 100%;
+	background: $bgColor;	
 	// min-height: 100vh;	
 }
 
@@ -1031,12 +1033,15 @@ body {
 	
 	display: none;
     position: fixed;
+    width: 100vw;
+    height: 100vh;
     width: 100%;
     height: 100%;
     left: 0;
     top: 0;
     z-index: 999999;
-    background: rgba(0,0,0,.9);
+    background: rgba(0,0,0,1);
+    // background: rgba(0,0,0,.9);
 
     // 30, 30, 30
 
@@ -1072,7 +1077,6 @@ body {
 	}
 	svg {
 		.box {
-			// fill: #FFF;
 		    fill: #585A5A;
 		}
 		.x-1, .x-2, .x-3, .x-4 {

@@ -23,7 +23,7 @@ var ln = {
     },
     init : function() {
 
-    	// ln.preloader("play");
+    	ln.preloader("play");
     	this.test();
 		this.detectInitPage();
 		this.detectSize();
@@ -38,7 +38,8 @@ var ln = {
 		$("img.lazy").lazyload({
 			threshold : 200,
 		    effect : "fadeIn",
-		    effectspeed: 300 
+		    effectspeed: 200,
+			failure_limit : 10
 		});
 
 		console.log("INIT LN...");
@@ -48,20 +49,33 @@ var ln = {
 
 		var activePage = $('.page[data-page-load="true"]').data("page-id");
 
+		$(window).load(function() {
+
+			if (activePage == "about") {
+				ln.gmap.init();	
+			}
+			if (activePage == "home") {
+				ln.reel.mode = true;
+	    		ln.reel.toggle("open");				
+			}
+
+    		$("#main").animate({
+    			opacity: 1
+    		}, 200);
+    		ln.preloader("stop");
+
+    		$(".progress").css({
+				background: "rgba(0,0,0,.9)"
+    		});
+
+		});
+
 		if (activePage != "work") {
 			ln.page[activePage]["loaded"] = true;
 		} else {
 			console.log("WORK");
 			ln.embedVideo($(".video-vimeo"));
 			ln.embedVideo($(".video-youtube"));
-		}
-
-		if (activePage == "about") {
-			ln.gmap.init();	
-		}
-		if (activePage == "home") {
-			ln.reel.mode = true;
-    		ln.reel.toggle("open");				
 		}
 
 	},
@@ -531,7 +545,7 @@ var ln = {
 				
 				console.log("s");
 				ln.preloader("stop");
-				ln.map.init();
+				// ln.map.init();
 
 			}
 		});
@@ -551,7 +565,7 @@ var ln = {
 			});
 //			console.log("playing");
 		} else if (mode == "stop") {
-			$(".progress").velocity("fadeOut", 200, function() {
+			$(".progress").delay(400).velocity("fadeOut", 200, function() {
 				stopAnimations();
 			});
 		}
@@ -581,7 +595,8 @@ var ln = {
 
         function randomize(tar, timing) {
 
-        	var randomEl = Math.floor(Math.random() * 4) + 1;	
+        	var randomEl = Math.floor(Math.random() * 5) + 1;	
+
         		delayRelay = timing;
 
 			var randomAnim = [
@@ -951,7 +966,10 @@ var ln = {
 			if ($(this).hasClass("url-reel")) {
 				ln.reel.toggle("open");				
 			} else {
-				if (title != siteTitle || title == "Home") title += ' - ' + siteTitle; 
+				if (title != siteTitle || title == "Home") {
+					title += ' - ' + siteTitle; 
+				}
+
 				History.pushState('ajax', title, path);
 			}
 
@@ -999,7 +1017,8 @@ var ln = {
 				$(el).find("img.lazy").lazyload({
 					threshold : 200,
 				    effect : "fadeIn",
-				    effectspeed: 300 
+				    effectspeed: 200,
+    				failure_limit : 10
 				});
 			}
 
