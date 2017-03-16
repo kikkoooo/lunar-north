@@ -61,6 +61,7 @@ var ln = {
 		}
 		if (activePage == "home") {
 			ln.reel.mode = true;
+    		ln.reel.toggle("open");				
 		}
 
 	},
@@ -86,8 +87,8 @@ var ln = {
 			    },
 				{
 			    	e: $("#featured"), 
-			    	p: { top: 0, },
-			    	o: { sequenceQueue: true, duration: 500, complete: scrollNow() }
+			    	p: { top: 0, opacity: 1},
+			    	o: { display: "block", sequenceQueue: false, duration: 200, complete: scrollNow() }
 			    }
 			];
 
@@ -99,14 +100,17 @@ var ln = {
 			    },
 				{
 			    	e: $("#featured"), 
-			    	p: { top: 0, },
-			    	o: { sequenceQueue: true, duration: 200 }
+			    	p: { opacity: 0, },
+			    	o: { display: "none", sequenceQueue: true, duration: 200 }
 			    }
 			];
 
+					// $menu.velocity("transition.slideDownIn", 200);
+
+
 			function scrollNow() {
 		        $("#featured").velocity('scroll', {
-		            duration: 500,
+		            duration: 400,
 		            easing: 'ease-in-out'
 		        });
 			}
@@ -121,8 +125,25 @@ var ln = {
 		        });                
 
 			} else if (cmd == "open") {
+	    		
+
 	    		$.Velocity.RunSequence(showReel);
+
+
+			    // $("#featured").velocity("transition.slideUpIn", 700);
+			    // $("#main").velocity({ top: 0 }, 700);
+			    // $("#main").velocity({ top: h-headerH }, 700);
+		        // $("#main").velocity("stop").velocity('scroll', {
+		        //     duration: 500,
+		        //     easing: 'ease-in-out'
+		        // });
+
+	    		
+
 	    		ln.reel.mode = "open";
+
+
+
 			}
 
     // 		if (ln.reel.mode != "open") {
@@ -603,6 +624,15 @@ var ln = {
 					$menu.velocity("transition.slideDownIn", 200);
 				}
 				$(this).toggleClass("active");
+
+				if (ln.stickHeader.mode !== true) {
+			        $("#main").velocity("stop").velocity('scroll', {
+			            duration: 500,
+			            easing: 'ease-in-out'
+			        });
+				}
+
+
 			});
 
 		},
@@ -884,9 +914,6 @@ var ln = {
 				});
 
 				$navBar.on('sticky-end', function() { 
-				});
-
-				$navBar.on('sticky-end', function() {
 					var $menuBox = $(".menu-box");
 					$menuBox.velocity("fadeOut", 200);
 					$(".nav-toggle").removeClass("active");
@@ -1000,6 +1027,7 @@ var ln = {
 				content = 0;
 				showContent(incoming, content, "old");
 				$(".project .link").removeClass('hover');
+				ln.reel.toggle("close");				
 		 	} else {
 				loadPageAjax();
 			}

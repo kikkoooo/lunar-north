@@ -258,11 +258,15 @@ Y.prototype.load=function(a){function b(){if(e["__mti_fntLst"+c]){var d=e["__mti
         var $e = $(e);
         var id = $e.data(options.idSelectorName);
 
+        var addOptions = '&title=0&portrait=0&color=ff0000&badge=0&byline=0&hd=1';
+        
         // only execute on non-vimeo images
         if (id && !/VIMEO/i.test($e.attr('src'))) {
 
           // build Vimeo JSON URL
-          var url = options.vimeoPatternUrl + id + '&autoplay=' + options.autoplay + '&width=' + options.width + '&callback=?';
+          // var url = options.vimeoPatternUrl + id + '&autoplay=' + options.autoplay + '&width=' + options.width + '&callback=?';
+          var url = options.vimeoPatternUrl + id + '&api=1' + addOptions + '&autoplay=' + options.autoplay + '&width=' + options.width + '&color=00ADEE&title=0&portrait=0&badge=0&byline=0&portrait=0&hd=1&quality=1080p&callback=?';
+
 
           // fetch video data from Vimeo
           $.ajax({
@@ -278,7 +282,6 @@ Y.prototype.load=function(a){function b(){if(e["__mti_fntLst"+c]){var d=e["__mti
               $e.attr('src', data.thumbnail_url);
 
               // add play icon and click event listener
-
               // var svg = '<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 68 60" style="enable-background:new 0 0 68 60;" xml:space="preserve"><polygon fill="white" points="0,61 15,30.5 0,0 68.6,30.5 "/></svg>';
 			  var svg = '<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 68 60" style="enable-background:new 0 0 68 60;" xml:space="preserve"><polygon fill="white" points="0,61 15,30.5 0,0 68.6,30.5 "/></svg>';
 
