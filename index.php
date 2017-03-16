@@ -48,7 +48,7 @@
 				echo '<div class="normal col cf">';
 				echo	'<div class="project">'
 						.	'<a href="'.get_permalink($p->ID).'" class="ajax link url-work" data-animated="false" data-page-id="work" data-title="'.get_the_title($p->ID).'">'
-									.'<img class="thumbnail lazy" data-original="'.$imageUrl.'"/>'
+						.		'<img class="thumbnail lazy" data-original="'.$imageUrl.'"/>'
 						.		'<div class="hover-card">'
 						.			'<div class="svg-container">'.getThumbSvg().'</div>'
 						.			'<div class="text-container">'
@@ -67,7 +67,7 @@
 
 				echo	'<div class="project">'
 						.	'<a href="'.get_permalink($p->ID).'" class="ajax link url-work" data-animated="false" data-page-id="work" data-title="'.get_the_title($p->ID).'">'
-									.'<img class="thumbnail lazy" data-original="'.$imageUrl.'"/>'
+						.		'<img class="thumbnail lazy" data-original="'.$imageUrl.'"/>'
 						.		'<div class="hover-card">'
 						.			'<div class="svg-container">'.getThumbSvg().'</div>'
 						.			'<div class="text-container">'

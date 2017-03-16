@@ -34,7 +34,7 @@ var ln = {
 		this.detectInitPage();
 		this.detectSize();
 		this.display();
-		this.reel.init();
+//		this.reel.init();
 
 		this.stickHeader();
 		this.navigation.global();
@@ -72,7 +72,7 @@ var ln = {
 				}
 			}
 			if (activePage == "home") {
-				ln.reel.toggle();
+				// ln.reel.toggle();
 			}
 
 
@@ -326,11 +326,11 @@ var ln = {
 		$featured.css({height: h-headerH});
 
 
-		if (ln.page.loaded.home === true) {
-			$main.css({top: h-headerH});
-		} else {
-			$main.css({top: 0});
-		}
+		// if (ln.page.loaded.home === true) {
+		// 	$main.css({top: h-headerH});
+		// } else {
+		// 	$main.css({top: 0});
+		// }
 
 
 
@@ -344,11 +344,10 @@ var ln = {
 		// 	})
 		// }	
 
-			$(".projects-container").css({
-				paddingLeft: ln.gutter,
-				paddingRight: ln.gutter,
-			})
-
+		// $(".projects-container").css({
+		// 	paddingLeft: ln.gutter,
+		// 	paddingRight: ln.gutter,
+		// })
 
 
 		// Footer
@@ -370,158 +369,261 @@ var ln = {
 		}
 
 
-		// Thumbnails
-		var caseStudyColW = ($("#main").width() * (2/3)) - (ln.gutter * 2),
-			normalColW = ($("#main").width()/3) - (ln.gutter);
+		// // Thumbnails
+		// var caseStudyColW = ($("#main").width() * (2/3)) - (ln.gutter * 2),
+		// 	normalColW = ($("#main").width()/3) - (ln.gutter);
 
-		// var caseStudyColW = ($(".row").width() * (2/3)) - (ln.gutter * (1/2)),
-		// 	normalColW = ($(".row").width()/3) - (ln.gutter * (1/2)),
+		// // var caseStudyColW = ($(".row").width() * (2/3)) - (ln.gutter * (1/2)),
+		// // 	normalColW = ($(".row").width()/3) - (ln.gutter * (1/2)),
 
-			$caseStudyContainer = $(".case-study"),
-			$normalContainer = $(".normal");
+		// 	$caseStudyContainer = $(".case-study"),
+		// 	$normalContainer = $(".normal");
+
+		// if (ln.screen.mode == "large") {
+
+		// 	$caseStudyContainer.css({
+		// 		width: caseStudyColW,
+		// 		height: (caseStudyColW) * (9/16),
+		// 	});
+
+		// 	$normalContainer.css({
+		// 		width: normalColW,
+		// 		height: (caseStudyColW) * (9/16)			
+		// 	});
+
+
+
+		// } else if (ln.screen.mode == "medium") {
+
+		// 	// var csW = $(window).innerWidth() - 40;
+		// 	// 	nW = ($("#main").width()) - (ln.gutter * 2);
+
+
+		// 	// $caseStudyContainer.css({
+		// 	// 	width: $("#projects-container").width(),
+		// 	// 	height: csW * (9/16),
+		// 	// 	background: "blue"				
+		// 	// });
+
+		// 	// console.log("gutter = " + ln.gutter);
+
+		// 	// // console.log("w = " + $("#main").innerWidth());
+		// 	// // console.log("width = " + w + " " + csW);
+
+		// 	// // console.log(csW + " " + ln.gutter * 2);
+
+		// 	// $normalContainer.css({
+		// 	// 	width: nW,
+		// 	// 	height: (nW/2) * (9/16),
+		// 	// 	background: "lime"
+		// 	// });
+
+		// } else {
+
+		// 	var csW = $("#main").width() - (ln.gutter * 2),
+		// 		nW = ($("#main").width()) - (ln.gutter * 2);
+
+		// 	$caseStudyContainer.css({
+		// 		width: csW,
+		// 		height: csW * (9/16)
+		// 	});
+
+		// 	$normalContainer.css({
+		// 		width: nW,
+		// 		height: nW * (9/16),
+		// 	});
+
+		// }
+
+		// // Homepage 
+		// var $row = $(".row");
+		// var $main = $("#main");
+
+		// $normalProject = $normalContainer.find(".project");
+		// $caseStudyProject = $caseStudyContainer.find(".project");
+
+
+
+
+		$row = $(".row");
+		$pcs = $(".case-study .project");
+		$pn = $(".normal .project");
+		$main = $(".header");
+
+		var wFull = window.innerWidth - (ln.gutter * 2);
+
+		$row.css({
+			marginBottom: ln.gutter,
+		});
+
+		var drawSmall = function() {
+			$pcs.each(function(i) {
+				var w = wFull,
+					h = w * 9/16;
+				// project
+				$(this).parent(".col").css({
+					width: w,
+					height: h,
+					margin: 0,					
+					marginBottom: ln.gutter,	
+				});
+				$(this).css({
+					width: w,
+					height: h,
+				});
+			});
+			$pn.each(function(i) {
+				var w = wFull,
+					h = w * 9/16;
+				// project
+				$(this).parent(".col").css({
+					width: w,
+					height: "auto",
+				});
+				if (i % 2 === 0) {
+					$(this).css({
+						width: w,
+						height: h,
+						margin: 0,						
+						marginBottom: ln.gutter,						
+					});
+				} else {
+					$(this).css({
+						width: w,
+						height: h,
+					});
+				}
+			});
+		};
+
+		var drawMedium = function() {
+			$pcs.each(function(i) {
+				var w = wFull,
+					h = w * 9/16;
+				// project
+				$(this).parent(".col").css({
+					width: w,
+					height: h,
+					margin: 0,
+					marginBottom: ln.gutter,
+				});
+				$(this).css({
+					width: w,
+					height: h,
+				});
+			});
+			$pn.each(function(i) {
+				var w = (wFull - ln.gutter)/2,
+					conH = w * 9/16,
+					h = w * 9/16;
+				// container
+				$(this).parent(".col").css({
+					width: wFull,
+					height: conH,
+				});
+				// project
+				if (i % 2 === 0) {
+					$(this).css({
+						width: (wFull - ln.gutter)/2,
+						height: h,
+						margin: 0,						
+						marginRight: ln.gutter,					
+					});
+				} else {
+					// project
+					$(this).css({
+						width: (wFull - ln.gutter)/2,
+						height: h,
+					});
+				}
+			});
+		};
+
+		var drawLarge = function() {
+			$pcs.each(function(i) {
+				var w = (wFull * 2/3) - ln.gutter/2,
+					h = w * 9/16;
+				// project
+				if (i % 2 === 0) {
+					$(this).parent(".col").css({
+						width: w,
+						height: h,
+						margin: 0,
+						marginRight: ln.gutter,
+					});
+				} else {
+					$(this).parent(".col").css({
+						width: w,
+						height: h,
+						margin: 0,						
+						marginLeft: ln.gutter,
+					});
+				}
+				$(this).css({
+					width: w,
+					height: h,
+				});
+			});
+			$pn.each(function(i) {
+				var w = wFull - ((wFull * 2/3) - ln.gutter/2) - ln.gutter,
+					conH = ((wFull * 2/3) - (ln.gutter/2)) * 9/16,
+					h = conH/2 - ln.gutter/2;
+				// project
+				$(this).parent(".col").css({
+					width: w,
+					height: conH,
+				});
+				// project
+				if (i != 1) {
+					$(this).css({
+						width: w,
+						height: h,
+						margin: 0,						
+						marginBottom: ln.gutter,					
+					});
+				} else {
+					// project
+					$(this).css({
+						width: w,
+						height: h,
+					});
+				}
+			});
+		};
 
 		if (ln.screen.mode == "large") {
-
-			$caseStudyContainer.css({
-				width: caseStudyColW,
-				height: (caseStudyColW) * (9/16)
-			});
-
-			$normalContainer.css({
-				width: normalColW,
-				height: (caseStudyColW) * (9/16)			
-			});
-
-
-
+			drawLarge();
 		} else if (ln.screen.mode == "medium") {
-
-			var csW = ($("#main").width()) - (ln.gutter * 2),
-				nW = ($("#main").width()) - (ln.gutter * 2);
-
-
-			$caseStudyContainer.css({
-				width: csW,
-				height: csW * (9/16)
-			});
-
-			$normalContainer.css({
-				width: nW,
-				height: (nW/2) * (9/16),
-				// background: "lime"
-			});
-
-		} else {
-
-			var csW = $("#main").width() - (ln.gutter * 2),
-				nW = ($("#main").width()) - (ln.gutter * 2);
-
-			$caseStudyContainer.css({
-				width: csW,
-				height: csW * (9/16)
-			});
-
-			$normalContainer.css({
-				width: nW,
-				height: nW * (9/16),
-			});
-
+			drawMedium();
+		} else if (ln.screen.mode == "small") {
+			drawSmall();
 		}
-
-		// Homepage 
-		var $row = $(".row");
-		var $main = $("#main");
-
-			$normalProject = $normalContainer.find(".project");
-			$caseStudyProject = $caseStudyContainer.find(".project");
-
-		$caseStudyProject.css({opacity:'.5'});
 		
-		if (ln.screen.mode == "large") {
-
-			$normalProject.css({			
-				width: normalColW,
-				height: ((caseStudyColW) * (9/16) / 2) - ln.gutter/2,
-			});
-
-			$caseStudyProject.css({
-				width: caseStudyColW,
-				height: (caseStudyColW) * (9/16),
-			});
-
-		} else if (ln.screen.mode == "medium") {
-
-			var csW = ($("#main").width()) - (ln.gutter * 2),
-				nW = ($("#main").width()/2) - (ln.gutter * 1.5);
-
-			$normalProject.css({			
-				width: nW,
-				height: nW * (9/16),
-			});
-
-			$caseStudyProject.css({			
-				width: csW,
-				height: csW * (9/16)
-			});
-
-		} else {
-
-			var csW = ($("#main").width()) - (ln.gutter * 2),
-				nW = ($("#main").width()) - (ln.gutter * 2);
-
-			$normalProject.css({			
-				width: nW,
-				height: nW * (9/16)
-			});
-
-			$caseStudyProject.css({
-				width: csW,
-				height: csW * (9/16)
-			});
-
-		}
 
 
 		// 2 column
 		$(".image.col-2 .col").each(function() {
-
-			// wid = $("#main") - (ln.gutter * 2);
-
-			// $(this).css({
-			// 	background: "lime",
-			// 	marginRight : ln.gutter,
-			// })
-
 			var cw = $(this).parent().width()/2;
-			
 			if (ln.screen.mode == "small") {
-
 				$(this).parent(".info").css({
 					width : "100%",
 					marginRight : 0,
 				});
-
 				$(this).width("100%");
-
 				if ($(this).is(":first-child")) {
 					$(this).css({
 						marginRight : 0,
 						marginBottom : 20,
 					});
 				}
-
 			} else {
-
 				$(this).width(cw - ln.gutter/2);
-				// $(this).width($("#main").width() - ln.gutter/2);
-
 				if ($(this).is(":first-child")) {
 					$(this).css({
 						marginBottom : 0,
 						marginRight : ln.gutter,
 					});
 				}
-
 			}
 		});
 
@@ -548,13 +650,12 @@ var ln = {
 				// ln.preloader("stop");
 
 			}
-		})
+		});
 
 
     },
 
 	preloader: function(mode) {
-
 
 		if (mode == "play") {
 			stopAnimations();
@@ -564,38 +665,31 @@ var ln = {
 				randomize($("#icon-3"), 300);
 				randomize($("#icon-4"), 400);
 			});
-
+			console.log("playing");
 		} else if (mode == "stop") {
 			$(".progress").velocity("fadeOut", 200, function() {
 				stopAnimations();
 			});
 		}
 
-		// sv = 200;
-		// dr = 50;
-		sv = 100;
-		dr = 20;
+		var sv = 200,
+			dr = 40,
+			combine,
+			count = 1;
 
-		// total = (dr * 3) + (sv * 5);
-
-		var combine, c = 1;
-
-		$(".char").each(function() {
-			if (c == 1 ) {
+		$(".icon").each(function() {
+			if (count == 1 ) {
 				combine = "#"+$(this).attr("id") + ",";
-			} else if (c == 4 ) {
+			} else if (count == 4 ) {
 				combine += "#"+$(this).attr("id");
 			} else {
 				combine += "#"+$(this).attr("id") + ",";
 			}
-			c++;
+			count++;
 		});
 
-		// console.log(combine);
-
 		function stopAnimations() {
-
-			$(".char").each(function() {
+			$(".icon").each(function() {
 				$(this).find(".box").velocity("stop", true).css({opacity: 1});
 				$(this).find(".x").velocity("stop", true).css({opacity: 0});
 			});
@@ -606,7 +700,7 @@ var ln = {
         	var randomEl = Math.floor(Math.random() * 4) + 1;	
         		delayRelay = timing;
 
-			var seqFwd = [
+			var randomAnim = [
 				{ e: tar.find(".box"), p: { opacity: 0 }, o: { delay: delayRelay, duration: dr} },
 				{ e: tar.find(".x-"+randomEl), p: { opacity: 1 }, o: { delay: sv, sequenceQueue: true, duration: dr} },
 				{ e: tar.find(".x-"+randomEl), p: { opacity: 0 }, o: { delay: sv, sequenceQueue: true, duration: dr} },
@@ -617,7 +711,7 @@ var ln = {
 					}
 				},
 			];
-			$.Velocity.RunSequence(seqFwd);			
+			$.Velocity.RunSequence(randomAnim);			
         }
 
 	},	
@@ -907,11 +1001,13 @@ var ln = {
 	        ln.screen.mode = "large";
         }
 
-		if (ln.screen.mode == "small") {
 			ln.gutter = 20;
-		} else {
-			ln.gutter = 20;
-		}
+
+		// if (ln.screen.mode == "small") {
+		// 	ln.gutter = 20;
+		// } else {
+		// 	ln.gutter = 20;
+		// }
 
 		if (ln.screen.mode != "large") {
 			$('#header').sticky('update');
@@ -1167,10 +1263,10 @@ var ln = {
 					// 	// background: 'rgba(255,0,0,.5)'
 					// });
 
-					$("img.lazy").lazyload({
-					    threshold : 200,
-					    effect : "fadeIn"
-					});
+					// $("img.lazy").lazyload({
+					//     threshold : 200,
+					//     effect : "fadeIn"
+					// });
 
 					// if ($("#map").length !== 0) {
 					// 	console.log("LOAD MAP");

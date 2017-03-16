@@ -17,7 +17,7 @@
 		<div class="svg-container cf">
 			<?php 
 				for ($i = 1; $i <= 4; $i++) {
-				    echo 	'<div id="icon-'.$i.'" class="char svg-box-'.$i.'">'
+				    echo 	'<div id="icon-'.$i.'" class="icon svg-box-'.$i.'">'
 				    		.	getPreloaderSvg()
 				    		.'</div>';
 				}

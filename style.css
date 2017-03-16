@@ -301,6 +301,12 @@ h3 {
   src: url("fonts/DINWeb-Medium.eot?#iefix") format("embedded-opentype"), url("fonts/DINWeb-Medium.woff") format("woff"), url("fonts/DINWeb-Medium.ttf") format("truetype");
   font-weight: normal;
   font-style: normal; }
+body {
+  width: 100vw;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  visibility: visible !important; }
+
 #main {
   position: relative;
   width: 100%;
@@ -314,7 +320,8 @@ h3 {
   height: 100vh;
   position: absolute;
   top: 0;
-  left: 0; }
+  left: 0;
+  display: none; }
   #featured .reel-container {
     width: 100%;
     height: auto;
@@ -640,26 +647,16 @@ h3 {
           fill: none; }
       #projects-container .project a:hover .thumbnail {
         opacity: .25; }
+  #projects-container .row > div {
+    float: left; }
   #projects-container .row:nth-child(1n+0) .case-study {
-    margin: 10px 10px 10px 0;
     float: left; }
   #projects-container .row:nth-child(1n+0) .normal {
-    margin: 10px 0 10px 10px;
     float: right; }
-  @media screen and (max-width: 900px) {
-    #projects-container .row:nth-child(1n+0) .case-study, #projects-container .row:nth-child(1n+0) .normal {
-      margin-left: 0;
-      margin-right: 0; } }
   #projects-container .row:nth-child(2n+0) .case-study {
-    margin: 10px 0 10px 10px;
     float: right; }
   #projects-container .row:nth-child(2n+0) .normal {
-    margin: 10px 10px 10px 0;
     float: left; }
-  @media screen and (max-width: 900px) {
-    #projects-container .row:nth-child(2n+0) .case-study, #projects-container .row:nth-child(2n+0) .normal {
-      margin-left: 0;
-      margin-right: 0; } }
   @media screen and (max-width: 600px) {
     #projects-container .row .case-study, #projects-container .row .normal {
       margin: 0; } }
@@ -672,26 +669,13 @@ h3 {
     #projects-container .row .normal .project {
       overflow: hidden;
       float: left; }
-      #projects-container .row .normal .project:first-child {
-        margin-top: 0;
-        margin-bottom: 10px; }
-        @media screen and (max-width: 900px) {
-          #projects-container .row .normal .project:first-child {
-            margin-bottom: 0;
-            margin-right: 20px; } }
-        @media screen and (max-width: 600px) {
-          #projects-container .row .normal .project:first-child {
-            margin: 0 0 20px 0; } }
-        #projects-container .row .normal .project:first-child a {
-          top: 0; }
-      #projects-container .row .normal .project:last-child {
-        margin-top: 10px;
-        margin-bottom: 0; }
-        @media screen and (max-width: 900px) {
-          #projects-container .row .normal .project:last-child {
-            margin-top: 0; } }
-        #projects-container .row .normal .project:last-child a {
-          bottom: 0; }
+      #projects-container .row .normal .project:first-child a {
+        top: 0; }
+      @media screen and (max-width: 900px) {
+        #projects-container .row .normal .project:last-child {
+          margin-top: 0; } }
+      #projects-container .row .normal .project:last-child a {
+        bottom: 0; }
     #projects-container .row .thumbnail {
       width: 100%;
       height: 100%;
@@ -733,8 +717,7 @@ h3 {
           #project-detail-container .content-container .info > div.description, #about-container .content-container .info > div.description {
             margin-bottom: 1em; } }
   #project-detail-container .content-container #map, #about-container .content-container #map {
-    height: 800px;
-    border: 1px solid red; }
+    height: 800px; }
   #project-detail-container .content-container .section, #about-container .content-container .section {
     margin-bottom: 20px; }
     #project-detail-container .content-container .section#map, #about-container .content-container .section#map {
@@ -869,18 +852,21 @@ h3 {
     -webkit-transform: translate(-50%, -50%) !important;
     -ms-transform: translate(-50%, -50%) !important;
     -o-transform: translate(-50%, -50%); }
-    .progress .svg-container .char {
+    .progress .svg-container .icon {
       float: left;
       width: 100px;
+      height: 106px;
       margin-right: 20px; }
       @media screen and (max-width: 900px) {
-        .progress .svg-container .char {
+        .progress .svg-container .icon {
           width: 50px;
+          height: 56px;
           margin-right: 10px; } }
       @media screen and (max-width: 600px) {
-        .progress .svg-container .char {
-          width: 30px; } }
-      .progress .svg-container .char:last-child {
+        .progress .svg-container .icon {
+          width: 30px;
+          height: 36px; } }
+      .progress .svg-container .icon:last-child {
         margin-right: 0; }
   .progress svg .box {
     fill: #FFF; }
