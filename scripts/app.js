@@ -24,7 +24,8 @@ var ln = {
     init : function() {
 
     	ln.preloader("play");
-    	this.test();
+    	// this.test();
+
 		this.detectInitPage();
 		this.detectSize();
 		this.display();
@@ -36,13 +37,13 @@ var ln = {
 		this.ajaxPages();
 
 		$("img.lazy").lazyload({
-			threshold : 200,
+			threshold : 600,
 		    effect : "fadeIn",
 		    effectspeed: 200,
 			failure_limit : 10
 		});
 
-		console.log("INIT LN...");
+		// console.log("INIT LN...");
 	}, 
 
 	detectInitPage : function() {
@@ -55,10 +56,8 @@ var ln = {
 				ln.gmap.init();	
 			}
 			if (activePage == "home") {
-				ln.reel.mode = true;
 	    		ln.reel.toggle("open");				
 			}
-
     		$("#main").animate({
     			opacity: 1
     		}, 200);
@@ -71,9 +70,11 @@ var ln = {
 		});
 
 		if (activePage != "work") {
+
 			ln.page[activePage]["loaded"] = true;
+
 		} else {
-			console.log("WORK");
+
 			ln.embedVideo($(".video-vimeo"));
 			ln.embedVideo($(".video-youtube"));
 		}
@@ -96,8 +97,9 @@ var ln = {
 
 			var showReel = [
 			    { 
-			    	e: $("#main"), p: { top: h-headerH, },
-			    	o: { duration: 500, easing: "easeOutQuint", }
+			    	e: $("#main"), 
+			    	p: { top: h-headerH, },
+			    	o: { duration: 200, easing: "easeOutQuint", }
 			    },
 				{
 			    	e: $("#featured"), 
@@ -119,8 +121,7 @@ var ln = {
 			    }
 			];
 
-					// $menu.velocity("transition.slideDownIn", 200);
-
+		// $menu.velocity("transition.slideDownIn", 200);
 
 			function scrollNow() {
 		        $("#featured").velocity('scroll', {
@@ -133,51 +134,22 @@ var ln = {
 
 			if (cmd == "close") {
 	    		$.Velocity.RunSequence(closeReel);
-	    		ln.reel.mode = "closed";
+
+	    		// ln.reel.mode = "closed";
+	    		ln.reel.mode = false;
+
 		        $('iframe[src*="vimeo.com"]').each(function() {
 		            $f(this).api('unload');
 		        });                
 
 			} else if (cmd == "open") {
 	    		
-
 	    		$.Velocity.RunSequence(showReel);
-
-
-			    // $("#featured").velocity("transition.slideUpIn", 700);
-			    // $("#main").velocity({ top: 0 }, 700);
-			    // $("#main").velocity({ top: h-headerH }, 700);
-		        // $("#main").velocity("stop").velocity('scroll', {
-		        //     duration: 500,
-		        //     easing: 'ease-in-out'
-		        // });
-
-	    		
-
-	    		ln.reel.mode = "open";
-
+	    		// ln.reel.mode = "open";
+	    		ln.reel.mode = true;
 
 
 			}
-
-    // 		if (ln.reel.mode != "open") {
-
-	   //  		console.log(ln.reel.mode + "    it's close. Will open");
-	   //  		$.Velocity.RunSequence(showReel);
-
-				// ln.reel.mode = "open";
-
-    // 		} else {
-
-	   //  		console.log(ln.reel.mode + "    already open");
-				// $(window).stop(true).scrollTo("#featured", 500); 
-	   //  		$.Velocity.RunSequence(closeReel);
-
-	   //  		ln.reel.mode = "closed";
-
-				// // $(window).stop(true).scrollTo("#featured", 500); 
-
-    // 		}
 
 
     	}
@@ -272,9 +244,6 @@ var ln = {
 		        $main.css({
 		        	top: 0
 		        });
-		        $featured.css({
-		        	top: "-100%"
-		        });
 			}
 
 			var topSpacing = headerH * 3/4;
@@ -322,7 +291,7 @@ var ln = {
 			wFull = window.innerWidth - (ln.gutter * 2);
 
 		// Setup content with 16:9 ratio
-		$(".video-main").css({
+		$(".video-main, .image-studio").css({
 			width: w,
 			height: w * 9/16,
 		});
@@ -530,27 +499,20 @@ var ln = {
     },
 
     test : function() {
-
 		$(document).keyup(function (e){
 			if (e.keyCode == 65) {
-				
 				// console.log("a");
-				ln.preloader("play");
+				// ln.preloader("play");
 				// ln.display();
 				// ln.detectSize();
 				// ln.display();
 				// ln.map.init();
-
 			} else if (e.keyCode == 83) {
-				
-				console.log("s");
-				ln.preloader("stop");
+				// console.log("s");
+				// ln.preloader("stop");
 				// ln.map.init();
-
 			}
 		});
-
-
     },
 
 	preloader: function(mode) {
@@ -563,7 +525,6 @@ var ln = {
 				randomize($("#icon-3"), 300);
 				randomize($("#icon-4"), 400);
 			});
-//			console.log("playing");
 		} else if (mode == "stop") {
 			$(".progress").delay(400).velocity("fadeOut", 200, function() {
 				stopAnimations();
@@ -648,8 +609,6 @@ var ln = {
 			            easing: 'ease-in-out'
 			        });
 				}
-
-
 			});
 
 		},
@@ -969,7 +928,8 @@ var ln = {
 				if (title != siteTitle || title == "Home") {
 					title += ' - ' + siteTitle; 
 				}
-
+				
+				ln.reel.toggle("close");
 				History.pushState('ajax', title, path);
 			}
 
@@ -991,39 +951,37 @@ var ln = {
 
 		updateNav();
 
-		var scrollToMain = function() { 
-	        $("#main").velocity("stop").velocity('scroll', {
-	            duration: 500,
-	            easing: 'ease-in-out'
-	        });
-		};
-
 		var showContent = function(page, content, option) {
 
 			var el = "#page-" + page,
 				type = option;
-
-			ln.reel.mode = "close";				
 
 			// Hide none active pages
 			$(".page").not(el).css({position:'absolute'}).velocity("transition.slideDownOut", 200);
 			if (content.length > 0) { 
 				$(el).html(content);
 			}
-			$(el).velocity("transition.slideUpIn", 500).css({position:'relative'});
+
+			// scrollToMain();
+	        $("#main").velocity('scroll', {
+	            duration: 200,
+	            easing: 'easeOutQuint'
+	        });
+
+			$(el).velocity("transition.slideUpIn", 400).css({position:'relative'});
+
 			if (page != "work") { $("#page-work").empty(); }
 
 			if (content !== null) { 
 				$(el).find("img.lazy").lazyload({
-					threshold : 200,
+					threshold : 600,
 				    effect : "fadeIn",
 				    effectspeed: 200,
     				failure_limit : 10
 				});
 			}
-
 			updateNav();
-			// scrollToMain();
+			ln.reel.mode = false;				
 
 		};
 
@@ -1048,11 +1006,10 @@ var ln = {
 				content = 0;
 				showContent(incoming, content, "old");
 				$(".project .link").removeClass('hover');
-				ln.reel.toggle("close");				
 		 	} else {
 				loadPageAjax();
 			}
-
+			
 	    });
 		
 		// Load Ajax
@@ -1090,7 +1047,6 @@ var ln = {
 				 		type = $(respond).find('.page[data-page-active="true"]').data("page-id");
 
 					showContent(incoming, content, "new");
-					// activeEl = ".page-" + incoming;
 
 				},
 				complete: function() {
@@ -1112,7 +1068,6 @@ var ln = {
 
 						ln.page.about.loaded = true;
 						$(".page-work").empty();
-						console.log("HOY");
 						ln.gmap.init();	
 
 					} else {
@@ -1123,7 +1078,6 @@ var ln = {
 
 					ln.reel.toggle("close");
 
-
 				},
 			});	
 		}
@@ -1133,7 +1087,7 @@ var ln = {
 		loaded : null, 
 		init : function(type) {
 
-			console.log("initializing map");
+			// console.log("initializing map");
 
 			var coords = {
 				lat: 42.3302632,
@@ -1163,9 +1117,7 @@ var ln = {
 				map.setCenter(coords.lat, coords.lng);
 			});
 
-			console.log("making map...");
 			this.loaded = true;
-
 
 		}
 

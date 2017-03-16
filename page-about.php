@@ -24,7 +24,7 @@
 					$imageUrl = $image['url'];
 				}
 
-				echo '<img class="lazy" src="'.$imageUrl.'"/>';
+				echo '<img class="lazy" data-original="'.$imageUrl.'"/>';
 
 			?>
 
