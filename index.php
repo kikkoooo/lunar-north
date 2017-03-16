@@ -31,7 +31,7 @@
 										.'<div class="svg-container">'.getThumbSvg().'</div>'
 										.'<div class="text-container">'
 											.'<h2 class="client">'.get_field('client', $p->ID).'</h2>'
-											.'<h2 class="title">'.get_the_title().'</h2>'
+											.'<h2 class="title">'.get_the_title($p->ID).'</h2>'
 										.'</div>'
 									.'</div>'
 								.'</a>'

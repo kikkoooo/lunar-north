@@ -274,13 +274,15 @@ var ln = {
 
 			setMax();
 
-
-
         // Header taglines widths
 		$header.find(".tagline").css({
 			width: ($header.find(".ln-container").innerWidth() - $header.find(".logo").outerWidth()) / 2
 		});
 
+
+		$(".page").css({
+			minHeight: h - $footer.outerHeight() - ln.gutter - headerH
+		});
 
 		// Footer
 		if (ln.screen.mode != "small") {

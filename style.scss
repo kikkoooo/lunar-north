@@ -742,8 +742,11 @@ body {
 
 	.content-container {
 
-		padding: 0 $gutter;
-		margin-bottom: 5em;
+		padding: 0 $gutter 5em $gutter;
+		// margin-bottom: 5em;
+
+		// padding: 0 $gutter;
+		// margin-bottom: 5em;
 
 		.map {
 
@@ -1035,6 +1038,9 @@ body {
     z-index: 999999;
     background: rgba(0,0,0,.9);
 
+    // 30, 30, 30
+
+
 	.svg-container {
 
 		position: absolute;
@@ -1054,20 +1060,9 @@ body {
 		.icon {
 
 			display: inline-block;
-			width: 100px;
-			height: 106px;
+			width: 30px;
+			height: 36px;
 			margin-right: $gutter * 2.5;
-
-			@media screen and (max-width: $break-medium) {
-				width: 50px;
-				height: 56px;
-				margin-right: $gutter;
-			}
-
-			@media screen and (max-width: $break-small) {
-				width: 30px;
-				height: 36px;
-			}
 
 			&:last-child {
 				margin-right: 0;
@@ -1077,10 +1072,12 @@ body {
 	}
 	svg {
 		.box {
-			fill: #FFF;
+			// fill: #FFF;
+		    fill: #585A5A;
 		}
 		.x-1, .x-2, .x-3, .x-4 {
-			fill: #FFF;
+		    fill: #585A5A;
+			// fill: #FFF;
 			opacity: 0;
 		}
 	}

@@ -722,8 +722,7 @@ body {
     height: auto;
     display: block; }
 #page-work .content-container, #page-about .content-container {
-  padding: 0 20px;
-  margin-bottom: 5em; }
+  padding: 0 20px 5em 20px; }
   #page-work .content-container .map, #page-about .content-container .map {
     width: 100%;
     height: 800px;
@@ -881,24 +880,15 @@ body {
     text-align: center; }
     .progress .svg-container .icon {
       display: inline-block;
-      width: 100px;
-      height: 106px;
+      width: 30px;
+      height: 36px;
       margin-right: 50px; }
-      @media screen and (max-width: 900px) {
-        .progress .svg-container .icon {
-          width: 50px;
-          height: 56px;
-          margin-right: 20px; } }
-      @media screen and (max-width: 600px) {
-        .progress .svg-container .icon {
-          width: 30px;
-          height: 36px; } }
       .progress .svg-container .icon:last-child {
         margin-right: 0; }
   .progress svg .box {
-    fill: #FFF; }
+    fill: #585A5A; }
   .progress svg .x-1, .progress svg .x-2, .progress svg .x-3, .progress svg .x-4 {
-    fill: #FFF;
+    fill: #585A5A;
     opacity: 0; }
 
 /*# sourceMappingURL=style.css.map */
