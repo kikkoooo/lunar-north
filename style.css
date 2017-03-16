@@ -731,9 +731,6 @@ body {
       display: block;
       width: 100%;
       height: auto; }
-    #project-detail-container .content-container .section.image.small.col-2 .col, #about-container .content-container .section.image.small.col-2 .col {
-      width: 50%;
-      float: left; }
     #project-detail-container .content-container .section.image:last-child, #about-container .content-container .section.image:last-child {
       margin-bottom: 0; }
     #project-detail-container .content-container .section.video, #about-container .content-container .section.video {
