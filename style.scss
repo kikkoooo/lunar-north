@@ -724,7 +724,7 @@ body {
 
 //CONTENT
 
-#page-work, #page-about {
+#page-work, #page-about, #page-404 {
 
 	.video-project, .image-studio {
 
@@ -1084,5 +1084,12 @@ body {
 			// fill: #FFF;
 			opacity: 0;
 		}
+	}
+}
+
+.error {
+	padding: $gutter;
+	h3 {
+		// margin: 0;
 	}
 }

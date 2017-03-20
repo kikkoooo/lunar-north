@@ -23,10 +23,8 @@ var ln = {
     },
     init : function() {
 
-    	ln.preloader("play");
-    	// this.test();
-
 		this.detectInitPage();
+    	// this.test();		
 		this.detectSize();
 		this.display();
 		this.reel.init();
@@ -43,7 +41,6 @@ var ln = {
 			failure_limit : 10
 		});
 
-		// console.log("INIT LN...");
 	}, 
 
 	detectInitPage : function() {
@@ -69,17 +66,42 @@ var ln = {
 
 		});
 
-		if (activePage != "work") {
+		if (activePage == "home" && activePage == "about") {
 
 			ln.page[activePage]["loaded"] = true;
+    		ln.preloader("play");			
+
+		} else if (activePage == "error") {
+
+			console.log("ERROR");
+			this.error();
 
 		} else {
 
+    		ln.preloader("play");			
 			ln.embedVideo($(".video-vimeo"));
 			ln.embedVideo($(".video-youtube"));
 		}
 
 	},
+
+	error: function() {
+
+		$cd =  $(".error .countdown");
+		time = 10;
+
+		var interval = setInterval(function(){ 
+			
+			$cd.text(time);
+			time--;
+			if (time < 0) {
+				clearInterval(interval);
+				window.location.replace("http://lunarnorth.tv");
+			}
+		}, 1000);
+
+	},
+
     reel : {
     	el : $(".reel-container"),
     	mode : null,
@@ -134,21 +156,16 @@ var ln = {
 
 			if (cmd == "close") {
 	    		$.Velocity.RunSequence(closeReel);
-
 	    		// ln.reel.mode = "closed";
 	    		ln.reel.mode = false;
-
 		        $('iframe[src*="vimeo.com"]').each(function() {
 		            $f(this).api('unload');
 		        });                
 
 			} else if (cmd == "open") {
-	    		
 	    		$.Velocity.RunSequence(showReel);
 	    		// ln.reel.mode = "open";
 	    		ln.reel.mode = true;
-
-
 			}
 
 
@@ -497,7 +514,6 @@ var ln = {
 		
 
     },
-
     test : function() {
 		$(document).keyup(function (e){
 			if (e.keyCode == 65) {
@@ -514,7 +530,6 @@ var ln = {
 			}
 		});
     },
-
 	preloader: function(mode) {
 
 		if (mode == "play") {
@@ -556,8 +571,7 @@ var ln = {
 
         function randomize(tar, timing) {
 
-        	var randomEl = Math.floor(Math.random() * 5) + 1;	
-
+        	var randomEl = Math.floor(Math.random() * 4) + 1,
         		delayRelay = timing;
 
 			var randomAnim = [
@@ -618,13 +632,13 @@ var ln = {
 
 			var seq = function(el, direction, callback) {
 
-				$thumbnail = el.find(".thumbnail");
-				$triangleSm = el.find(".triangle-small");
-				$triangleLg = el.find(".outer");
-				$divider1 = el.find(".divider-1");
-				$divider2 = el.find(".divider-2");
-				$title = el.find(".title");
-				$client = el.find(".client");
+				var $thumbnail = el.find(".thumbnail"),
+					$triangleSm = el.find(".triangle-small"),
+					$triangleLg = el.find(".outer"),
+					$divider1 = el.find(".divider-1"),
+					$divider2 = el.find(".divider-2"),
+					$title = el.find(".title"),
+					$client = el.find(".client");
 
 				$all = $triangleSm.add($thumbnail).add($triangleLg).add($divider1).add($divider2).add($title).add($client);
 
@@ -830,17 +844,13 @@ var ln = {
 			};
 
 			$(".project .link").mouseenter(function() {
-
 				$(this).addClass('hover');
 				$hover = $(".hover");
 				seq($hover, "seqFwd");
-
 			}).mouseleave(function() {
-
 				$hover = $(".hover");
 				seq($hover, "seqRev");
 				$(this).removeClass('hover');
-
 			});
 
 		}
@@ -1012,11 +1022,8 @@ var ln = {
 			
 	    });
 		
-		// Load Ajax
 		function loadPageAjax() {
-
 			State = History.getState();
-
 			$.ajax({
 	            url: State.url,
 			    tryCount: 0,
@@ -1052,32 +1059,24 @@ var ln = {
 				complete: function() {
 
 					ln.preloader("stop");
-
 					updateNav();
-
 					ln.display();
 					ln.detectSize();
 
 					if (incoming == "home") {
-
 						ln.navigation.thumbnails();
 						ln.page.home.loaded = true;
 						$(".page-work").empty();
-
 					} else if (incoming == "about") {
-
 						ln.page.about.loaded = true;
 						$(".page-work").empty();
 						ln.gmap.init();	
-
 					} else {
-
 						ln.embedVideo($(".video-vimeo"));
 						ln.embedVideo($(".video-youtube"));
 					}
 
 					ln.reel.toggle("close");
-
 				},
 			});	
 		}
@@ -1086,8 +1085,6 @@ var ln = {
 	gmap : {
 		loaded : null, 
 		init : function(type) {
-
-			// console.log("initializing map");
 
 			var coords = {
 				lat: 42.3302632,

@@ -716,65 +716,65 @@ body {
 .logo a svg .text, .logo a svg .triangle {
   fill: #585A5A; }
 
-#page-work .video-project, #page-work .image-studio, #page-about .video-project, #page-about .image-studio {
+#page-work .video-project, #page-work .image-studio, #page-about .video-project, #page-about .image-studio, #page-404 .video-project, #page-404 .image-studio {
   margin-bottom: 4em;
   background: #1E1E1E;
   width: 100%; }
-  #page-work .video-project img, #page-work .image-studio img, #page-about .video-project img, #page-about .image-studio img {
+  #page-work .video-project img, #page-work .image-studio img, #page-about .video-project img, #page-about .image-studio img, #page-404 .video-project img, #page-404 .image-studio img {
     width: 100%;
     height: auto;
     display: block; }
-#page-work .content-container, #page-about .content-container {
+#page-work .content-container, #page-about .content-container, #page-404 .content-container {
   padding: 0 20px 5em 20px; }
-  #page-work .content-container .map, #page-about .content-container .map {
+  #page-work .content-container .map, #page-about .content-container .map, #page-404 .content-container .map {
     width: 100%;
     height: 800px;
     background-color: grey; }
     @media screen and (max-width: 900px) {
-      #page-work .content-container .map, #page-about .content-container .map {
+      #page-work .content-container .map, #page-about .content-container .map, #page-404 .content-container .map {
         height: 400px; } }
-  #page-work .content-container .info, #page-about .content-container .info {
+  #page-work .content-container .info, #page-about .content-container .info, #page-404 .content-container .info {
     max-width: 1100px;
     margin: 0 auto 5em auto; }
-    #page-work .content-container .info .meta .credits ul, #page-work .content-container .info .meta .credits ol, #page-about .content-container .info .meta .credits ul, #page-about .content-container .info .meta .credits ol {
+    #page-work .content-container .info .meta .credits ul, #page-work .content-container .info .meta .credits ol, #page-about .content-container .info .meta .credits ul, #page-about .content-container .info .meta .credits ol, #page-404 .content-container .info .meta .credits ul, #page-404 .content-container .info .meta .credits ol {
       margin: 0 0 0 0;
       padding: 0; }
-      #page-work .content-container .info .meta .credits ul li, #page-work .content-container .info .meta .credits ol li, #page-about .content-container .info .meta .credits ul li, #page-about .content-container .info .meta .credits ol li {
+      #page-work .content-container .info .meta .credits ul li, #page-work .content-container .info .meta .credits ol li, #page-about .content-container .info .meta .credits ul li, #page-about .content-container .info .meta .credits ol li, #page-404 .content-container .info .meta .credits ul li, #page-404 .content-container .info .meta .credits ol li {
         list-style: none;
         margin: 0 0 .15em 0; }
-    #page-work .content-container .info > div, #page-about .content-container .info > div {
+    #page-work .content-container .info > div, #page-about .content-container .info > div, #page-404 .content-container .info > div {
       width: 50%;
       float: left; }
       @media screen and (max-width: 600px) {
-        #page-work .content-container .info > div, #page-about .content-container .info > div {
+        #page-work .content-container .info > div, #page-about .content-container .info > div, #page-404 .content-container .info > div {
           width: 100%;
           float: none; }
-          #page-work .content-container .info > div:first-child, #page-about .content-container .info > div:first-child {
+          #page-work .content-container .info > div:first-child, #page-about .content-container .info > div:first-child, #page-404 .content-container .info > div:first-child {
             margin-bottom: 1em; }
-          #page-work .content-container .info > div.description, #page-about .content-container .info > div.description {
+          #page-work .content-container .info > div.description, #page-about .content-container .info > div.description, #page-404 .content-container .info > div.description {
             margin-bottom: 1em; } }
-  #page-work .content-container #map, #page-about .content-container #map {
+  #page-work .content-container #map, #page-about .content-container #map, #page-404 .content-container #map {
     height: 800px; }
-  #page-work .content-container .section, #page-about .content-container .section {
+  #page-work .content-container .section, #page-about .content-container .section, #page-404 .content-container .section {
     margin-bottom: 20px; }
-    #page-work .content-container .section.image img, #page-about .content-container .section.image img {
+    #page-work .content-container .section.image img, #page-about .content-container .section.image img, #page-404 .content-container .section.image img {
       display: block;
       width: 100%;
       height: auto; }
-    #page-work .content-container .section.image:last-child, #page-about .content-container .section.image:last-child {
+    #page-work .content-container .section.image:last-child, #page-about .content-container .section.image:last-child, #page-404 .content-container .section.image:last-child {
       margin-bottom: 0; }
-    #page-work .content-container .section.video, #page-about .content-container .section.video {
+    #page-work .content-container .section.video, #page-about .content-container .section.video, #page-404 .content-container .section.video {
       width: 100%; }
-      #page-work .content-container .section.video img, #page-about .content-container .section.video img {
+      #page-work .content-container .section.video img, #page-about .content-container .section.video img, #page-404 .content-container .section.video img {
         width: 100%;
         height: auto;
         display: block; }
-    #page-work .content-container .section.text, #page-about .content-container .section.text {
+    #page-work .content-container .section.text, #page-about .content-container .section.text, #page-404 .content-container .section.text {
       margin: 5em auto 5em auto; }
-      #page-work .content-container .section.text div, #page-about .content-container .section.text div {
+      #page-work .content-container .section.text div, #page-about .content-container .section.text div, #page-404 .content-container .section.text div {
         max-width: 540px;
         margin: 0 auto; }
-    #page-work .content-container .section:last-child, #page-about .content-container .section:last-child {
+    #page-work .content-container .section:last-child, #page-about .content-container .section:last-child, #page-404 .content-container .section:last-child {
       margin-bottom: 0; }
 
 .footer {
@@ -895,5 +895,8 @@ body {
   .progress svg .x-1, .progress svg .x-2, .progress svg .x-3, .progress svg .x-4 {
     fill: #585A5A;
     opacity: 0; }
+
+.error {
+  padding: 20px; }
 
 /*# sourceMappingURL=style.css.map */

@@ -38,6 +38,15 @@
 
 	?>
 	<div id="main">
+
+		<?php 
+
+		if ( is_404() ) {
+
+		} else {
+
+		?>
+		
 		<header class="header">
 			<div class="ln-container cf">
 				<div class="tagline align-right"><h3>Design and Animation</h3></div>
@@ -59,3 +68,5 @@
 				</ul>
 			</nav>
 		</header>
+
+		<?php } ?> 

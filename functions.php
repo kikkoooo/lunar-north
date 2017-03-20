@@ -16,21 +16,12 @@
 		wp_enqueue_script('jquery');
 		//	   wp_enqueue_script('jquery-ui');
 
-
 		wp_enqueue_script('google-maps', 'https://maps.googleapis.com/maps/api/js?key=AIzaSyBRgNewsIotsE5KXK8KElfTZohRurpTjbY', true, null, true );
 		wp_enqueue_script('google-jsapi','https://www.google.com/jsapi', true, null, true );
 
 		wp_enqueue_script( 'plugins', "{$url}plugins.js", array('jquery'), null, true );
-
 		wp_enqueue_script( 'app', "{$url}app.js", array('jquery'), null, true );
 	}
-
-	// function add_scripts() {
-	//   wp_enqueue_script('google-maps', 'https://maps.googleapis.com/maps/api/js?key=AIzaSyBRgNewsIotsE5KXK8KElfTZohRurpTjbY');
-	//   // wp_enqueue_script('google-jsapi','https://www.google.com/jsapi');     
-	// }
-	// add_action('wp_enqueue_scripts', 'add_scripts');
-
 
 
 	$ajax = !empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest';
