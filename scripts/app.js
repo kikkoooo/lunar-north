@@ -24,7 +24,6 @@ var ln = {
     init : function() {
 
 		this.detectInitPage();
-    	// this.test();		
 		this.detectSize();
 		this.display();
 		this.reel.init();
@@ -652,8 +651,8 @@ var ln = {
 				    		height: "105%",
 				    	},
 				    	o: { 
-				    		duration: sv * 1400,
-				    		easing: "easeOutQuint",
+				    		duration: sv * 1200,
+				    		// easing: "easeOutQuint",
 				    	}
 				    },
 				    { 
@@ -759,7 +758,7 @@ var ln = {
 				    	},
 				    	o: { 
 				    		duration: 200,
-				    		easing: "easeOutQuint",
+				    		// easing: "easeOutQuint",
 				    	}
 				    },
 				    { 
@@ -972,12 +971,6 @@ var ln = {
 				$(el).html(content);
 			}
 
-			// scrollToMain();
-	        $("#main").velocity('scroll', {
-	            duration: 200,
-	            easing: 'easeOutQuint'
-	        });
-
 			$(el).velocity("transition.slideUpIn", 400).css({position:'relative'});
 
 			if (page != "work") { $("#page-work").empty(); }
@@ -992,6 +985,11 @@ var ln = {
 			}
 			updateNav();
 			ln.reel.mode = false;				
+
+	        $("#main").velocity('scroll', {
+	            duration: 200,
+	            easing: 'easeOutQuint'
+	        });
 
 		};
 

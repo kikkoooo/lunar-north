@@ -322,7 +322,7 @@ body {
   position: absolute;
   top: 0;
   left: 0;
-  display: none;
+  opacity: 0;
   background: #000; }
   #featured .reel-container {
     height: 100%;
@@ -519,7 +519,10 @@ body {
     height: 100%;
     display: block;
     z-index: 100;
-    padding: 0 20px; }
+    padding: 0 40px 0 0; }
+    @media screen and (max-width: 600px) {
+      .header .menu-button {
+        padding: 0 30px 0 0; } }
     .header .menu-button .nav-toggle {
       cursor: pointer;
       padding: 10px 30px 12px 0px; }
@@ -621,8 +624,6 @@ body {
         position: absolute;
         top: 50%;
         left: 50%;
-        min-height: 100%;
-        min-width: 100%;
         transform: translate(-50%, -50%);
         -moz-transform: translate(-50%, -50%);
         -webkit-transform: translate(-50%, -50%) !important;
@@ -736,23 +737,31 @@ body {
   #page-work .content-container .info, #page-about .content-container .info, #page-404 .content-container .info {
     max-width: 1100px;
     margin: 0 auto 5em auto; }
-    #page-work .content-container .info .meta .credits ul, #page-work .content-container .info .meta .credits ol, #page-about .content-container .info .meta .credits ul, #page-about .content-container .info .meta .credits ol, #page-404 .content-container .info .meta .credits ul, #page-404 .content-container .info .meta .credits ol {
-      margin: 0 0 0 0;
-      padding: 0; }
-      #page-work .content-container .info .meta .credits ul li, #page-work .content-container .info .meta .credits ol li, #page-about .content-container .info .meta .credits ul li, #page-about .content-container .info .meta .credits ol li, #page-404 .content-container .info .meta .credits ul li, #page-404 .content-container .info .meta .credits ol li {
-        list-style: none;
-        margin: 0 0 .15em 0; }
+    #page-work .content-container .info .meta .credits, #page-about .content-container .info .meta .credits, #page-404 .content-container .info .meta .credits {
+      padding-left: 1em; }
+      #page-work .content-container .info .meta .credits ul, #page-work .content-container .info .meta .credits ol, #page-about .content-container .info .meta .credits ul, #page-about .content-container .info .meta .credits ol, #page-404 .content-container .info .meta .credits ul, #page-404 .content-container .info .meta .credits ol {
+        margin: 0 0 0 0;
+        padding: 0; }
+        #page-work .content-container .info .meta .credits ul li, #page-work .content-container .info .meta .credits ol li, #page-about .content-container .info .meta .credits ul li, #page-about .content-container .info .meta .credits ol li, #page-404 .content-container .info .meta .credits ul li, #page-404 .content-container .info .meta .credits ol li {
+          list-style: none;
+          margin: 0 0 .15em 0; }
     #page-work .content-container .info > div, #page-about .content-container .info > div, #page-404 .content-container .info > div {
       width: 50%;
       float: left; }
+      #page-work .content-container .info > div:first-child, #page-about .content-container .info > div:first-child, #page-404 .content-container .info > div:first-child {
+        padding-right: 10px; }
+      #page-work .content-container .info > div.description, #page-about .content-container .info > div.description, #page-404 .content-container .info > div.description {
+        padding-left: 10px; }
       @media screen and (max-width: 600px) {
         #page-work .content-container .info > div, #page-about .content-container .info > div, #page-404 .content-container .info > div {
           width: 100%;
           float: none; }
           #page-work .content-container .info > div:first-child, #page-about .content-container .info > div:first-child, #page-404 .content-container .info > div:first-child {
-            margin-bottom: 1em; }
+            margin-bottom: 1em;
+            padding-right: 0; }
           #page-work .content-container .info > div.description, #page-about .content-container .info > div.description, #page-404 .content-container .info > div.description {
-            margin-bottom: 1em; } }
+            margin-bottom: 1em;
+            padding-left: 0; } }
   #page-work .content-container #map, #page-about .content-container #map, #page-404 .content-container #map {
     height: 800px; }
   #page-work .content-container .section, #page-about .content-container .section, #page-404 .content-container .section {
